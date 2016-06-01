@@ -1,0 +1,61 @@
+#!/bin/sh
+
+OSTYPE=`uname`
+FALCONHOME="/work/price/falcon"
+JAVAHOME=${FALCONHOME}"/local/${OSTYPE}/java/jdk1.5.0"
+JAVALIB=${FALCONHOME}"/local/java/lib"
+CLASSPATH=${JAVALIB}"/falcon.jar"
+CLASSPATH=${CLASSPATH}:${JAVALIB}"/colt.jar"
+CLASSPATH=${CLASSPATH}:${JAVALIB}"/commons-math.jar"
+JAVA=${JAVAHOME}/bin/java
+
+PACK="com.fi.falcon"
+MAIN=${PACK}.ProfStatsGenerator
+
+check_java_version()
+{
+  if [ ! -x $JAVA ]; then
+    echo ${JAVA} not found
+    exit 1
+  fi
+  #v=`java -version 2>&1`
+  #echo "$v"
+  return 0
+}
+
+${FALCONHOME}/bin/supports_java
+if [ $? -ne 0 ]; then
+  echo "this machine does not support java"
+  exit 1
+fi
+
+if [ -z "$*" ]
+then
+  echo "Usage: profile_vdps {-t tmpltfile [-d datafile] [-a [field-spec]] [-n #rec_to_process]} >& out.profile_vdps &"
+  echo "reads from stdin if -d arg missing"
+  echo "-a converts profile records to ascii csv lines"
+  echo "   field-spec ex. 1,3-7,... (first field is field 1)"
+  exit 1
+fi
+
+check_java_version
+
+${JAVA} -cp ${CLASSPATH} ${MAIN} \
+-ebcdic \
+-recl 1060 \
+-t fal4tmplt \
+-calc "hour:P10,hunamt:P7,huncrlmt:P8,last_s_10:Last_Score,bin:account" \
+-f "bin:BINs" \
+-f "last_s_10:Last Score Result by 10 bins" \
+-f "P2:Recent Error::%08X" \
+-f "P6:Recent Merchant Country::%03d" \
+-f "P5:Recent Sic:f:%04d" \
+-f "hunamt:Last Amount in Hundreds" \
+-f "huncrlmt:Credit Limit in Hundreds" \
+-f "Last_Score_Date:Recent Auth Update Date::%d" \
+-f "hour:Recent Auth Update Hour" \
+-f "P11:Auth Number Evens Seen::%3d" \
+-f "P14:Post Number Evens Seen::%3d" \
+-f "P15:Start date::%3d" \
+$*
+

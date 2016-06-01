@@ -1,0 +1,25 @@
+# HTTP Cookie File
+# http://www.netscape.com/newsref/std/cookie_spec.html
+# This is a generated file!  Do not edit.
+# To delete cookies, use the Cookie Manager.
+
+.google.com	TRUE	/	FALSE	1267918383	PREF	ID=e5fd2736af828ecb:TM=1204846382:LM=1204846382:S=IWV116WH2Bqx65D0
+.mozilla.com	TRUE	/	FALSE	2147385600	__utma	183859642.1759385173.1204846383.1204846383.1204846383.1
+.mozilla.com	TRUE	/	FALSE	1220614383	__utmz	183859642.1204846383.1.1.utmccn=(direct)|utmcsr=(direct)|utmcmd=(none)
+.perso.tls.cena.fr	TRUE	/	FALSE	1273171681	__utma	122435850.1349282757.1210099681.1210099681.1210099681.1
+.perso.tls.cena.fr	TRUE	/	FALSE	1225867681	__utmz	122435850.1210099681.1.1.utmccn=(referral)|utmcsr=emacswiki.org|utmcct=/cgi-bin/wiki/ModeCompile|utmcmd=referral
+www.oreillynet.com	FALSE	/	FALSE	1577836800	CP	null*
+.ehg-oreilly.hitbox.com	TRUE	/	FALSE	1240526456	DM52040214SVV6	V1rrrrr"rz%Bri^^rCQe^eririz%zrzr"%Bri^^rCQez%Bri^^rCQe"%Bri^^rCQe"%Bri^^rCQe^eriri"rzNV::W~a`amIcFxBrKm~z5)6<N5xB[<hWIT2cNa3k:h_F6%Q@@iXeirr6%Bri^^rCQe6%6r6r6%6r6r6%*amIcFxBQBrKm~xB5V::W~a6W::W~axB(c:m6b686r6b"56<N6%6r6%6r"V6%6r6%6rz(xB$OxB$BrCCxB$(_2fxBrnl0xBr[:cDmaTfFxBrk2fOxBr(mIcFxBrIT_xBrTnl0z7}z)OuKr6CrzA6O6BrCC6(_2fHnl0H[:cDmaTfFHk2fOH(mIcFHIT_HTnl0zOffGxXjxB$xB$kkkxB(W::W~axB(c:mxB$FaIhcOxX$pxX[amIcFxBrKm~xBe2axX[Df7xB[ixBe:axX[Df7xB[ixBeIpxX[fxBeh~FxX[:hWxB(m:U2~~IxXjaTxB[=}xXj:772c2I~xBec~2aTfxX[72ha7:KxB[I
+.hitbox.com	TRUE	/	FALSE	1240526456	WSS_GW	V1z%Bri^^rCQe
+.ehg-oreilly.hitbox.com	TRUE	/	FALSE	1240526456	DM520404M4ZRV6	V1rrrrr"rz%Bri^^rCQe^eririz%zrzr"%Bri^^rCQez%Bri^^rCQe"%Bri^^rCQe"%Bri^^rCQe^eriri"rzNV::W~a`amIcFxBrKm~z5)6<N5xB[<hWIT2cNa3k:h_F6%Q@@iXeirr6%Bri^^rCQe6%6r6r6%6r6r6%*amIcFxBQBrKm~xB5V::W~a6W::W~axB(c:m6b686r6b"56<N6%6r6%6r"V6%6r6%6rz(xB$<ya2~~3xBr#afk:hdxB$OxB$BrCCxB$(_2fxBrnl0xBr[:cDmaTfFxBrk2fOxBr(mIcFxBrIT_xBrTnl0z7}z)OuKr6CrzA6<ya2~~3H#afk:hd6O6BrCC6(_2fHnl0H[:cDmaTfFHk2fOH(mIcFHIT_HTnl0zOffGxXjxB$xB$kkkxB(W::W~axB(c:mxB$FaIhcOxX$pxX[amIcFxBrKm~xBe2axX[Df7xB[ixBe:axX[Df7xB[ixBeIpxX[fxBeh~FxX[:hWxB(m:U2~~IxXjaTxB[=}xXj:772c2I~xBec~2aTfxX[72ha7:KxB[I
+.doubleclick.net	TRUE	/	FALSE	1270660360	id	800001441f5fb2b
+.met.vgwort.de	TRUE	/	FALSE	1272049773	i00	00ea480f88f7e2040001
+.sourceforge.net	TRUE	/	FALSE	1270664552	__utma	191645736.21569216.1207588355.1207588355.1207592551.2
+.sourceforge.net	TRUE	/	FALSE	1223356355	__utmz	191645736.1207588355.1.1.utmcsr=cedet.sourceforge.net|utmccn=(referral)|utmcmd=referral|utmcct=%2F
+www.xaware.org	FALSE	/	FALSE	1238262647	ColorCSS	default
+www.xaware.org	FALSE	/	FALSE	1238262647	ScreenType	wide
+www.xaware.org	FALSE	/	FALSE	1238262647	JATheme	ja_xenia
+www.xaware.org	FALSE	/	FALSE	1238262647	FontSize	3
+.tribalfusion.com	TRUE	/	FALSE	1239125247	ANON_ID	aHmwvQ2GjFUtYZbSdJ5PoVS3W7pUGJRYq79yprwMtXJ07nuQtQ0QEiFSpbMMGvOTrr7UUYjVrjKMdaKrc2dyV7r1pvl2tu5dFPGmTFZcWE7D0SvIPFUkETuSfn
+.adlegend.com	TRUE	/	FALSE	1523165229	PrefID	43-193607753
+www.eclipse.org	FALSE	/	FALSE	1236382410	style	small

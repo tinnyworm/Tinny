@@ -1,0 +1,132 @@
+# get statistics of API file
+#
+# usages: make API=<api file name>
+#
+# note: copy Makefile.API to analysis/Makefile first
+
+SHELL = /bin/csh -f
+OS = $(shell uname)
+CUT = /work/price/falcon/$(OS)/bin/ufalcut
+CAT = zcat
+HIST = ~/tools/perl/mhistogram.pl
+CHART = ~krh/tools/chart.pl
+FILTERAUTH = ~/tools/perl/filterAuth.pl
+
+## Some analysis on the data
+DIR = ..
+API = 
+
+APIJOBS = 	bins \
+			zip3 \
+			card-cntry-code \
+			acct-open-date \
+			new-plastic-date \
+			plastic-issue-type \
+			card-expire-date \
+			avail-credit \
+			credit-line \
+			num-cards \
+			income \
+			card-type \
+			card-use \
+			tran-date \
+			tran-time \
+			tran-amount1 \
+			tran-curr-code \
+			tran-curr-conv \
+			auth-result \
+			tran-type \
+			merch-cat \
+			merch-zip3 \
+			merch-cntry \
+			auth-pi-verify \
+			auth-keyed-swiped \
+			score
+## Targets
+all: all-jobs
+
+all-jobs: api-jobs 
+
+api-jobs:	$(foreach job, $(APIJOBS), api.$(job).hist)
+
+
+# api
+
+api.bins.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c1-6 | $(CHART) >! $@
+
+api.zip3.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c21-23 | $(CHART) >! $@
+
+api.card-cntry-code.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c30-32| $(CHART) >! $@
+
+api.acct-open-date.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c33-40| $(CHART) >! $@
+
+api.new-plastic-date.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c41-48| $(CHART) >! $@
+
+api.plastic-issue-type.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c49 | $(CHART) >! $@
+
+api.card-expire-date.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c58-65 | $(CHART) >! $@
+
+api.avail-credit.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c66-75 | $(CHART) >! $@
+
+api.credit-line.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c76-85 | $(CHART) >! $@
+
+api.num-cards.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c95-97 | $(CHART) >! $@
+
+api.income.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c98-107 | $(CHART) >! $@
+
+api.card-type.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c108 | $(CHART) >! $@
+
+api.card-use.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c109 | $(CHART) >! $@
+
+api.tran-date.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c110-117 | $(CHART) >! $@
+
+api.tran-time.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c118-119 | $(CHART) >! $@
+
+api.tran-amount1.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c124-133 | $(CHART) >! $@
+
+api.tran-curr-code.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c137-139 | $(CHART) >! $@
+
+api.tran-curr-conv.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c140-152 | $(CHART) >! $@
+
+api.auth-result.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c153 | $(CHART) >! $@
+
+api.tran-type.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c154 | $(CHART) >! $@
+
+api.merch-cat.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c155-158 | $(CHART) >! $@
+
+api.merch-zip3.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c159-161 | $(CHART) >! $@
+
+api.merch-cntry.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c168-170 | $(CHART) >! $@
+
+api.auth-pi-verify.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c171 | $(CHART) >! $@
+
+api.auth-keyed-swiped.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c173 | $(CHART) >! $@
+
+api.score.hist : $(DIR)/$(API)
+	$(CAT) $< | $(CUT) -c183-186 | $(CHART) >! $@
+

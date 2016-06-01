@@ -1,0 +1,83 @@
+
+//************************************************
+// Final variables and score manipulation
+//************************************************
+FUNCTION UPDATE_LAST : INT32;
+VAR
+  TSCORE : NUMERIC;
+  SCORE_CONV_H  : holiday_SCORE_CONVERT;
+BEGIN
+  // Update last variables
+  RECENT_M_POSTAL := Pack_Zip(TRAN.MERCH_POST_CODE);
+  CALCVARS(LAST);
+  RECENT_MODEL := (MODEL_ID + MODEL_VERSION);  
+
+  TSCORE := SCOR.SCORE;
+
+  // Final Score calibration
+
+  IF (TRAN.POST_AUTHED <> '1' AND TRAN.POST_AUTHED <> '2' ) 
+  THEN
+  BEGIN
+    // Convert and set the score based on Tran Dates for Holiday, Non-Holiday  
+    IF (  (TRAN.TRAN_DATE > "20001123" AND TRAN.TRAN_DATE < "20001225") OR
+          (TRAN.TRAN_DATE > "20011122" AND TRAN.TRAN_DATE < "20011225") OR
+          (TRAN.TRAN_DATE > "20021128" AND TRAN.TRAN_DATE < "20021225") OR
+          (TRAN.TRAN_DATE > "20031127" AND TRAN.TRAN_DATE < "20031225") OR
+          (TRAN.TRAN_DATE > "20041125" AND TRAN.TRAN_DATE < "20041225") OR
+          (TRAN.TRAN_DATE > "20051124" AND TRAN.TRAN_DATE < "20051225") OR
+          (TRAN.TRAN_DATE > "20061123" AND TRAN.TRAN_DATE < "20061225") OR
+          (TRAN.TRAN_DATE > "20071122" AND TRAN.TRAN_DATE < "20071225") OR
+          (TRAN.TRAN_DATE > "20081127" AND TRAN.TRAN_DATE < "20081225")
+       ) 
+    THEN
+    // Holiday
+    BEGIN
+      Table_Direct_Index(TSCORE, SCORE_CONV_H);
+      SCOR.SCORE := SCORE_CONV_H.NEW_SCORE;
+    END;
+  END;
+  ELSE 
+    IF ( TRAN.POST_AUTHED = '2' ) 
+    THEN
+    //  Apply holdiday calibration for all dates 
+    BEGIN
+      Table_Direct_Index(TSCORE, SCORE_CONV_H);
+      SCOR.SCORE := SCORE_CONV_H.NEW_SCORE;
+    END;
+
+
+//       ELSE
+//       // Normal Calibration 
+//       BEGIN
+//         Table_Direct_Index(TSCORE, SCORE_CONV_N);
+//         SCOR.SCORE := SCORE_CONV_N.NEW_SCORE;
+//       END;
+//     END;
+//    ELSE IF ( TRAN.POST_AUTHED = '1' ) THEN
+//    //  No Holiday Calibration allowed  
+//    BEGIN
+//      Table_Direct_Index(TSCORE, SCORE_CONV_N);
+//      SCOR.SCORE := SCORE_CONV_N.NEW_SCORE;
+//    END;
+//  ELSE IF ( TRAN.POST_AUTHED = '2' ) THEN
+//    //  Only Holiday Calibration allowed 
+//    BEGIN
+//      Table_Direct_Index(TSCORE, SCORE_CONV_H);
+//      SCOR.SCORE := SCORE_CONV_H.NEW_SCORE;
+//    END;
+
+
+//  IF (AUTH_DELTA_TIME < _5MIN) 
+//  THEN 
+//   SCOR.SCORE := MAX(TSCORE, PROF.Last_Score);
+//  ELSE  
+//    SCOR.SCORE := TSCORE;
+
+  RETURN(0);
+ENDRULE;
+
+
+
+
+

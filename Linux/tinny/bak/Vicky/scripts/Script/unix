@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+>~/tmpcmd
+chmod ugo+x ~/tmpcmd
+echo "cd" `pwd` >>~/tmpcmd
+echo $* >>~/tmpcmd
+ssh ux165 ./tmpcmd

@@ -1,0 +1,6 @@
+SHELL = /bin/csh -f 
+
+DATE = $(shell ./test.pl)
+
+all:
+	@echo $(DATE)

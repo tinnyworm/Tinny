@@ -1,0 +1,47 @@
+SHELL = /bin/sh
+
+SRC = ../profile.day2.gz
+
+PROFJOBS = bin
+
+all : $(foreach job, ${PROFJOBS}, prof.${job}.hist)
+
+prof.bin.hist : ${SRC}
+	zcat $< | ufalcut -c1-6 | chart.pl > $@
+
+prof.init.hist : ${SRC}
+	zcat $< | gawk '{print $$2}' | chart.pl > $@
+
+prof.recent_err.hist : ${SRC}
+	zcat $< | gawk '{print $$3}' | chart.pl > $@
+
+prof.last_score.hist : ${SRC}
+	zcat $< | gawk '{print $$4}' | chart.pl -n > $@
+
+prof.recent_m_postal.hist : ${SRC}
+	zcat $< | gawk '{print $$5}' | chart.pl -s > $@
+
+prof.recent_sic.hist : ${SRC}
+	zcat $< | gawk '{print $$6}' | chart.pl -s > $@
+
+prof.last_auth_amt.hist : ${SRC}
+	zcat $< | gawk '{print $$8}' | chart.pl -b 10 > $@
+
+prof.last_score_date.hist : ${SRC}
+	zcat $< | gawk '{print $$10}' | chart.pl > $@
+
+prof.last_score_time.hist : ${SRC}
+	zcat $< | gawk '{print $$11}' | chart.pl -b 3600 > $@
+
+prof.auth_num_event_seen.hist : ${SRC}
+	zcat $< | gawk '{print $$12}' | chart.pl -b 1 > $@
+
+prof.recent_m_cntry.hist : ${SRC}
+	zcat $< | gawk '{print $$13}' | chart.pl -s > $@
+
+prof.recent_at_home.hist : ${SRC}
+	zcat $< | gawk '{print $$14}' | chart.pl -s > $@
+
+prof.recent_model.hist : ${SRC}
+	zcat $< | gawk '{print $$15}' | chart.pl > $@
+

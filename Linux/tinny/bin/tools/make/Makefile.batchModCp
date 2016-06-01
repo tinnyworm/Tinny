@@ -1,0 +1,25 @@
+# Batch modification and duplication
+
+SHELL = /bin/csh -f
+MAKE = gmake
+
+# Targets
+TARGETS = $(subst count,count_young, $(wildcard select.count.*))
+
+# Rules
+all: $(TARGETS)
+
+select.count_young.%:
+	cat select.count.$* \
+	| sed "s/NUMFRAUDAYS=5/NUMFRAUDAYS=15/g" \
+	| sed "s/FRAUDTYPE=\!OZK/FRAUDTYPE=A/g" \
+	> $@
+
+
+
+show:
+	@echo $(TARGETS)
+
+clean:
+	rm 	select.count_young.*	\
+		*~

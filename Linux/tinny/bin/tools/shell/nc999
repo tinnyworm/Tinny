@@ -1,0 +1,51 @@
+#!/bin/sh
+#
+# Number the columns on output
+# I am learning awk (actually, gawk), so I used it.
+#
+
+# COL=`/usr/bin/stty -a | grep 'columns = ' | sed -e 's/^.*columns = \([0-9]*\);.*/\1/'`
+COL=999
+export COL
+gawk 'BEGIN{ c = ENVIRON["COL"] 
+
+             # Thousands
+             if (c > 1000) {
+                 while (c >= ++g)
+                    if (g % 1000 == 0)
+                       printf("%1d", (g % 10000) / 1000)
+                    else
+                       printf(" ")
+                 print ""
+             }
+
+             # Hundreds
+             if (c > 100) {
+                 while (c >= ++f)
+                    if (f % 100 == 0)
+                       printf("%1d", (f % 1000) / 100)
+                    else
+                       printf(" ")
+                 print ""
+             }
+
+             # Tens
+             if (c > 10) {
+                 while (c >= ++e)
+                    if (e % 10 == 0)
+                       printf("%1d", (e % 100) / 10)
+                    else
+                       printf(" ")
+                 print ""
+             }
+
+             # Ones
+             while (c >= ++d)
+                if (d % 10 == 0)
+                   printf(" ")
+                else
+                   printf("%1d", d % 10)
+             print ""
+
+           }' < /dev/null
+

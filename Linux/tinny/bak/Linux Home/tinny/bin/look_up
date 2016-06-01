@@ -1,0 +1,59 @@
+#! /usr/bin/perl -w -s
+
+our( $dic, $F, $c, $n, $v);
+
+defined $F or $F = '\s+';
+defined $c or $c = 1;
+
+if ( ! defined $dic ) {
+
+    print STDERR "\nUsage: $0 -dic=dictionary\n\n";
+    print STDERR "Options:  -F	field delimter (default: WhiteSpace).\n";
+    print STDERR "          -c	column number of ID field (default: 1).\n";
+    print STDERR "          -n	print out line number.\n";
+    print STDERR "          -v	print out IDs not found.\n\n";
+    exit(1);
+
+}
+
+
+# dictionary
+open( DIC, "$dic" ) or die "$!: $dic";
+
+my %dic_map = ();
+
+while ( <DIC> ) {
+
+    chomp;
+    $dic_map{ $_ } = $.;
+
+}
+
+close(DIC);
+
+# looking up
+while ( <> ) {
+
+    chomp;
+    my @data = split /$F/;
+
+    my $id = $data[$c-1];
+
+    if ( defined $dic_map{ $id } ) {
+
+	if ( defined $n ) {
+	    print "$.\t";
+	}
+
+	print "$_\n";
+
+    }
+    else {
+
+	if ( defined $v ) {
+	    print STDERR "Cannot find: $id\n";
+	}
+
+    }
+
+}

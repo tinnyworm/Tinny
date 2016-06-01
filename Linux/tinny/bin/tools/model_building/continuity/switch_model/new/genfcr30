@@ -1,0 +1,495 @@
+//
+//************************************************
+// Model ID Constant
+//************************************************
+//
+CONST  MODEL_ID                            = 0xa100;
+//CONST  MAX_DIFF				   = 2;
+
+INCLUDE "vars/const4";
+
+INCLUDE "tabs/types4";
+INCLUDE "tabs/COMMREF4";
+INCLUDE "tabs/840+124LLtab";
+INCLUDE "tabs/uscred04rskt";
+
+INCLUDE "vars/initVars4";
+INCLUDE "vars/inputVars4";
+INCLUDE "vars/MerchSumm.vars";
+INCLUDE "vars/FPPCross.vars";
+INCLUDE "vars/calcV98S4";
+INCLUDE "vars/FPPDerived.vars";
+INCLUDE "vars/lastVars4";
+INCLUDE "vars/holVars";
+
+INCLUDE "vars/initCrossProf.inc";
+
+INCLUDE "nets/gen264n4";
+INCLUDE "nets/genSCal";
+INCLUDE "nets/holSCal";
+INCLUDE "nets/allSCal";
+
+
+//
+//************************************************
+// Main scoring rule  -  General Model
+//************************************************
+//
+RULE MAIN;
+VAR
+   STATUS          : NUMERIC;
+   NSCORE          : NUMERIC;
+   RAW_SCORE       : NUMERIC;
+   CNV_SCORE       : FLOAT;
+   GEO_SCORE       : NUMERIC;
+   BETA            : NUMERIC;
+
+   SCORE_CONV      : genfcr30_SCORE_CONVERT;
+   SCORE_CONV_ALL  : allfcr30_SCORE_CONVERT;
+   SCORE_CONV_HOL  : holfcr30_SCORE_CONVERT;
+
+BEGIN
+
+  /* 1/6/99  jcb  if tran type is not auth, nonmon, post, or payment, error out */
+  IF ( NOT (TRAN.AUTH_POST_FLAG IN ("A", "N", "P", "Q")) ) THEN
+  BEGIN
+    RECENT_ERROR := FAIL + MODEL_ID + NOT_AUTH;
+    TERMINATE RECENT_ERROR;
+  END;
+
+  /* Check transaction specific date/time information */
+  IF NOT(Valid_Date(TRAN.TRAN_DATE)) THEN
+  BEGIN
+    RECENT_ERROR := (FAIL + MODEL_ID + BAD_TRAN_DATE);
+    TERMINATE RECENT_ERROR;
+  END;
+
+  /* 1/6/99  jcb  if tran type is not auth, quit - with an error */
+  IF (TRAN.AUTH_POST_FLAG <> 'A') THEN 
+  BEGIN
+    RECENT_ERROR := FAIL + MODEL_ID + NOT_AUTH;
+    // TERMINATE RECENT_ERROR;
+    TERMINATE;
+  END;
+
+  /* 12/2/03  alex  if SIC Code = 6014 or 6015 quit - balance transfers */
+  IF (TRAN.MERCH_CAT = "6014" OR TRAN.MERCH_CAT = "6015") THEN 
+  BEGIN
+    RECENT_ERROR := FAIL + MODEL_ID + BAD_SIC_CODE;
+    TERMINATE RECENT_ERROR;
+  END;	
+
+  /* Make sure profile initialization flag has been set */
+  IF (PROF_INIT <> PROF_INIT_VALUE) THEN
+  BEGIN
+    RECENT_ERROR := FAIL + MODEL_ID + PROF_NO_INIT;
+    TERMINATE RECENT_ERROR;
+  END;
+
+  /* 6/8/1999  jcb   if tran type is an address verification, crediting the account, */
+  /*                 merchant suspicious, balance transfer, a reversal, */
+  /*                 or a cancel, just quit -- with an error */
+  IF ( TRAN.TRAN_TYPE IN ("A", "R", "S", "T", "V", "X") ) THEN 
+  BEGIN
+    RECENT_ERROR := FAIL + MODEL_ID + NOT_CASH_OR_MERCH;
+    // TERMINATE RECENT_ERROR;
+    TERMINATE;
+  END;
+
+  /* Make sure transaction is cash, merchandise, cashback, or kcheck */
+  IF ( NOT (TRAN.TRAN_TYPE IN ("C", "M", "B", "K")) ) THEN
+  BEGIN
+    RECENT_ERROR := FAIL + MODEL_ID + NOT_CASH_OR_MERCH;
+    TERMINATE RECENT_ERROR;
+  END;
+
+  /* Make sure the SIC code is valid */
+  IF ( NOT Is_Int_String(TRAN.MERCH_CAT) OR
+     (TRAN.MERCH_CAT < 0 OR TRAN.MERCH_CAT > 9999) ) THEN
+  BEGIN
+    RECENT_ERROR := (FAIL + MODEL_ID + BAD_SIC_CODE);
+    TERMINATE RECENT_ERROR;
+  END;
+
+  IF NOT(Valid_Time(TRAN.TRAN_TIME)) THEN
+  BEGIN
+    RECENT_ERROR := (FAIL + MODEL_ID + BAD_TRAN_TIME);
+    TERMINATE RECENT_ERROR;
+  END;
+
+  CALCVARS(MRCHSUMM);
+
+  /*
+   * Check the merchant profile for a few key values that should always
+   * be non-zero positive numbers.  If any one of them is off, then
+   * terminate with a bad merchant profile error.
+   */
+  IF (
+    /* We must have some activity */
+       MRCH_COUNT_3EV_BYMCC <= 0.0
+       OR MRCH_COUNT_12EV_BYMCC <= 0.0
+       OR MRCH_DOL_3EV_BYMCC <= 0.0
+       OR MRCH_DOL_12EV_BYMCC <= 0.0
+
+       /* We cannot only have negative fraud activity */
+       OR MRCH_FRD_COUNT_3EV_BYMCC < 0.0
+       OR MRCH_FRD_COUNT_12EV_BYMCC < 0.0
+       OR MRCH_FRD_DOL_3EV_BYMCC < 0.0
+       OR MRCH_FRD_DOL_12EV_BYMCC < 0.0
+     ) THEN
+  BEGIN
+    RECENT_ERROR := (FAIL + MODEL_ID + BAD_MERCHANT_PROF);
+    TERMINATE RECENT_ERROR;
+  END;
+
+  /* Calculate the input variables */
+  CALCVARS(INP);
+
+  /* Initialize the cross profile if needed, and calculate input variables */
+  STATUS := @INIT_CROSS_PROF;
+  // IF (STATUS <> 0) THEN
+  //     writeln ("Cross-profile initialized!");
+  CALCVARS(FPPINP);
+
+  IF (AUTH_DELTA_TIME < 0.0) THEN
+  BEGIN
+    RECENT_ERROR := (FAIL + MODEL_ID + TRAN_OUT_OF_ORDER);
+    TERMINATE RECENT_ERROR;
+  END;
+
+  /* This is tran-duplicate check block:
+   * eMerchants, airlines and grocery are excluded.
+   */
+  IF (AUTH_DELTA_TIME = 0.0 AND
+     ( (RECENT_AUTH_RESULT = TRAN.AUTH_RESULT)  OR
+       (RECENT_AUTH_RESULT = ' ' AND TRAN.AUTH_RESULT ='A') OR
+       (RECENT_AUTH_RESULT = 'A' AND TRAN.AUTH_RESULT =' ') ) AND
+     (DOL_AMT = LAST_AUTH_AMT) AND
+     (CURRENT_SIC = RECENT_SIC) AND
+     NOT(
+      (CURRENT_SIC>=5960 AND CURRENT_SIC<=5969) OR
+      (CURRENT_SIC>=4814 AND CURRENT_SIC<=4816) OR
+      (CURRENT_SIC>=3000 AND CURRENT_SIC<=3350) OR
+      (CURRENT_SIC=6011 OR CURRENT_SIC=5411 OR CURRENT_SIC=4511))) THEN
+  BEGIN
+    RECENT_ERROR := (FAIL + MODEL_ID + TRAN_DUPLICATE);
+    TERMINATE RECENT_ERROR;
+  END;
+
+  /* Make sure the transaction amount is valid */
+  IF ( NOT(Valid_Amount(TRAN.TRAN_AMOUNT)) OR
+       (DOL_AMT > MAX_AMOUNT) OR
+       (DOL_AMT <= 0.0) ) THEN
+  BEGIN
+    RECENT_ERROR := (FAIL + MODEL_ID + BAD_TRAN_AMOUNT);
+    TERMINATE RECENT_ERROR;
+  END;
+
+  CALCVARS(VARS);
+  CALCVARS(HOLIDAYVARS);
+  CALCVARS(CROSSSUMM);
+  CALCVARS(MRCH_DER);
+  CALCVARS(MAXVARXXS);
+  CALCVARS(DVARXXS);
+
+  CALCVARS(MRCH_DER2);
+  CALCVARS(MRCH_DER3);
+  CALCVARS(MRCH_DER4);
+
+
+  RAW_SCORE :=  @CALC_gen264n4_SCORE();
+
+  // We will actually use the raw score for reason codes.
+
+  // Do the score conversion
+  CNV_SCORE := MAX(1, (RAW_SCORE + 1) * 500);
+  CNV_SCORE := MIN(999, CNV_SCORE);
+  
+  // Intersegment calibration
+  Table_Range_Lookup(CNV_SCORE, SCORE_CONV);
+  NSCORE := SCORE_CONV.NEW_SCORE;
+
+
+  // Do the heat!
+  // If the dollar amount is MAX_AMOUNT, then DON'T do the heat, as
+  // we will later scale between 900 and 999.
+  IF (DOL_AMT < MAX_AMOUNT) THEN
+  BEGIN
+    BETA := SQRT( SQRT( 250.0 / DOL_AMT ));
+    // Limit checks:
+    //      Raw =  1 ->  1
+    //      Raw = -1 -> -1
+    //      Beta = 1 => Raw unchanged
+    // RAW_SCORE := ((1 + RAW_SCORE) -  BETA*(1 - RAW_SCORE))
+    //             / ((1 + RAW_SCORE) +  BETA*(1 - RAW_SCORE));
+
+    NSCORE := (1000*NSCORE)/(NSCORE + BETA*(1000 - NSCORE));	
+
+  END;
+
+  SCOR.SCORE := NSCORE;
+
+  SCOR.SCORE := MAX(1,SCOR.SCORE);
+  SCOR.SCORE := MIN(999,SCOR.SCORE);
+
+  // Holiday and overall calibration
+
+  IF (TRAN.POST_AUTHED <> '1' AND TRAN.POST_AUTHED <> '2' ) THEN
+  BEGIN
+    /* Convert and set the score based on Tran Dates for Holiday, Non-Holiday  */
+    IF ( ((TRAN.TRAN_DATE > "19961128") AND (TRAN.TRAN_DATE < "19961225")) OR
+         ((TRAN.TRAN_DATE > "19971127") AND (TRAN.TRAN_DATE < "19971225")) OR
+         ((TRAN.TRAN_DATE > "19981126") AND (TRAN.TRAN_DATE < "19981225")) OR
+         ((TRAN.TRAN_DATE > "19991125") AND (TRAN.TRAN_DATE < "19991225")) OR
+         ((TRAN.TRAN_DATE > "20001123") AND (TRAN.TRAN_DATE < "20001225")) OR
+         ((TRAN.TRAN_DATE > "20011122") AND (TRAN.TRAN_DATE < "20011225")) OR
+         ((TRAN.TRAN_DATE > "20021128") AND (TRAN.TRAN_DATE < "20021225")) OR
+         ((TRAN.TRAN_DATE > "20031127") AND (TRAN.TRAN_DATE < "20031225")) OR
+         ((TRAN.TRAN_DATE > "20041125") AND (TRAN.TRAN_DATE < "20041225")) OR
+         ((TRAN.TRAN_DATE > "20051124") AND (TRAN.TRAN_DATE < "20051225")) OR
+         ((TRAN.TRAN_DATE > "20061123") AND (TRAN.TRAN_DATE < "20061225")) OR
+         ((TRAN.TRAN_DATE > "20071122") AND (TRAN.TRAN_DATE < "20071225")) OR
+         ((TRAN.TRAN_DATE > "20081127") AND (TRAN.TRAN_DATE < "20081225")) OR 
+         ((TRAN.TRAN_DATE > "20091126") AND (TRAN.TRAN_DATE < "20091225")) OR 
+         ((TRAN.TRAN_DATE > "20101125") AND (TRAN.TRAN_DATE < "20101225")) OR 
+         ((TRAN.TRAN_DATE > "20111124") AND (TRAN.TRAN_DATE < "20111225"))) THEN
+    BEGIN
+      Table_Range_Lookup(NSCORE, SCORE_CONV_HOL);
+      SCOR.SCORE := SCORE_CONV_HOL.NEW_SCORE;
+    END;
+    ELSE
+    BEGIN
+      Table_Range_Lookup(NSCORE, SCORE_CONV_ALL);
+      SCOR.SCORE := SCORE_CONV_ALL.NEW_SCORE;
+    END;
+  END;
+  ELSE IF ( TRAN.POST_AUTHED = '1' ) THEN
+    /* No Holiday Calibration allowed  */
+    BEGIN
+      Table_Range_Lookup(NSCORE, SCORE_CONV_ALL);
+      SCOR.SCORE := SCORE_CONV_ALL.NEW_SCORE;
+    END;
+  ELSE IF ( TRAN.POST_AUTHED = '2' ) THEN
+    /* Only Holiday Calibration allowed  */
+  BEGIN
+    Table_Range_Lookup(NSCORE, SCORE_CONV_HOL);
+    SCOR.SCORE := SCORE_CONV_HOL.NEW_SCORE;
+  END;
+  
+
+//   NO GEO_SPEED in FP 1.0 and FP 2.0 --- none here!!
+//
+//
+//   // Increase the score if the GEO_SPEED is impossible
+//   // If TRAN.POST_AUTHED = '3', there is a possibility to fire
+//   // the GEO rule; otherwise, no firing. Thus, if clients want to
+//   // use this rule, they need to add the value "3" in the api.
+//
+//   IF( (GEO_SPEED > 1000) AND 
+//       (SCOR.SCORE >= 101) AND
+//       NOT ( (TRAN.MERCH_CAT >= 3351 AND /* Rent-a-Car */
+//              TRAN.MERCH_CAT <= 3441 
+//             ) OR
+//             (TRAN.MERCH_CAT >= 3501 AND /* Hotels */
+//              TRAN.MERCH_CAT <= 3787 
+//             ) OR
+//             (TRAN.MERCH_CAT >= 7011 AND /* Hotels & Timeshare */
+//              TRAN.MERCH_CAT <= 7012 
+//             ) OR
+//             (TRAN.MERCH_CAT >= 7512 AND /* Misc. auto rental */
+//              TRAN.MERCH_CAT <= 7513 
+//             ) OR
+//             (TRAN.MERCH_CAT >= 7995 AND /* Betting and Amusement parks??? */
+//              TRAN.MERCH_CAT <= 7996 
+//             ) OR
+//               TRAN.MERCH_CAT IN (4121,4411,4722,4829,7519,9399)
+//           ) AND
+//       NOT ( (RECENT_SIC >= 3351 AND
+//              RECENT_SIC <= 3441 
+//             ) OR
+//             (RECENT_SIC >= 3501 AND
+//              RECENT_SIC <= 3787 
+//             ) OR
+//             (RECENT_SIC >= 7011 AND
+//              RECENT_SIC <= 7012 
+//             ) OR
+//             (RECENT_SIC >= 7512 AND
+//              RECENT_SIC <= 7513 
+//             ) OR
+//             (RECENT_SIC >= 7995 AND
+//              RECENT_SIC <= 7996 
+//             ) OR
+//               RECENT_SIC IN (4121,4411,4722,4829,5964,5968,7519,9399)
+//           ) AND
+//       NOT ( TRAN.MERCH_CNTRY_CODE IN ("124", "630", "850", "484")) AND
+//       NOT ( LAST_CNTRY_RAW IN (124, 630, 850, 484))
+//     ) THEN
+//     BEGIN
+//
+//       GEO_SCORE := 900.0+(99.0/999.0)*SCOR.SCORE;
+//
+//       IF (GEO_SCORE > EXPF.EXPL_THRESH) THEN
+//       BEGIN
+//         SCOR.REASON3 := 26;
+//       END;
+//
+//       IF (TRAN.POST_AUTHED = '3') THEN
+//       BEGIN 
+//          SCOR.SCORE := 900.0+(99.0/999.0)*SCOR.SCORE;
+//
+//          IF (SCOR.SCORE > EXPF.EXPL_THRESH) THEN
+//          BEGIN
+//           SCOR.REASON1 := 26;
+//           SCOR.REASON2 := 6;
+//           SCOR.REASON3 := 8;
+//          END;
+//       END; 
+//     END;
+//
+
+  /* Increase the score if the amount is more than MAX_AMOUNT */
+  IF(DOL_AMT >= MAX_AMOUNT) THEN
+  BEGIN
+    SCOR.SCORE := 900.0+(99.0/999.0)*SCOR.SCORE;
+    SCOR.SCORE := MAX(1,SCOR.SCORE);
+    SCOR.SCORE := MIN(999,SCOR.SCORE);
+
+    IF (SCOR.SCORE > EXPF.EXPL_THRESH) THEN
+    BEGIN
+      SCOR.REASON1 := 4;
+      SCOR.REASON2 := 5;
+      SCOR.REASON3 := 8;
+    END;
+   // FIRED := 1;
+
+  END;
+  //
+  // Get reason codes for the calibrated score
+  //
+  ELSE IF (SCOR.SCORE > EXPF.EXPL_THRESH) THEN
+    Get_Reasons(RAW_SCORE, MAX_DIFF, SCOR.REASON1, SCOR.REASON2, SCOR.REASON3);
+//    Get_Reasons(genfcr30_OUTPUT[1], MAX_DIFF, SCOR.REASON1, SCOR.REASON2, SCOR.REASON3);
+
+  RECENT_SCORE := SCOR.SCORE;
+
+  CALCVARS(LAST_CROSSSUMM);
+  CALCVARS(LAST);
+  RECENT_M_POSTAL := Pack_Zip(TRAN.MERCH_POST_CODE);
+
+  //   RECENT_MODEL := (MODEL_ID + MODEL_VERSION);  
+
+ENDRULE;
+
+
+//
+//************************************************
+// Profile Init rules
+//************************************************
+//
+PROF_INIT_RULEBASE PINIT;
+
+INCLUDE "vars/clearCardProf.inc";
+
+RULE PINIT;
+VAR
+    STATUS  : NUMERIC;
+    TranAmt : NUMERIC;
+
+BEGIN
+
+  /* 1/6/99  jcb  if tran type is not auth, nonmon, post, or payment, error out */
+  IF ( NOT (TRAN.AUTH_POST_FLAG IN ("A", "N", "P", "Q")) ) THEN
+    TERMINATE(FAIL + MODEL_ID + NOT_AUTH);
+
+  /* Check transaction specific date/time information for all acceptable tran types */
+  IF NOT(Valid_Date(TRAN.TRAN_DATE)) THEN
+     TERMINATE(FAIL + MODEL_ID + BAD_TRAN_DATE);
+
+  /* 1/6/99  jcb  if tran is auth, make sure it is a valid transaction to initialize the profile*/
+  IF (TRAN.AUTH_POST_FLAG = 'A') THEN
+  BEGIN
+    IF NOT(Valid_Time(TRAN.TRAN_TIME)) THEN
+      TERMINATE(FAIL + MODEL_ID + BAD_TRAN_TIME);
+
+    IF ( TRAN.TRAN_CURR_CODE = "840" ) THEN
+      TranAmt := TRAN.TRAN_AMOUNT;
+    ELSE IF ( TRAN.TRAN_CURR_CODE = "   " ) THEN
+      TranAmt := TRAN.TRAN_AMOUNT  * CONV_TO_DOLLARS;
+    ELSE IF ( TRAN.TRAN_CURR_CODE = "124" ) THEN
+    BEGIN
+      IF ( (Valid_Amount(TRAN.TRAN_CURR_CONV)) AND
+           (TRAN.TRAN_CURR_CONV > 0.0) AND (TRAN.TRAN_CURR_CONV < 0.999) ) THEN
+        TranAmt := TRAN.TRAN_AMOUNT * TRAN.TRAN_CURR_CONV;
+      ELSE
+        TranAmt := TRAN.TRAN_AMOUNT  * 0.67;
+    END;
+    ELSE IF ( (Valid_Amount(TRAN.TRAN_CURR_CONV)) AND
+              (TRAN.TRAN_CURR_CONV > 0.0) ) THEN
+      TranAmt := TRAN.TRAN_AMOUNT * TRAN.TRAN_CURR_CONV;
+    ELSE
+      TranAmt := TRAN.TRAN_AMOUNT  * CONV_TO_DOLLARS;
+
+    /* Make sure the transaction amount is valid */
+    IF NOT(Valid_Amount(TRAN.TRAN_AMOUNT)) OR
+           (TranAmt > MAX_AMOUNT) OR
+           (TranAmt <= 0.0) THEN
+      TERMINATE(FAIL + MODEL_ID + BAD_TRAN_AMOUNT);
+
+      /* Make sure the SIC code is valid */
+      IF NOT Is_Int_String(TRAN.MERCH_CAT) THEN
+        TERMINATE(FAIL + MODEL_ID + BAD_SIC_CODE);
+  END;
+
+
+  /* Prof_Init(); */
+  /*
+   * We do not want to clear the merchant profiles!
+   * So we have a function which clears the cardholder profile,
+   * including the cross-profile variables.
+   */
+  STATUS := @CLEAR_CARD_PROF ();
+  //IF (STATUS <> 0) THEN
+  //    writeln ("Profile initialized!");
+  /* 
+   * set up some info for he cardholder profile
+   */
+  CALCVARS(INP);
+
+  IF((CURRENT_DATE - CARD_OPNDATE_98S) > 90.0) THEN
+  BEGIN
+    PROF.Start_Date := CURRENT_DATE - 90.0;
+    START_DATE_98S := CURRENT_DATE - 90.0;
+  END;
+  ELSE
+  BEGIN
+    PROF.Start_Date := CARD_OPNDATE_98S;
+    START_DATE_98S := CARD_OPNDATE_98S;
+  END;
+
+  AUTH_RECENT_UPDATE_DATE := START_DATE_98S;
+  AUTH_RECENT_UPDATE_TIME := 0.0;
+
+  RECENT_CREDIT_LIMIT  :=  CARD_CREDIT_LIMIT;
+
+  /* 
+   * Set up some infor the the FPP cross-profile variables
+   */
+  CALCVARS(FPPINP);
+
+  IF((CURRENT_DATE - CARD_OPNDATE_98S) > 90.0) THEN
+    FPP_START_DATE := CURRENT_DATE - 90.0;
+  ELSE
+    FPP_START_DATE := CARD_OPNDATE_98S;
+
+  FPP_RECENT_UPDATE_DATE := FPP_START_DATE;
+  FPP_RECENT_UPDATE_TIME := 0.0;
+
+
+  /*
+   * Finish the initializations
+   */
+
+  PROF.MATR_DATE := 1;
+  PROF_INIT := PROF_INIT_VALUE;
+
+ENDRULE;

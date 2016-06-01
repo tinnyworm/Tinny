@@ -1,0 +1,17 @@
+[IconPosition::Home.desktop]
+X=8
+X 1220=8
+Y=153
+Y 900=153
+
+[IconPosition::Trash]
+X=8
+X 1220=8
+Y=79
+Y 900=79
+
+[IconPosition::devhdamediacdrom]
+X=5
+X 1220=5
+Y=5
+Y 900=5

@@ -1,0 +1,51 @@
+                                           The SAS System                                          1
+
+            ----------------------------------------------------------------------------
+            |       FORMAT NAME: $ACCTTYP LENGTH:   14   NUMBER OF VALUES:    6        |
+            |   MIN LENGTH:   1  MAX LENGTH:  40  DEFAULT LENGTH  14  FUZZ:        0   |
+            |--------------------------------------------------------------------------|
+            |START           |END             |LABEL  (VER. 8.1     28OCT2002:15:16:30)|
+            |----------------+----------------+----------------------------------------|
+            |                |                |Blank: Unknown                          |
+            |C               |C               |C: Checking                             |
+            |M               |M               |M: MasterCard                           |
+            |S               |S               |S: Savings                              |
+            |V               |V               |V: Visa                                 |
+            |**OTHER**       |**OTHER**       |[$CHAR1.]                               |
+            ----------------------------------------------------------------------------
+
+
+            ----------------------------------------------------------------------------
+            |       FORMAT NAME: $STATUS  LENGTH:   30   NUMBER OF VALUES:    9        |
+            |   MIN LENGTH:   1  MAX LENGTH:  40  DEFAULT LENGTH  30  FUZZ:        0   |
+            |--------------------------------------------------------------------------|
+            |START           |END             |LABEL  (VER. 8.1     28OCT2002:15:16:30)|
+            |----------------+----------------+----------------------------------------|
+            |                |                |Blank: Unknown                          |
+            |CC              |CC              |CC: Closed, chargeoff                   |
+            |CF              |CF              |CF: Closed, fraud                       |
+            |CI              |CI              |CI: Closed, inactive                    |
+            |CO              |CO              |CO: Closed, other                       |
+            |CR              |CR              |CR: Closed, cardholder request          |
+            |NS              |NS              |NS: Non-Statused, open                  |
+            |SO              |SO              |SO: Statused, other (blocked)           |
+            |**OTHER**       |**OTHER**       |[$CHAR2.]                               |
+            ----------------------------------------------------------------------------
+
+
+            ----------------------------------------------------------------------------
+            |       FORMAT NAME: $TYPE    LENGTH:   25   NUMBER OF VALUES:    9        |
+            |   MIN LENGTH:   1  MAX LENGTH:  40  DEFAULT LENGTH  25  FUZZ:        0   |
+            |--------------------------------------------------------------------------|
+            |START           |END             |LABEL  (VER. 8.1     28OCT2002:15:16:30)|
+            |----------------+----------------+----------------------------------------|
+            |                |                |Blank: Unknown                          |
+            |C               |C               |C: Combo Standard                       |
+            |D               |D               |D: Combo VIP                            |
+            |F               |F               |F: Offline Debit Standard               |
+            |N               |N               |N: Online Debit Standard                |
+            |O               |O               |O: Other                                |
+            |P               |P               |P: Offline Debit VIP                    |
+            |V               |V               |V: Online Debit VIP                     |
+            |**OTHER**       |**OTHER**       |[$CHAR1.]                               |
+            ----------------------------------------------------------------------------

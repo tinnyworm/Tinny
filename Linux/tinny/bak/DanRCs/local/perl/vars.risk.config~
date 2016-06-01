@@ -1,0 +1,17 @@
+# Daily rate function (DAILY_RATE)
+# Bases = base var list the decay is based on
+# Elements = list of time decays
+# Grp = group name
+# Map = profile name with prof ignored
+# Flags = list of flags
+#
+# The var name format is
+# map_DAILY_baseVar_flag_decay
+
+Type = DailyRate
+Bases = DOL_AMT
+Elements = 30MIN,1DAY,7DAY,15DAY,30DAY,45DAY
+Grp = MEM_VARS
+Map = MEM
+Flags = PAY,NEW_PAY,TRANSFER
+

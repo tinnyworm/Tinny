@@ -1,0 +1,110 @@
+^L	clear
+Lst	more !*.lst
+Mis	grep Missing !*.log
+Note	grep NOTE: !*.log
+Uni	grep uninit !*.log
+Warn	grep WARNING !*.log
+^L	clear
+a	alias
+actfilt	/work/beagle/eFalcon/utilities/encrypt/EncAcctNbrs
+archie	rtelnet archie.internic.net
+b8	cd /work/black8
+back	set back=$old; set old=$cwd; cd $back; unset back; dirs
+bye	logout
+casedisks	df -l | egrep '(poppy|daffodil|lily|iris|lotus|daisy|orchid|lilac|tulip|dahlia|jasmine)'
+cd	set old=$cwd; chdir !*; set prompt=//`hostname`$cwd"[\!]% "
+cl	clear
+clenham	rtelnet clenham.usc.edu
+colm	~hst/bin/colmerger
+con2cfg	/home/akp/bin/anucon2cfg
+cp	cp -i
+cut	/usr/local/bin/cut
+dad	mail EQFM90A@juno.com
+df1	/home/jcl/dflist1
+diff	diff -bl
+dmu	/work/wing/source/drv_modeluse
+dmu2	/work/price/falcon/bin/drv_modeluse
+dvips	dvips -o
+eieio	sas -stdio
+emacs	(emacs -nw)
+enit	enscript -2r -fHelvetica7
+esd	sas /work/lando/mbna/1999_2000/review/jcl.eval.sampdat
+f	finger|more
+f7	df | grep dev | egrep -v "(gonzo|fozzie|animal|bigbird|piggy|kermit|ernie|bert|grover|oscar)"
+fico	pushd /work/strut/mbna/new-sampling-bk-only-ish/fico
+fone	cat  /work/info/phone/phonelog.txt | egrep "(a|e|i|o|u|y|1|2|3|4|5|6|7|8|9|0)"
+forrestt	mail forrestt@mindspring.com
+h	history 50
+here	setenv DISPLAY pcjcl:0.0
+home	cd ~yxc
+homing	xterm -fn 10X20
+j	jobs -l
+jenny	cat /home/jcl/mail/jenny.txt
+john	mail Styx123106@aol.com
+jon	mail JON.FARRAR@uboc.com
+jrw	mail jweinberg@luxortech.com
+judy	echo '714.278.2031'
+l	(ls -F)
+link-f	pushd /work/nbd0/mbna_link/jcl_tape_stuff/change-in-cards
+link-h	pushd /work/tape37
+ll	ls -l
+lpq	lpq -Pshipit
+lpr	lpr -Pshipit
+ls	/bin/ls -F
+lss	ls -l | sort -n +3 -4
+lst	more lstfiles/!*.lst
+mbna	cat /work/axle/mbna_credrisk/bkmodel/model/bkmod5/mklabel.sas
+me	mail JCLJudy@cris.com
+mis	grep Missing logfiles/!*.log
+mom	mail charlene_mathe@qmail.fullerton.edu
+mv	mv -i
+nedit	nedit -import /home/jcl/sas.pats
+nenen	alias enscript 'nenscript'
+new-ck	grep HNC-check logfiles/!*.log
+nld	/home/jsl/bin/nld
+nldHP	/work/fal0/falcon/ver-b/bin/nldHP
+note	grep NOTE: logfiles/!*.log
+pd	pushd
+phone	cat  /work/info/phone/phonelog.txt.unix
+popd	popd; set prompt=//`hostname`$cwd"[\!]% "
+print	enscript -Ppr1 -r2 -fCourier-Bold8 -G
+prsas	enscript -Pcreditcard -fCourier7 -FHelvetica-Oblique8 -2r
+prsasw	enscript -Pcreditcard -fCourier8 -FHelvetica-Oblique9 -r
+prtab	enscript -Ppr1 -fCourier5 -FHelvetica-Oblique6
+pushd	pushd !*; set prompt=//`hostname`$cwd"[\!]% "
+pv	printenv
+pwd	echo $cwd
+qcut	/home/nav/bin/qcut
+quota	rsh xander
+rayjay	mail Pakydrm@aol.com
+rens	enscript -2r -G
+rm	rm -i
+rmrm	/usr/bin/rm
+s8	/export/home/Applications/sas/sas
+sas	(s8 -memsize 400M)
+sasdeploy	/home/akp/bin/sasdploy
+serf	/usr/local/bin/netscape &
+sipi	rtelnet sipi.usc.edu
+sister	mail LSchaefer@eworld.com
+smsas	enscript -Ppr1 -fCourier5 -FHelvetica-Oblique6 -2r
+smsasw	enscript -Ppr1 -fCourier5 -FHelvetica-Oblique6 -r
+solsas	nenscript -Ppr1 -fCourier7 -FHelvetica-Oblique8 -2r
+stock	cat /work/applshar/stock/current.txt
+sxk	mail kesha@uclink4.berkeley.edu
+taiwan	mail judge@star.ee.ntu.edu.tw
+ucla	rtelnet melvyl.berkeley.edu
+ucsd	rtelnet roger.ucsd.edu
+uni	grep uninit logfiles/!*.log
+usef	mail judge@morrolan.igo.org
+usin	mail judge@kleiman.indianapolis.in.us
+varlist	/home/flv/model_tools/varlist
+warn	grep WARNING logfiles/!*.log
+wat	ps -au | more
+wife	mail jperryl@titan.fullerton.edu
+xt	xterm -bg white
+xx	emacs
+xxx	xemacs -bg white -fg brown
+yank	/work/price/falcon/bin/yank_table
+yyy	xxx -geometry 10x10 &
+zort	bmsort -T /tmp -S
+zz	/usr/local/bin/zcat

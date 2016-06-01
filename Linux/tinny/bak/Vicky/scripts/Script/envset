@@ -1,0 +1,3 @@
+#! /usr/local/bin/bash 
+port=$1
+setenv DISPLAY radiate:$port

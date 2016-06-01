@@ -1,0 +1,54 @@
+##################################################################################
+# Makefile for all the steps 
+#
+# This script using data for generating the relative plots and tables
+#
+# It can (and usually should) be run in parallel using
+#		make -j<njobs> -l<maxload> [-f <Makefile of interest>]
+#			njobs: Allow N jobs at once; infinite jobs with no arg.
+#			maxload: Don't start multiple jobs unless load is below N.
+# See the help of make for detail information (using make --help)
+# 
+# 
+# The changes should be made between >>> and <<< in general
+# yxc on 1/2005
+##################################################################################
+
+SHELL = /bin/sh
+
+#>>>>>> change start from here >>>>>>
+
+DATA = 0501   \
+0502   \
+0503  
+
+## Working directory
+
+WORK_DIR = /work/aisle03/yxc/BOA_DEBIT/2005Q1_1pct
+#>>>>>> change ends from here >>>>>>
+
+SAMP = /home/yxc/scripts/Script/discsample.sh
+
+RESSC = $(foreach a, ${DATA}, ${WORK_DIR}/log/${a}.sample.cards.log) 
+RESSA = $(foreach a, ${DATA}, ${WORK_DIR}/log/${a}.sample.auths.log) 
+DIR = ${WORK_DIR}/log
+
+## rules
+all :  ${DIR} ${RESSA} ${RESSC}
+
+${DIR}:
+	test -d ${WORK_DIR}/datas || mkdir ${WORK_DIR}/datas ;\
+	test -d ${WORK_DIR}/stats || mkdir ${WORK_DIR}/stats ;\
+	test -d ${WORK_DIR}/merge || mkdir ${WORK_DIR}/merge ;\
+	test -d ${WORK_DIR}/log || mkdir ${WORK_DIR}/log ;
+
+
+${WORK_DIR}/log/%.sample.cards.log: ${DIR}
+	cd ${WORK_DIR};\
+	${SAMP} ${WORK_DIR}/merge/frauds.dat.gz ${WORK_DIR}/filelist/$*.card.filelist CARDS > ${WORK_DIR}/log/$*.sample.cards.log 2>&1 ; 
+
+${WORK_DIR}/log/%.sample.auths.log: ${DIR}
+	cd ${WORK_DIR};\
+	${SAMP} ${WORK_DIR}/merge/frauds.dat.gz ${WORK_DIR}/filelist/$*.auth.filelist AUTHS > ${WORK_DIR}/log/$*.sample.auths.log 2>&1 ; 
+
+

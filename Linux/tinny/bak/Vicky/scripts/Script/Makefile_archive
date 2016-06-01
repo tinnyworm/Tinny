@@ -1,0 +1,117 @@
+# Makefile for evaluation
+#
+# This script using 100% data for evaluation. The last part of the select
+# file should be the same as the corresponding data directory. For example:
+# 		DATA : DATA_DIR/cap1
+#		SELECT : select.muse.cap1
+#
+# It can (and usually should) be run in parallel using
+#		make -j<njobs> -l<maxload>
+#			njobs: Allow N jobs at once; infinite jobs with no arg.
+#			maxload: Don't start multiple jobs unless load is below N.
+# See the help of make for detail information (using make --help)
+# 
+# The final research file will be named res.comb. It will always generate a
+# big score file for each data set <data>.bigScr.gz. A log file <data>.log
+# will also be generated for each data set. 
+# 
+# The changes should be made between >>> and <<< in general, unless the
+# detailed falconer4 option need to be changed, such as 25% test, nonpost,
+# etc. 
+#
+# dxl: 08/31/2004
+
+SHELL = /bin/sh
+
+#>>>>>> change start from here >>>>>>
+
+DATA = ADVANTA \
+       ASSOC   \
+       FIRFSD  \
+       FIRSTUN \
+       HSBCUSA \
+       MEMBERCRP \
+       MERRFN   \
+       METRIS   \
+       NATCITY  \
+       NEXTCARD \
+       OTHER    \
+       PSCU     \
+       SEVCORP  \
+       SUNTRUST \
+       TEXIB    \
+       TOWNNT   \
+       USAA     \
+       WALLSCRT \
+       WORLDFB  \
+       ZIONBK   \
+       CHASE    \
+       FLEET
+
+
+#RATE = 0.01
+
+MODEL_DIR = /work/aisle01/FDR_PerfReviews/2003/credit/model
+MODEL_NAME = uscrd03g
+DATA_DIR = /work/aisle01/FDR_PerfReviews/2003/credit
+SEL_DIR = /work/aisle01/FDR_PerfReviews/2003/credit/select_muse
+EVAL_DIR = ${shell pwd}
+
+## Flags for Falconer4 options
+# FP? [YES/NO]
+FP = NO
+# shrtScr? [YES/NO]
+SCR = NO
+# API? [YES/NO]
+API = YES
+# bigScr ? [YES/NO]
+BIGSCR = YES
+
+#<<<<<< change end here <<<<<<
+
+## Falconer4 options
+FALOPT = -R silent
+ifeq (${FP}, YES)
+	FALOPT += -p mp=70
+endif
+FALOPT += -t threshold=100,test 
+FALOPT += -f noposts 
+FALOPT += -d std_kchk,buildcard30
+ifeq (${SCR}, YES)
+	FALOPT += -s ${EVAL_DIR}/$*/eval/$*.shrtScr.gz
+endif
+ifeq (${API}, YES)
+	FALOPT += -A ${EVAL_DIR}/$*/eval/$*.API.gz
+endif
+ifeq (${BIGSCR}, YES)
+	FALOPT += -b ${EVAL_DIR}/$*/eval/$*.bigScr.gz
+endif
+
+## Binaries
+OS = $(shell uname)
+ifeq (${OS}, SunOS)
+	FALCONER = /work/gold/bin/falconer4
+	BIG2RES = /work/gold/bin/big2res
+else
+	FALCONER = /work/gold/linux/bin/falconer4
+	BIG2RES = /work/gold/linux/bin/big2res
+endif
+
+RESS = $(foreach a, ${DATA}, res.${MODEL_NAME}-${a})
+
+## rules
+all : ${RESS}
+
+res.${MODEL_NAME}-%: %/eval
+	cd ${MODEL_DIR};\
+	${FALCONER} \
+		-i dir=${DATA_DIR}/$*,select=${SEL_DIR}/select.muse.$*_2003 \
+		${FALOPT} \
+		-r file=${EVAL_DIR}/$*/eval/$@ \
+		${MODEL_NAME}.cnf > ${EVAL_DIR}/$*/eval/$*.log 2>&1; 
+
+%/eval :
+	mkdir $*/eval;\
+
+#clean : 
+#	find ./ ! -name Makefile -exec rm {} \;

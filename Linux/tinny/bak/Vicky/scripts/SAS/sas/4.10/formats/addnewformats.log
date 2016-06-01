@@ -1,0 +1,310 @@
+1                                                          The SAS System                             16:25 Monday, November 3, 2003
+
+NOTE: Copyright (c) 1999-2000 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software Release 8.1 (TS1M0)
+      Licensed to FAIR ISAAC & CO INC, Site 0039085032.
+NOTE: This session is executing on the SunOS 5.8 platform.
+
+
+
+
+This message is contained in the SAS news file, and is presented upon
+initialization.  Edit the files "news" in the "misc/base" directory to
+display site-specific news and information in the program log.
+The command line option "-nonews" will prevent this display.
+
+
+
+NOTE: SAS initialization used:
+      real time           0.35 seconds
+      cpu time            0.12 seconds
+      
+1          libname macrolib '.';
+NOTE: Libref MACROLIB was successfully assigned as follows: 
+      Engine:        V8 
+      Physical Name: /home/yxc/sas/4.10/formats
+2          libname library '/work/gold/projects/bin/CCDS/4.10/formats/yxc';
+NOTE: Libref LIBRARY was successfully assigned as follows: 
+      Engine:        V8 
+      Physical Name: /work/gold/projects/bin/CCDS/4.10/formats/yxc
+3          options mstored sasmstore=macrolib;
+4          options errors=2 nodate ls=100 ps=1000;
+5          
+6          /************************* Add new entries into macrolib.formats
+6        ! **************************/
+7          proc format library= library.formats;
+8             value $Caipsta    ' ' = 'Blank'
+9                               'Y' = 'Y: Static Authentication supported'
+10         		     'N' = 'N: Static Authentication not supported'
+11         		     ',' = 'Data does not exist'
+12         		     ';' = 'Data intentionally blank'
+13         		   other = [$CHAR1.];
+NOTE: Format $CAIPSTA is already on the library.
+NOTE: Format $CAIPSTA has been written to LIBRARY.FORMATS.
+14         
+15            value $Caipdyn    ' ' = 'Blank'
+16                              'S' = 'S: Static Data Authentication'
+17         		     'D' = 'D: Dynamic Data Authentication(DDA)'
+18         		     ',' = 'Data does not exist'
+19         		     ';' = 'Data intentionally blank'
+20         		   other = [$CHAR1.];
+NOTE: Format $CAIPDYN is already on the library.
+NOTE: Format $CAIPDYN has been written to LIBRARY.FORMATS.
+21         		
+22            value $Caipver    ' ' = 'Blank'
+23                              'Y' = 'Y: Cardholder verification supported'
+24         		     'N' = 'N: Cardholder verification not supported'
+25         		     ',' = 'Data does not exist'
+26         		     ';' = 'Data intentionally blank'
+27         		   other = [$CHAR1.];
+NOTE: Format $CAIPVER is already on the library.
+NOTE: Format $CAIPVER has been written to LIBRARY.FORMATS.
+28         		
+29            value $Caiprsk    ' ' = 'Blank'
+30                              'Y' = 'Y: Perform process'
+31         		     'N' = 'N: Do not perform process'
+32         		     ',' = 'Data does not exist'
+33         		     ';' = 'Data intentionally blank'
+34         		   other = [$CHAR1.];
+NOTE: Format $CAIPRSK is already on the library.
+NOTE: Format $CAIPRSK has been written to LIBRARY.FORMATS.
+35         		
+36            value $Caipiaa    ' ' = 'Blank'
+37                              'Y' = 'Y: Supported'
+38         		     'N' = 'N: Not supported'
+39         		     ',' = 'Data does not exist'
+40         		     ';' = 'Data intentionally blank'
+41         		   other = [$CHAR1.];
+NOTE: Format $CAIPIAA is already on the library.
+NOTE: Format $CAIPIAA has been written to LIBRARY.FORMATS.
+42         		
+43            value $Cmedia     ' ' = 'Blank'
+44                              'M' = 'M: Mag-stripe card'
+45         		     'C' = 'C: Chip card'
+46         		     'V' = 'V: Virtual card'
+47         		     ',' = ',: Data does not exist'
+48         		     ';' = ';: Data intentionally blank'
+49         		   other = [$CHAR1.];
+NOTE: Format $CMEDIA is already on the library.
+NOTE: Format $CMEDIA has been written to LIBRARY.FORMATS.
+50         		
+51            value $CVV2_P     ' ' = 'Blank'
+52                              '0' = '0: CVV2/CVC2/CID Not provided'
+53         		     '1' = '1: CVV2/CVC2/CID Present'
+54         		     '2' = '2: CVV2/CVC2/CID Present not legible'
+55         		     '8' = '8: CVV2/CVC2/CID Not requested'
+56         		     '9' = '9: CVV/CVC2/CID 2 Not present'
+57         		     ',' = ',: Data does not exist'
+58         		     ';' = ';: Data intentionally blank'
+59         		   other = [$CHAR1.];
+NOTE: Format $CVV2_P is already on the library.
+NOTE: Format $CVV2_P has been written to LIBRARY.FORMATS.
+60         		    		
+61             value $CVV2_R    ' ' = 'Blank'
+62                              'M' = 'M: CVV2/CVC2/CID match'
+63         		     'N' = 'N: CVV2/CVC2/CID no match'
+64         		     'P' = 'P: CVV2/CVC2/CID not processed'
+65         		     'S' = 'S: CVV2/CVC2/CID not present'
+66         		     'U' = 'U: Not certified or provided'
+67         		     ',' = ',: Data does not exist'
+68         		     ';' = ';: Data intentionally blank'
+69         		   other = [$CHAR1.];
+NOTE: Format $CVV2_R is already on the library.
+NOTE: Format $CVV2_R has been written to LIBRARY.FORMATS.
+69       !                        				
+70         		
+71              value $AVS_RE   ' ' = 'Blank'
+72                              'X' = 'X: AVS exact'
+73         		     'Y' = 'Y: AVS ZIP five add'
+74         		     'A' = 'A: AVS add only'
+75         		     'W' = 'W: VS add only'
+76         		     'Z' = 'Z: AVS ZIP five only'
+77         		     'N' = 'N: AVS no match'
+78         		     'U' = 'U: AVS no data'
+79         		     'R' = 'R: AVS system unavailable'
+80         		     'S' = 'S: AVS not supported'
+81         		     ',' = ',: Data does not exist'
+82         		     ';' = ';: Data intentionally blank'
+83         		   other = [$CHAR1.];
+NOTE: Format $AVS_RE is already on the library.
+NOTE: Format $AVS_RE has been written to LIBRARY.FORMATS.
+84         		
+85              value $TRAN_CA  ' ' = 'Blank'
+86                              'I' = 'I: Internet'
+87         		     'T' = 'T: Telephone order'
+88         		     'M' = 'M: Mail order'
+89         		     'P' = 'P: Card present'
+90         		     ',' = ',: Data does not exist'
+91         		     ';' = ';: Data intentionally blank'
+92         		   other = [$CHAR1.];
+NOTE: Format $TRAN_CA is already on the library.
+NOTE: Format $TRAN_CA has been written to LIBRARY.FORMATS.
+93         		
+94              value $FRD_TRX  ' ' = 'Blank'
+95                              'F' = 'F: Fraudulent transaction'
+96         		     'N' = 'N: Not a fraudulent transaction'
+97         		     '&' = '&: Unknown'
+98         		     ',' = ',: Data does not exist'
+99         		     ';' = ';: Data intentionally blank'
+100        		   other = [$CHAR1.];
+NOTE: Format $FRD_TRX is already on the library.
+NOTE: Format $FRD_TRX has been written to LIBRARY.FORMATS.
+101        		
+102             value $POS_CON  ' '  = 'Blank'
+103                             '00' = '00: Normal transaction'
+104        		     '01' = '01: Customer not present'
+105        		     '03' = '03: Merchant suspicious'
+106        		     '05' = '05: Customer present,card not present'
+107        		     '08' = '08: Mail/telephone order'
+108        		     '10' = '10: Customer identity verified'
+109        		     '51' = '51: Request for account num. or address'
+110        		     '55' = '55: Request for telecode'
+111        		     ','  =  ',: Data does not exist'
+112        		     ';'  =  ';: Data intentionally blank'
+113        		   other  = [$CHAR1.];
+NOTE: Format $POS_CON is already on the library.
+NOTE: Format $POS_CON has been written to LIBRARY.FORMATS.
+114        		
+115             value $ATM_NET  ' ' = 'Blank'
+116                             'C' = 'C: Cirrus'
+117        		     'S' = 'S: Star'
+118        		     'B' = 'B: Bank's ATM'
+119        		     'A' = 'A: Another bank's ATM'
+120        		     'I' = 'I: Interlink'
+121        		     'P' = 'P: Plus'
+122        		     'E' = 'E: Pulse'
+123        		     'O' = 'O: Other'
+124        		     other = [$CHAR1.];
+NOTE: Format $ATM_NET is already on the library.
+NOTE: Format $ATM_NET has been written to LIBRARY.FORMATS.
+125        
+126             value $V_ALID   ' ' = 'Blank'
+127                             'V' = 'V: Valid'
+128        		     'I' = 'I: Invalid'
+129        		     ',' = ',: Data does not exist'
+130        		     ';' = ';: Data intentionally blank'
+131        		   other = [$CHAR1.];
+NOTE: Format $V_ALID is already on the library.
+NOTE: Format $V_ALID has been written to LIBRARY.FORMATS.
+131      !                        	
+132        		
+133             value $PAY_TP   ' ' = 'Blank: No selection/Unknown'
+134                             'P' = 'P: Pay off in one payment'
+135        		     'N' = 'N: Pay off in next two payments'
+136        		     'B' = 'B: Pay off with next bonus'
+137        		     'S' = 'S: Pay off with next two bonuses'
+138        		     'R' = 'R: Revolving'
+139        		     'I' = 'I: Pay over several payments'
+140        		     'O' = 'O: Other'
+141        		   other = [$CHAR1.];
+NOTE: Format $PAY_TP is already on the library.
+NOTE: Format $PAY_TP has been written to LIBRARY.FORMATS.
+142        
+143             value $CON_MD   ' ' = 'Blank: Unknown'
+144                             'T' = 'T: Telephone'
+145        		     'I' = 'I: Internet'
+146        		     'O' = 'O: Other'
+147        		   other = [$CHAR1.];
+NOTE: Format $CON_MD is already on the library.
+NOTE: Format $CON_MD has been written to LIBRARY.FORMATS.
+147      !                         		
+148        		
+149             value $RES_MD   ' ' = 'Blank'
+150                             'R' = 'R: Requested'
+151        		     'P' = 'P: Pushed'
+152        		   other = [$CHAR1.];
+NOTE: Format $RES_MD is already on the library.
+NOTE: Format $RES_MD has been written to LIBRARY.FORMATS.
+153        
+154             value $VTM_TP   ' ' = 'Blank'
+155                             '0' = '0: Unspecified'
+156        		     '1' = '1: Limited amount terminal'
+157        		     '2' = '2: Unattended terminal(ATM)'
+158        		     '3' = '3: Unattended terminal(Other)'
+159        		     '4' = '4: Eclectronic cash register'
+160        		     '5' = '5: Home terminals'
+161        		     '7' = '7: Telephone device'
+162        		     ',' = ',: Data does not exist'
+163        		     ';' = ';: Data intentionally blank'
+164        		   other = [$CHAR1.];
+NOTE: Format $VTM_TP is already on the library.
+NOTE: Format $VTM_TP has been written to LIBRARY.FORMATS.
+165        		
+166             value $MTM_TP   ' ' = 'Blank'
+167                             '0' = '0: Not a CAT transaction'
+168        		     '1' = '1: Authorized level1 CAT'
+169        		     '2' = '2: Authorized level2 CAT'
+170        		     '3' = '3: Authorized level3 CAT'
+171        		     '4' = '4: Authorized level4 CAT'
+172        		     '6' = '6: Authorized level6 CAT'
+173        		     '7' = '7: Authorized level7 CAT'
+174        		     ',' = ',: Data does not exist'
+175        		     ';' = ';: Data intentionally blank'
+176        		   other = [$CHAR1.];
+NOTE: Format $MTM_TP is already on the library.
+NOTE: Format $MTM_TP has been written to LIBRARY.FORMATS.
+177        		
+178             value $VTM_ETY  ' ' = 'Blank'
+179                             '0' = '0: Unknown'
+180        		     '1' = '1: Terminal not used'
+181        		     '2' = '2: Magnetic stripe read capability'
+182        		     '3' = '3: Bar code read capability'
+183        		     '4' = '4: OCR read capability'
+184        		     '5' = '5: Chip read capability'
+185        		     '9' = '9: Does not read card data'
+186        		     ',' = ',: Data does not exist'
+187        		     ';' = ';: Data intentionally blank'
+188        		   other = [$CHAR1.];
+NOTE: Format $VTM_ETY is already on the library.
+NOTE: Format $VTM_ETY has been written to LIBRARY.FORMATS.
+189        		
+190             value $MTM_ETY  ' ' = 'Blank'
+191                             '0' = '0: Unknown/Unspecified'
+192        		     '1' = '1: No terminal used'
+193        		     '2' = '2: Magnetic stripe reader'
+194        		     '3' = '3: Bar code'
+195        		     '4' = '4: Optical character recognition'
+196        		     '5' = '5: Magnetic stripe reader & EMV'
+197        		     '6' = '6: Key entry only'
+198        		     '7' = '7: Magnetic stripe reader & key entry'
+199        		     '8' = '8: Magnetic stripe reader & key & EMV'
+200        		     '9' = '9: EMV chip reader'
+201        		     ',' = ',: Data does not exist'
+202        		     ';' = ';: Data intentionally blank'
+203        		   other = [$CHAR1.];
+NOTE: Format $MTM_ETY is already on the library.
+NOTE: Format $MTM_ETY has been written to LIBRARY.FORMATS.
+203      !                        		
+204        		
+205        run;
+
+NOTE: PROCEDURE FORMAT used:
+      real time           0.37 seconds
+      cpu time            0.10 seconds
+      
+
+206        		   	   	
+207        proc catalog catalog=macrolib.formats;
+208        contents;
+209        run;
+
+ERROR: Catalog MACROLIB.FORMATS does not exist.ERROR: Catalog MACROLIB.FORMATS does not exist.ERROR: Catalog MACROLIB.FORMATS does not exist.
+WARNING: Command CONTENTS not processed because of errors noted above.
+210        		   		   		
+211        /*proc format
+212            library = library.newcard fmtlib;
+213         select  $Caipsta $Caipdyn $Caipver $Caiprsk $Caipiaa $Cmedia $country $issue;
+214         run;
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: PROCEDURE CATALOG used:
+      real time           0.61 seconds
+      cpu time            0.08 seconds
+      
+
+ERROR: Errors printed on page 1.ERROR: Errors printed on page 1.ERROR: Errors printed on page 1.
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+      real time           1.44 seconds
+      cpu time            0.30 seconds
+      

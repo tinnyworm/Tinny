@@ -1,0 +1,7 @@
+#!/usr/local/bin/bash
+####
+####              AUTHS
+####
+
+/usr/local/bin/zcat auths.dat.gz | /work/price/falcon/bin/sampstats -s1 -ffrauds.dat -ostats.auth -a | gzip > auths.1pct.gz
+

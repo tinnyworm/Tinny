@@ -1,0 +1,2538 @@
+/* General */
+body
+{
+	background: transparent;
+	padding: 0;
+	margin: 0;
+	font-family: arial, sans-serif;
+	font-size: 10pt;
+	color: #000;
+}
+
+a
+{
+	text-decoration: none;
+	color: #03c;
+}
+
+a:visited
+{
+	text-decoration: none;
+	color: #039;
+}
+
+a:hover
+{
+	text-decoration: underline;
+	color: #36f;
+}
+
+a.selected
+{
+	font-weight: bold;
+	color: #345;
+}
+
+img { border: none; }
+#footer ul, .blink, .print, #mainnav { display: none; }
+
+/* Masthead */
+#masthead h1
+{
+}
+
+#masthead h1 a
+{
+}
+
+#masthead h1 a:hover { text-decoration: none !important; }
+
+/* Search and user account */
+#breadcrumb, #topuser, #kahuna { display: none; }
+
+#innerframe
+{
+	clear: both;
+	background: transparent;
+	padding: 1em 2em;
+}
+
+/* Titlebars */
+.titlebar, .tbar h3, .tbarhigh h3
+{
+	position: relative;
+	border-top: 1px solid #bcd;
+	background: #eef0f3 url("http://images.sourceforge.net/sfx/sfx_titlebar_bg2.png") repeat-x bottom left;
+	font-size: 82.3%;
+	color: #456;
+	padding: .3em .5em 1.7em .5em;
+	margin: 0 0 -.5em 0;
+}
+
+.tbar b, .tbarhigh b
+{
+	display: none;
+	margin: 0;
+	padding: 0;
+}
+
+h3.downloadbar
+{
+	position: relative;
+	border-top: 1px solid #008000;
+	background: #0a0 url("http://images.sourceforge.net/sfx/sfx_dl_bg2.png") repeat-x bottom left;
+	font-size: 82.3%;
+	color: #456;
+	padding: .3em .5em 1.7em .5em;
+	margin: 0 0 -.5em 1em;
+	width: 17em;
+}
+
+.downloadbar a
+{
+	color: #fff !important;
+	padding: 0 40px 0 0 !important;
+}
+
+.downloadbar a:hover { color: #efe !important; }
+
+.downloadbar small
+{
+	color: #fff;
+	padding: 20px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	background: url("http://images.sourceforge.net/sfx/sfx_dl_arrow2.png") bottom left no-repeat;
+}
+
+.titlebar small
+{
+	padding: 10px;
+	position: absolute;
+	right: .3em;
+	top: .2em;
+}
+
+.titlebar small a
+{
+	text-indent: -7000em;
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 10px;
+}
+
+/* Hide lists */
+#pdetails li span, #parea li span
+{
+	display: inline;
+	padding: .1em;
+}
+
+.welcome .column li { list-style: none; }
+.welcome .column li span { font-size: 85%; }
+
+.welcome .column
+{
+	float: left;
+	width: 21%;
+	margin: .5em 0 1em 1em;
+	padding: 0;
+	border: none;
+	position: relative;
+}
+
+.welcome .column li, #frame #pdetails li, #frame #parea li
+{
+	padding: .3em 0 .3em 1.2em;
+	position: relative;
+}
+
+#frame #pdetails li, #frame #parea li
+{
+	padding: .3em 0;
+	position: static;
+}
+
+/* Marquee */
+#sfmarquee
+{
+	padding: 1.1em 0 0 70px;
+	background: transparent url("http://images.sourceforge.net/sfx/marquee.gif") no-repeat;
+	position: relative;
+}
+
+#sfmarquee h4
+{
+	font-size: 90%;
+	font-weight: normal;
+	float: left;
+	width: 51%;
+	padding: .5em 0 0 0;
+	margin: -.5em 0 .6em 0;
+	color: #56626d !important;
+	position: relative;
+}
+
+#sfmarquee h4 strong
+{
+	font-size: 120%;
+	font-weight: bold;
+}
+
+#sfmarquee h4 strong span
+{
+	display: block;
+	padding: 0 0 0 1em;
+}
+
+#sfmarquee h4 a { color: #56626d; }
+#sfmarquee h4 a:hover { text-decoration: none; }
+
+#frame .onewidetop .highlights
+{
+	border: none;
+	float: right;
+	width: 49%;
+	margin: -.8em 0 0 0;
+}
+
+#frame .highlights li
+{
+	font-size: 70%;
+	color: #56626d;
+	text-align: right;
+	margin: 0;
+}
+
+#frame .highlights li a
+{
+	font-weight: bold;
+	font-size: 100%;
+	color: #56626d;
+}
+
+#frame .highlights li.bottom { border: none; }
+
+div.stats
+{
+	margin: .5em 0 -.5em 0;
+	color: #56626d;
+	clear: both;
+	font-size: 70%;
+	text-align: center;
+}
+
+div.stats a { color: #56626d; }
+
+#frame ol li
+{
+	border: none;
+	list-style: decimal;
+	padding: .1em 0;
+}
+
+#frame ol
+{
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+#frame.view_artifact textarea#details { width: 80%; }
+.actions, .options, #fad1p, #fad2p, #fad36p, #fad6p, #fad24p, #fadbtmp, #sponsored_dl, #fad1, #fad2sm, #fad2, #fad36, #fad6, #fad19, #fad24, #fadbtm { display: none; }
+
+/* Layout */
+.onewide { margin: 0 230px 0 0; }
+.onewidetop { margin: 0 330px 0 0; }
+.onewidedl { margin: 0 180px 0 0; }
+
+.onewidebtm
+{
+	margin: 0;
+	clear: both;
+}
+
+.one
+{
+	float: left;
+	width: 98%;
+	margin: 0;
+	position: relative;
+}
+
+.two
+{
+	float: left;
+	width: 48%;
+	clear: left;
+}
+
+.three
+{
+	float: left;
+	width: 48%;
+	padding: 0 0 0 1em;
+}
+
+.project .two, .potm .two
+{
+	float: left;
+	width: 55%;
+	clear: left;
+}
+
+.project .three, .potm .three
+{
+	float: left;
+	width: 38%;
+	margin: 0 0 0 1em;
+}
+
+.four
+{
+	float: right;
+	width: 220px;
+	clear: right;
+}
+
+.five
+{
+	float: right;
+	width: 328px;
+	clear: right;
+}
+
+.six
+{
+	float: right;
+	width: 220px;
+}
+
+.seven
+{
+	float: left;
+	width: 25%;
+	margin: 0;
+}
+
+.eight
+{
+	float: left;
+	width: 46%;
+	margin: 0 2%;
+}
+
+/* Messaging */
+.error, .warning, .message, .info
+{
+	color: #000 !important;
+	padding: .3em 40px !important;
+	margin: .5em 0 1em 0;
+	font-size: 90%;
+	position: relative;
+}
+
+.info small, .error small, .warning small, .message small
+{
+	font-weight: normal;
+	font-size: 90%;
+}
+
+.error
+{
+	background: #fdd url("http://images.sourceforge.net/icons/silk/delete.png") no-repeat 10px 3px;
+	border: 1px solid #fbb;
+}
+
+.warning
+{
+	background: #ffd url("http://images.sourceforge.net/icons/silk/error.png") no-repeat 10px 3px;
+	border: 1px solid #fe6;
+}
+
+.message
+{
+	background: #dfd url("http://images.sourceforge.net/icons/silk/accept.png") no-repeat 10px 3px;
+	border: 1px solid #bfb;
+}
+
+.info
+{
+	background: #def url("http://images.sourceforge.net/icons/silk/information.png") no-repeat 10px 3px;
+	border: 1px solid #9cf;
+}
+
+/* Sectional header and project header */
+.topnav
+{
+	position: relative;
+	z-index: 10000 !important;
+}
+
+.potm h2 small
+{
+	font-weight: bold;
+	position: absolute;
+	right: 1em;
+	vertical-align: middle;
+}
+
+.potm h2 span.rss
+{
+	font-size: 65%;
+	font-weight: normal;
+	border: 1px solid #f40;
+	background: #f60;
+	text-shadow: none;
+	padding: 0 .2em;
+}
+
+.potm h2 small a { padding: 0 .2em; }
+.topnav h2 span { padding: 0 20em 0 0; }
+.topnav h2 span a { color: #000; }
+
+.topnav h2
+{
+	margin: -.5em 0 0 0;
+	font-size: 115%;
+}
+
+.potm h2
+{
+	font-size: 115%;
+	border-bottom: 1px solid #789;
+	margin: -.5em 0 0 0;
+	padding: 0 0 .1em 0;
+}
+
+a.potm
+{
+	background: url("http://images.sourceforge.net/sfx/potm.gif") right no-repeat;
+	padding: 0 1.5em 0 0;
+}
+
+.projectsearch, .preview
+{
+	background: url("http://images.sourceforge.net/icons/silk/magnifier.png") 6px 4px no-repeat;
+	padding: 0 0 .4em 30px;
+}
+
+.services
+{
+	background: url("http://images.sourceforge.net/icons/silk/medal_gold_1.png") no-repeat;
+	padding: 0 0 10px 20px;
+}
+
+.google_checkout
+{
+	background: url("http://images.sourceforge.net/sfx/badge.gif") no-repeat right top;
+	padding: 1px 20px 10px 0;
+}
+
+.paypal
+{
+	background: url("http://images.sourceforge.net/sfx/logo_paypalPP_16x16.gif") no-repeat right top;
+	padding: 1px 20px 10px 0;
+}
+
+.about
+{
+	background: url("http://images.sourceforge.net/icons/silk/user.png") no-repeat;
+	padding: 0 0 10px 20px;
+}
+
+.pdf
+{
+	background: url("http://images.sourceforge.net/icons/silk/page_white_acrobat.png") no-repeat right;
+	padding: 5px 20px 5px 0;
+	width: 16px;
+}
+
+a.donate
+{
+	background: url("http://images.sourceforge.net/icons/silk/money.png") no-repeat;
+	padding: 0 0 20px 20px;
+	margin-left: 1em;
+	line-height: 180%;
+}
+
+a.rss
+{
+	background: url("http://images.sourceforge.net/icons/silk/feed.png") no-repeat;
+	padding: 0 0 20px 20px;
+	margin-left: 1em;
+	line-height: 180%;
+}
+
+a.acceptdonate
+{
+	background: url("http://images.sourceforge.net/icons/silk/money_add.png") no-repeat;
+	padding: 0 0 20px 20px;
+	margin-left: 1em;
+	line-height: 180%;
+}
+
+small a.security, small b.security
+{
+	background: url("http://images.sourceforge.net/sfx/security.gif") 6px 0px no-repeat;
+	padding: 0 0 0 2em;
+}
+
+small a.help
+{
+	background: url("http://images.sourceforge.net/icons/silk/help.png") 6px 0px no-repeat;
+	padding: 0 0 0 2em;
+}
+
+a.sitestats
+{
+	background: url("http://images.sourceforge.net/icons/silk/chart_curve.png") 0px 0px no-repeat;
+	padding: 0 0 20px 20px;
+	margin-left: 1em;
+	line-height: 180%;
+}
+
+.monitor
+{
+	background: url("http://images.sourceforge.net/icons/silk/email_add.png") no-repeat;
+	padding: 0 0 20px 20px;
+	margin-left: 1em;
+	line-height: 180%;
+}
+
+a.monitor_stop
+{
+	background: url("http://images.sourceforge.net/icons/silk/email_delete.png") no-repeat;
+	padding: 0 0 20px 20px;
+	margin-left: 1em;
+	line-height: 180%;
+}
+
+.changelog { background: url("http://images.sourceforge.net/icons/silk/book.png") no-repeat right; }
+.notes { background: url("http://images.sourceforge.net/icons/silk/paste_plain.png") no-repeat right; }
+.mirrors { background: url("http://images.sourceforge.net/icons/silk/layers.png") no-repeat right; }
+
+.changelog, .notes, .mirrors
+{
+	text-indent: -7000em;
+	padding: 20px 0;
+}
+
+.mup
+{
+	text-indent: -7000em;
+	padding: 0 0 0 20px;
+	background: url("http://images.sourceforge.net/icons/silk/arrow_up.png") no-repeat;
+	width: 16px;
+}
+
+.mdown
+{
+	text-indent: -7000em;
+	padding: 0 0 0 20px;
+	background: url("http://images.sourceforge.net/icons/silk/arrow_down.png") no-repeat;
+	width: 16px;
+}
+
+.delete
+{
+	text-indent: -7000em;
+	padding: 0 0 0 20px;
+	background: url("http://images.sourceforge.net/icons/silk/delete.png") no-repeat;
+	width: 16px;
+}
+
+.forum div .delete
+{
+	display: block;
+	position: absolute;
+	right: 0px;
+	top: 0;
+}
+
+.forum td div { padding: 0 30px 0 0 !important; }
+
+.forum_message div a.delete
+{
+	display: block;
+	position: absolute;
+	right: 0px;
+	top: 0;
+}
+
+.forum_message td div { padding: 0 30px 0 0 !important; }
+
+.add
+{
+	text-indent: -7000em;
+	padding: 0 0 0 20px;
+	background: url("http://images.sourceforge.net/icons/silk/add.png") no-repeat;
+	width: 16px;
+}
+
+.forum div .add
+{
+	display: block;
+	position: absolute;
+	right: 0px;
+	top: 0;
+}
+
+.forum_message div .add
+{
+	display: block;
+	position: absolute;
+	right: 0px;
+	top: 0;
+}
+
+.editing h4
+{
+	padding: 0;
+	margin: 0;
+	color: #789;
+}
+
+#navigation .titlebar div
+{
+	padding-right: 10em;
+	display: inline;
+}
+
+#navigation input { width: 14em; }
+#navigation .active tbody tr:hover { background: #eee; }
+
+#navigation .options
+{
+	padding: 5px 30px;
+	position: relative;
+	border: none;
+}
+
+#navigation tr th
+{
+	padding: .3em;
+	font-size: 85%;
+}
+
+#navigation tr td
+{
+	padding: .3em;
+	font-size: 85% !important;
+}
+
+#navigation .options a
+{
+	top: 1px;
+	display: block;
+	position: absolute;
+}
+
+#navigation .divider,
+#navigation .vis
+{
+	border: none;
+	text-align: center;
+}
+
+#navigation .active { }
+#navigation .add { margin-left: 5px; }
+#navigation .delete { left: 0px; }
+#navigation .mup { left: 25px; }
+#navigation .mdown { left: 40px; }
+
+#frame div.forum
+{
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+.mail_archive div a.delete
+{
+	display: block;
+	position: absolute;
+	right: 0px;
+	top: 0;
+}
+
+.mail_archive td div { padding: 0 30px 0 0 !important; }
+
+.mail_archive div a.add
+{
+	display: block;
+	position: absolute;
+	right: 0px;
+	top: 0;
+}
+
+.help
+{
+	background: url("http://images.sourceforge.net/icons/silk/help.png") no-repeat left;
+	padding: 0 16px 0 20px;
+}
+
+.edit
+{
+	background: url("http://images.sourceforge.net/icons/silk/pencil.png") no-repeat left;
+	padding: 0 16px 0 20px;
+}
+
+.browse
+{
+	background: url("http://images.sourceforge.net/icons/silk/find.png") no-repeat left;
+	padding: 0 16px 0 20px;
+}
+
+.editing
+{
+	padding: 1em;
+	border: 1px dotted #ccc;
+	margin: .5em;
+}
+
+textarea.intro { width: 27em; }
+
+.project li a.potm
+{
+	background: url("http://images.sourceforge.net/sfx/potm.gif") no-repeat;
+	padding: 0 0 0 1em;
+}
+
+/* Project */
+#frame p.brief
+{
+	margin: 1em 0;
+	padding: 0 0 0 1.6em;
+	line-height: 130%;
+	font-size: 70%;
+	color: #56626d;
+}
+
+#frame p.brief a { color: #56626d; }
+
+/* Tables */
+table { empty-cells: show; }
+
+.zebra tr td
+{
+	border-top: 1px solid #bcd !important;
+	border-right: 1px solid #bcd !important;
+	border-bottom: 1px solid #eee !important;
+}
+
+#frelease
+{
+	width: 94% !important;
+	margin: 1em 0;
+}
+
+table caption { display: none; }
+#frelease col { width: 20%; }
+#frelease col.package tr td { font-weight: bold; }
+
+#frelease td.download
+{
+	background: #093;
+	text-align: center;
+}
+
+#frelease td.download a
+{
+	color: #fff;
+	font-weight: bold;
+}
+
+#stripes tr, #frelease tr, .zebra tr { position: relative !important; }
+
+#stripes, #frelease, .zebra
+{
+	border: 1px solid #345;
+	font-family: arial, sans-serif;
+	font-size: 80%;
+	width: 100%;
+}
+
+#stripes tr th, #frelease tr th, .zebra tr th
+{
+	padding: .2em;
+	background: #46525d;
+	color: #fff;
+	text-align: left;
+}
+
+#frelease tr th { text-align: center; }
+
+#stripes tr.package td
+{
+	background: url("http://images.sourceforge.net/sfx/main_select_bg.gif") top repeat-x #789;
+	color: #fff;
+	font-size: 130%;
+	font-weight: bold;
+}
+
+#stripes tr.package td a
+{
+	color: #fff;
+	text-decoration: none;
+}
+
+#stripes td, #frelease td, .zebra td { padding: .1em .2em; }
+#stripes tbody tr.release { display: table-row; }
+#stripes tbody tr td, .zebra tbody tr td { background: #fff; }
+
+#frelease tbody tr td
+{
+	border-top: 1px #fff solid;
+	text-align: center;
+}
+
+#frelease tbody tr.package td { text-align: left; }
+
+#stripes tbody tr.release td
+{
+	background: #fff;
+	font-weight: bold;
+	padding: .2em;
+	border-top: 1px solid #789;
+	border-bottom: 1px solid #789;
+}
+
+#stripes tbody tr td.even, #frelease tbody tr td, .zebra tbody tr td.even { background: #f3f4f6; }
+#stripes th small, #frelease th small, .zebra th small { color: #fff; }
+#stripes small, #frelease small, .zebra small { font-weight: normal; }
+#stripes col, .zebra col { width: 10%; }
+#stripes col.filename { width: 40%; }
+
+#stripes tfoot, .zebra tfoot
+{
+	background: #89a;
+	color: #fff;
+	font-weight: bold;
+}
+
+#stripes tbody tr td small { padding: 4px 14px 0 2px; }
+
+#stripes .changelog, #stripes .notes, #stripes .mirrors
+{
+	position: relative;
+	padding: 10px 20px 10px 0px;
+	margin-left: 0;
+}
+
+#stripes .changelog a, #stripes .notes a, #stripes .mirrors a
+{
+	position: absolute;
+	text-indent: -7000em;
+	padding: 10px 20px 10px 0px;
+}
+
+.show { }
+#stripes tbody tr.current td { background: #dfd; }
+
+/* POTM */
+.potm img { float: right; }
+.potm p { clear: both; }
+
+.potm div.tagline
+{
+	background: url("http://images.sourceforge.net/sfx/potm_50x50.gif") left no-repeat;
+	padding: 25px 0 25px 70px;
+	font-size: 80%;
+}
+
+.potm h3.tagline
+{
+	background: url("http://images.sourceforge.net/sfx/potm_50x50.gif") left no-repeat;
+	padding: 25px 0 25px 70px;
+	margin: 0;
+	color: #56626d;
+}
+
+.potm h3.tagline img
+{
+	float: right;
+	margin: 0;
+}
+
+.potm h2 span { padding: 0 12em 0 0; }
+.topnav h2 span { padding: 0 12em 0 0; }
+
+/* General formating */
+.shadow, #frame table#searchtable td.description img
+{
+	padding-bottom: 25px;
+	background: url("http://images.sourceforge.net/sfx/ss_shadow.gif") no-repeat bottom;
+}
+
+#frame p
+{
+	font-size: 82.3%;
+	line-height: 130%;
+}
+
+#frame .onewidetop p, #frame .onewide p,  #frame .onewidebtm p, #frame .four p, #frame p.sfx { margin: .5em 1.4em 1em 1.4em; }
+#frame li, #fadbtm li { font-size: 82.3%; }
+
+.onewidetop ul, .onewide ul, ul.clean
+{
+	margin: .5em 1em 1em 1em;
+	padding: 0;
+	border: 1px solid #fff;
+	border-top: 1px solid #c1cacf;
+}
+
+.onewidetop ul li, .onewide ul li, ul.clean li
+{
+	margin: 0;
+	padding: .5em .1em;
+	list-style: none;
+	border: 1px solid #fff;
+	border-bottom: 1px solid #c1cacf;
+}
+
+.break { clear: both; }
+.breakleft { clear: left; }
+
+.screenshot
+{
+	float: right;
+	border: 15px solid #fff;
+	position: relative;
+	z-index: 1000;
+}
+
+/* Docs */
+div#innerframe.docs h2
+{
+	background: transparent;
+	text-align: center;
+	border: none;
+	font-size: 120%;
+}
+
+div#innerframe.docs h2 a#top
+{
+	color: #000;
+	background: transparent;
+	text-align: center;
+	border: none;
+}
+
+.SD li
+{
+	padding: 0 0 .5em 0;
+	border: none;
+}
+
+.SD dt
+{
+	padding: 0 0 0 3.7em;
+	border: none;
+}
+
+div.SDleftcol
+{
+	width: 30%;
+	float: left;
+	font-size: 120%;
+	font-weight: bold;
+	clear: left;
+	margin: 0;
+	padding: 0;
+}
+
+div.SDleftcol a { color: #666; }
+
+div.SDrightcol
+{
+	margin-left: 30%;
+	width: 70%;
+}
+
+div.SDbottom
+{
+	margin: 4em auto;
+	width: 70%;
+	padding: .5em 0;
+	background: #ccc;
+	border: 3px groove #666;
+}
+
+div.SDtoc
+{
+	background: #ccc;
+	border: 1px solid #999;
+	margin: 0 auto 2em auto;
+	width: 70%;
+}
+
+div.SDtoc p
+{
+	font-weight: bold;
+	text-align: center;
+}
+
+#footer
+{
+	clear: both;
+	margin: 1em;
+	text-align: center;
+	position: relative;
+	z-index: 1000;
+	background: #fff;
+	font-size: 8pt;
+}
+
+/* Example */
+#formname
+{
+	margin: 0 0 1em 1.3em;
+	font-size: 80%;
+}
+
+form label
+{
+	margin: 0;
+	padding: 0;
+}
+
+form small { white-space: normal; }
+
+/* Misc stuff */
+.date { white-space: nowrap; }
+
+.tag
+{
+	font-size: 75%;
+	color: #56626d;
+	font-weight: bold;
+	margin: .3em 0 .6em 200px;
+	float: left;
+}
+
+#frame .seven ul.clean { border: none; }
+pre { font-size: 130%; }
+h1 { position: relative; }
+
+/* Advance Search */
+div.filteroptions
+{
+	text-align: right;
+	border: 1px solid #9faab0;
+	border-bottom: none;
+	clear: both;
+	background: url("http://images.sourceforge.net/sfx/main_select_bg.gif") top repeat-x #789;
+}
+
+.search form label { display: inline; }
+
+.null
+{
+	padding: 0 0 0 15px;
+	z-index: 1;
+}
+
+/* Left Content */
+.left_column { width: 69%; }
+
+.left_column p
+{
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+/* Right Content Trove */
+.right_column
+{
+	float: right;
+	width: 28%;
+	margin: 1em 0 0 1em;
+}
+
+.right_column p { margin: 0 0 1em 1em; }
+.right_column .tbar { margin: 0 0 .5em 0; }
+
+.right_column ul
+{
+	margin: 0 0 .8em .3em;
+	padding: 0;
+}
+
+#frame ol { padding: 0 0 0 1.8em; }
+
+.right_column li
+{
+	border-bottom: #ddd solid 1px;
+	padding: .2em 0 .3em;
+	list-style: none;
+}
+
+.right_column li a:hover { color: #039; }
+
+/* Project Tree */
+#frame .catmap li { list-style: none; }
+#frame .catmap ul li { border: none; }
+#frame .pmap ul li, #frame .catmap ul li { font-size: 100%; }
+
+#frame .pmap ul li
+{
+	border: none;
+	background: url("http://images.sourceforge.net/sfx/icon_drop5.gif") no-repeat top left;
+	padding: 0 0 0 1em;
+	margin: 0 0 0 -2.4em;
+	position: relative;
+}
+
+#frame .pmap ul li input, #frame .pmap ul li a { margin-left: 1.5em; }
+
+#frame .pmap ul li.end
+{
+	padding-bottom: .3em;
+	background: url("http://images.sourceforge.net/sfx/icon_drop4.gif") no-repeat top left;
+}
+
+#frame .pmap ul
+{
+	background: url("http://images.sourceforge.net/sfx/icon_drop3.gif") repeat-y top left;
+	padding: 0 0 0 2.4em;
+	margin: 0;
+}
+
+#frame .pmap, #frame .pmap ul { position: relative; }
+
+#frame .pmap ul span
+{
+	left: 1.2em;
+	position: absolute;
+}
+
+#frame #miss0_1 .pmap ul li { padding: .1em 2em; }
+#frame #miss0_1 .pmap li input { margin: 0 0 0 -.1em; }
+#frame #miss0_1 .pmap, #frame #miss0_1 .pmap li { border: none; }
+.current { font-weight: bold; }
+.current ul li { font-weight: normal; }
+.advancedpage p, .advancedpage .subtitle { margin-left: 1em; }
+
+.adv
+{
+	background: url("http://images.sourceforge.net/sfx/icon_adv.gif") no-repeat left;
+	padding: 2px 0 2px 20px;
+}
+
+h2 span.adv
+{
+	position: absolute;
+	right: 0;
+	padding: 0;
+}
+
+h2 span.adv a
+{
+	margin: 0 0 0 20px;
+	font-size: 70%;
+	font-weight: normal;
+}
+
+.filteroptions
+{
+	padding: .1em;
+	color: #789;
+	font-size: 80%;
+	font-weight: bold;
+}
+
+small.options
+{
+	margin: -.2em 0 1em 0;
+	float: right;
+	font-size: 70%;
+}
+
+table .filteroptions { clear: none !important; }
+
+#secondwave li
+{
+	list-style: none;
+	display: inline;
+}
+
+#secondwave
+{
+	margin: .8em 0 0 0;
+	padding: 0 0 0 1em;
+	border-bottom: 1px solid #adb9c4;
+}
+
+#secondwave li a
+{
+	background: #adb9c4;
+	color: #fff;
+	border: 1px solid #96a3b1;
+	border-bottom: 1px solid #a4b1bd;
+	padding: 0 1em;
+}
+
+#secondwave li#current a, #secondwave li.selected a
+{
+	font-weight: bold;
+	color: #789;
+	border: 1px solid #adb9c4;
+	border-bottom: none;
+	background: #fff;
+	padding: .3em 1em 2px 1em;
+}
+
+#secondwave ul
+{
+	position: absolute;
+	left: 0;
+	margin: 0;
+	padding: .3em 0;
+	border: none;
+}
+
+#secondwave li ul li a
+{
+	background: transparent;
+	margin: 0;
+	padding: 0;
+	border: none !important;
+	font-weight: normal !important;
+	font-size: 120% !important;
+}
+
+#secondwave ul li.selected a
+{
+	border: none;
+	font-weight: bold !important;
+}
+
+.searchin
+{
+	left: 30em;
+	position: absolute;
+}
+
+.topform label
+{
+	width: 14em;
+	float: left;
+	clear: left;
+	text-align: left;
+	margin: 0 .5em 0 0;
+}
+
+.topform input { width: 11em; }
+
+.btmform label
+{
+	position: absolute;
+	left: 2.6em;
+}
+
+.btmform p { margin-left: 12em; }
+#sortselect_pm span { white-space: nowrap; }
+#sortselect_pm { padding: 0 3em 0 0; }
+.btmform span small { padding: .2em 0 0 0; }
+
+#soptions, #soptions1
+{
+	float: left;
+	padding-left: .3em;
+	color: #789;
+	font-size: 70%;
+	font-weight: bold;
+}
+
+.new
+{
+	padding-left: 1.3em;
+	margin-left: 1em;
+	background: url("http://images.sourceforge.net/sfx/widget_sep.gif") no-repeat top left;
+}
+
+.cal
+{
+	line-height: 140%;
+	background: url("http://images.sourceforge.net/icons/silk/calendar.png") no-repeat right;
+	padding: 2px 20px 3px 0;
+	margin: 0 1em 0 0;
+}
+
+.cal input { width: 7em; }
+#f-calendar-trigger-1 img, #f-calendar-trigger-2 img, #f-calendar-trigger-3 img, #f-calendar-trigger-4 img { margin: -.8em 0 0 .2em; }
+
+a.advanced, a.advanced:visited
+{
+	font-size: 70%;
+	font-weight: normal;
+}
+
+.projectsearch, .tright
+{
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin: -.3em 0 0 0;
+}
+
+.topnav form .advanced { font-size: 70%; }
+.projectsearch input { font-size: 70%; }
+
+input.passive
+{
+	color: #789;
+	width: 8em;
+}
+
+input.active
+{
+	color: #000;
+	width: 8em;
+}
+
+#frame .project .clean { border: none; }
+
+.user
+{
+	padding: 0 0 2px 20px;
+	background: url("http://images.sourceforge.net/sfx/icon_user.gif") no-repeat;
+}
+
+#filter0_2 .user
+{
+	padding: 0 0 2px 20px;
+	background: url("http://images.sourceforge.net/sfx/icon_user2.gif") no-repeat;
+}
+
+/* User options save popup */
+.lookma
+{
+	text-align: left;
+	z-index: 1000;
+	position: absolute;
+	float: left;
+	left: 23em;
+	margin-top: -1em;
+	padding: .3em;
+	border: 3px solid #fd0;
+	background: #ffc;
+}
+
+.searchma
+{
+	text-align: left;
+	z-index: 1000;
+	position: absolute;
+	float: left;
+	left: 15em;
+	margin-top: -1em;
+	padding: .3em;
+	border: 3px solid #fd0;
+	background: #ffc;
+}
+
+.lookma input, .searchma input
+{
+	display: block;
+	margin: .6em;
+}
+
+.lookma span, .searchma span
+{
+	text-align: center;
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin: .2em;
+	border: 1px solid #fc0;
+	background: #fb0;
+	padding: 0 .2em;
+	font-size: 1em;
+	width: .7em;
+	color: #ffc;
+}
+
+#ranktable { font-size: 80%; }
+
+#frame table tr td.rankcalc
+{
+	font-size: 80%;
+	font-family: arial, sans-serif;
+}
+
+/* Navigation */
+.firstwave, #thirdwave { display: none; }
+
+/* FRS */
+#frs div.tbardwn { margin: 0; }
+#frs .filename { color: #789; }
+
+#frs .changelog, #frs .notes, #frs .mirrors
+{
+	z-index: 1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 16px;
+	height: 16px;
+	min-height: 16px;
+	text-indent: -7000em;
+}
+
+#frs .changelog
+{
+	z-index: 3;
+	left: 10px;
+}
+
+#frs .notes
+{
+	z-index: 2;
+	left: 30px;
+}
+
+#frs .mirrors
+{
+	z-index: 1;
+	left: 50px;
+}
+
+#frs div.tbardwn .tbox h3 small a
+{
+	padding: 0;
+	color: #fff;
+	width: 16px;
+}
+
+#frs div.tbardwn .tbox h3 small
+{
+	right: -12em;
+	top: .3em;
+	position: absolute !important;
+}
+
+#additional_files small
+{
+	background: transparent;
+	position: relative;
+}
+
+#frs #additional_files .changelog, #frs #additional_files .notes, #frs #additional_files .mirrors { top: -22px; }
+
+#frs.editing .delete, #frs.editing .edit
+{
+	left: 0;
+	position: absolute;
+}
+
+#frs.editing .edit
+{
+	margin-left: 20px;
+	text-indent: -7000em;
+}
+
+#frs #additional_files, #frs #primary_file { position: relative; }
+#frs #primary_file span span { padding-left: 40px; }
+#frs.editing textarea { width: 60%; }
+.sethide { color: #039; }
+
+.apple
+{
+	line-height: 140%;
+	background: url("http://images.sourceforge.net/sfx/icon_apple.gif") no-repeat top left;
+	padding: 0 0 1px 20px;
+}
+
+.windows
+{
+	line-height: 140%;
+	background: url("http://images.sourceforge.net/sfx/icon_windows.gif") no-repeat top left;
+	padding: 0 0 1px 20px;
+}
+
+.innerframe .linux
+{
+	line-height: 140%;
+	background: url("http://images.sourceforge.net/sfx/icon_linux.gif") no-repeat top left;
+	padding: 0 0 1px 20px;
+}
+
+.default, .other
+{
+	line-height: 140%;
+	padding: 0 0 1px 20px;
+}
+
+/* Mirror */
+.dynimo li label { font-weight: normal; }
+
+/* Forum */
+.new_forum_message:after { content: ' (New) '; }
+
+.addbutton
+{
+	margin: .5em 0;
+	display: block;
+	position: relative;
+}
+
+.firstwave iframe
+{
+	position: absolute;
+	top: -1px;
+	left: -3px;
+	z-index: -1;
+	width: 14.3em;
+	height: 100%;
+	border: none;
+	opacity: 0;
+}
+
+/* Create */
+code
+{
+	background: #eee;
+	border: 1px dotted #ddd;
+	width: 80%;
+	padding: 1em;
+	margin: 1em;
+	display: block;
+}
+
+table tbody tr td i { color: #789 !important; }
+
+table tbody tr td.description
+{
+	border-top: none !important;
+	padding: 0 !important;
+}
+
+table#searchtable td.iselect, table#searchtable th.iselect { width: 1% !important; }
+
+.callbox
+{
+	background: #fff url("http://images.sourceforge.net/sfx/sfx_bg2.png") 0 -21px repeat-x;
+	margin: 0 1.6em;
+	text-align: center;
+	border: 1px solid #abc;
+}
+
+.summary .right .callbox
+{
+	text-align: left;
+	margin: 0;
+}
+
+.wizard { display: none; }
+
+.callbox div, .blink div, .mycreate div, .mycreate1 div
+{
+	border: 4px solid #fff;
+	padding: 0 1em;
+}
+
+.mylogin, .mylogins
+{
+	padding: 2em 1em;
+	float: right;
+	width: 40%;
+	margin: 1em 0;
+	background: #fff url("http://images.sourceforge.net/sfx/sfx_bg2.png") 0 -41px repeat-x;
+}
+
+.mylogins { text-align: center; }
+.mylogin p { padding: 0 2em; }
+
+.mycreate, .mycreate1
+{
+	background: #fff url("http://images.sourceforge.net/sfx/sfx_bg2.png") 0 -21px repeat-x;
+	border: 1px solid #abc;
+	margin: 1em 0;
+	color: #456;
+	float: left;
+}
+
+.mycreate { width: 50%; }
+.mycreate div { height: 25em; }
+
+.big
+{
+	font-size: 135%;
+	margin: 2em;
+}
+
+.mycreate1
+{
+	background: #fff url("http://images.sourceforge.net/sfx/sfx_bg2.png") 0 -21px repeat-x;
+	border: 1px solid #abc;
+	margin: .5em 0 2em 0;
+	color: #456;
+	float: left;
+	width: 100%;
+}
+
+.actionb
+{
+	color: #300;
+	border: 1px solid #ffe;
+	border-bottom: 1px solid #c93;
+	border-right: 1px solid #c93;
+	background: #ffb331 url("http://images.sourceforge.net/sfx/sfx_bg_y.png") repeat-x;
+	text-align: center;
+	padding: .2em 1em;
+}
+
+.actionbc
+{
+	color: #ffd;
+	background: #ffb331;
+	border: 1px solid #c93;
+	border-bottom: 1px solid #fff;
+	border-right: 1px solid #fff;
+}
+
+.buttons { display: none; }
+
+td.actions
+{
+	font-size: 110% !important;
+	color: #ddd;
+	font-weight: normal;
+	text-align: left !important;
+	padding: 2px 2px 1em 2px !important;
+	border: none !important;
+	border-top: 1px solid #789 !important;
+}
+
+.right, .right2
+{
+	float: right;
+	width: 45%;
+	padding-left: 5%;
+}
+
+.buy_service .right, .create_service .right { border-left: 1px solid #abc; }
+form { margin: 0 .5em; }
+.create_service  select, .create_service  input.text { width: 40%; }
+.create_service  .left select, .service .left input.text { width: 60%; }
+
+.create_service  .right2 input.text
+{
+	width: 40%;
+	margin: .2em 0 .4em 0;
+}
+
+.create_service  .right2 select
+{
+	width: 90%;
+	margin: .2em 0 .4em 0;
+}
+
+.create_service  .right2 textarea
+{
+	width: 90%;
+	margin: .2em 0 .4em 0;
+}
+
+.create_service textarea { width: 65%; }
+
+#innerframe fieldset, .services_create2 fieldset
+{
+	border-top: 1px solid #789;
+	margin: 1em 0;
+}
+
+#innerframe legend
+{
+	display: inline;
+	font-weight: bold;
+	margin-left: -1em;
+	padding-right: 1em;
+	color: #456;
+}
+
+#innerframe.create_service legend { display: none; }
+#innerframe.create_service fieldset { border: none; }
+#innerframe.buy_service legend, .services_create2 legend { display: inline !important; }
+fieldset .hide { display: block; }
+
+fieldset
+{
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+}
+
+.formtip
+{
+	margin: 0 2em 0 2em;
+	font-size: 100% !important;
+	float: right;
+	width: 30%;
+}
+
+.paytip { font-size: 85% !important; }
+.note { clear: both; }
+label { font-weight: normal; }
+.right2 { margin-bottom: 1em; }
+
+.left
+{
+	float: left;
+	width: 45%;
+	margin-bottom: 2em;
+}
+
+.limitselect { width: auto !important; }
+select.service { display: inline; }
+li p { font-size: 100% !important; }
+
+.right .clean, .left .clean
+{
+	margin: 0;
+	padding: 0;
+}
+
+.right p, .left p { padding-left: .3em; }
+.summary .left { margin-bottom: 0; }
+
+.summary .left p strong , .summary .left p label
+{
+	margin-left: -10em;
+	font-weight: normal;
+	position: relative;
+	float: left;
+	clear: left;
+	width: 10em !important;
+}
+
+.summary .left p { margin-left: 10em; }
+
+.summary .right p strong
+{
+	margin-left: -7em;
+	font-weight: normal;
+	position: relative;
+	float: left;
+	clear: left;
+	width: 7em !important;
+}
+
+fieldset { padding-left: 1em; }
+.summary .right p { margin-left: 7em; }
+
+/* Ad positions */
+#fad2p
+{
+	overflow: hidden;
+	z-index: 1;
+	position: absolute;
+	right: 0;
+}
+
+#fad2p div
+{
+	width: 220px;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;
+}
+
+#fad2p div div
+{
+	width: 100%;
+	margin: 0;
+	text-align: left;
+}
+
+#ad6
+{
+	width: 300px;
+	position: absolute;
+	right: 2em;
+	margin: 0;
+	padding: 0;
+	display: inline;
+}
+
+.subtitle, .ad19 h3, .ad24 h3, #ad2 h3
+{
+	border-bottom: 2px solid #789;
+	margin: 2em 0 .5em 0;
+	font-weight: bold;
+	font-size: 70%;
+	color: #789;
+	position: relative;
+}
+
+#ad2 { text-align: left; }
+.ad19 p, .ad24 p { border: none !important; }
+.ad19 p small, .ad24 p small { font-size: 90% !important; }
+
+/* Freshmeat Results */
+.fmr
+{
+	background: #e0efff;
+	border: 1px solid #9cf;
+}
+
+tr.fm td.right { text-align: right; }
+
+/* Icons */
+.r100
+{
+	background: url("http://images.sourceforge.net/sfx/r100.gif") no-repeat center;
+	text-indent: -700em;
+	margin: .3em 0 0 0;
+}
+
+.r90
+{
+	background: url("http://images.sourceforge.net/sfx/r90.gif") no-repeat center;
+	text-indent: -700em;
+	margin: .3em 0 0 0;
+}
+
+.r80
+{
+	background: url("http://images.sourceforge.net/sfx/r80.gif") no-repeat center;
+	text-indent: -700em;
+	margin: .3em 0 0 0;
+}
+
+.r70
+{
+	background: url("http://images.sourceforge.net/sfx/r70.gif") no-repeat center;
+	text-indent: -700em;
+	margin: .3em 0 0 0;
+}
+
+.r60
+{
+	background: url("http://images.sourceforge.net/sfx/r60.gif") no-repeat center;
+	text-indent: -700em;
+	margin: .3em 0 0 0;
+}
+
+.r50
+{
+	background: url("http://images.sourceforge.net/sfx/r50.gif") no-repeat center;
+	text-indent: -700em;
+	margin: .3em 0 0 0;
+}
+
+.r40
+{
+	background: url("http://images.sourceforge.net/sfx/r40.gif") no-repeat center;
+	text-indent: -700em;
+	margin: .3em 0 0 0;
+}
+
+.r30
+{
+	background: url("http://images.sourceforge.net/sfx/r30.gif") no-repeat center;
+	text-indent: -700em;
+	margin: .3em 0 0 0;
+}
+
+.r20
+{
+	background: url("http://images.sourceforge.net/sfx/r20.gif") no-repeat center;
+	text-indent: -700em;
+	margin: .3em 0 0 0;
+}
+
+.r10
+{
+	background: url("http://images.sourceforge.net/sfx/r10.gif") no-repeat center;
+	text-indent: -700em;
+	margin: .3em 0 0 0;
+}
+
+.r0
+{
+	background: url("http://images.sourceforge.net/sfx/r0.gif") no-repeat center;
+	text-indent: -700em;
+	margin: .3em 0 0 0;
+}
+
+table#searchtable h3.dead
+{
+	color: #56626d;
+	background: url("http://images.sourceforge.net/sfx/icon_dead.gif") no-repeat top left;
+	padding: 0 0 0 20px;
+}
+
+.member_sm
+{
+	background: url("http://images.sourceforge.net/sfx/icon_member_sm.gif") no-repeat left;
+	padding: 0 0 1px 20px;
+}
+
+.member_sm_s
+{
+	background: url("http://images.sourceforge.net/sfx/icon_member_sm_s.gif") no-repeat left;
+	padding: 0 0 1px 20px;
+}
+
+.member_md
+{
+	background: url("http://images.sourceforge.net/sfx/icon_member_md.gif") no-repeat left;
+	padding: 0 0 1px 20px;
+}
+
+.member_lg
+{
+	background: url("http://images.sourceforge.net/sfx/icon_member_lg.gif") no-repeat left;
+	padding: 0 0 1px 20px;
+}
+
+.job
+{
+	background: url("http://images.sourceforge.net/sfx/icon_job.gif") no-repeat left;
+	padding: 0 0 1px 20px;
+}
+
+.adv
+{
+	background: url("http://images.sourceforge.net/sfx/icon_adv.gif") no-repeat left;
+	padding: 0 0 1px 20px;
+}
+
+.drop
+{
+	background: url("http://images.sourceforge.net/sfx/icon_drop.gif") no-repeat top left;
+	padding: 0 0 0 20px;
+}
+
+#filter0_0
+{
+	background: url("http://images.sourceforge.net/sfx/icon_filter.gif") left center no-repeat;
+	padding: 0 0 0 18px;
+}
+
+#filter0_0.sel { background: url("http://images.sourceforge.net/sfx/icon_filter1.gif") left center no-repeat; }
+
+#ss0_0
+{
+	background: url("http://images.sourceforge.net/sfx/icon_screen.gif") left center no-repeat;
+	padding: 0 0 0 18px;
+}
+
+#ss0_0.sel { background: url("http://images.sourceforge.net/sfx/icon_screen1.gif") left center no-repeat; }
+
+#browse0_0
+{
+	background: url("http://images.sourceforge.net/sfx/icon_browse.gif") left center no-repeat;
+	padding: 0 0 0 18px;
+}
+
+#browse0_0.sel { background: url("http://images.sourceforge.net/sfx/icon_browse1.gif") left center no-repeat; }
+
+#admin0_0
+{
+	background: url("http://images.sourceforge.net/sfx/icon_admin.gif") left center no-repeat;
+	padding: 0 0 0 18px;
+}
+
+#admin0_0.sel { background: url("http://images.sourceforge.net/sfx/icon_admin1.gif") left center no-repeat; }
+
+#submit0_0
+{
+	background: url("http://images.sourceforge.net/sfx/icon_submitn.gif") left center no-repeat;
+	padding: 0 0 0 18px;
+}
+
+#submit0_0.sel { background: url("http://images.sourceforge.net/sfx/icon_submitn1.gif") left center no-repeat; }
+
+#meta0_0
+{
+	background: url("http://images.sourceforge.net/sfx/icon_meta.gif") left center no-repeat;
+	padding: 0 0 0 18px;
+}
+
+#meta0_0.sel { background: url("http://images.sourceforge.net/sfx/icon_meta1.gif") left center no-repeat; }
+
+#fm0_0
+{
+	background: url("http://images.sourceforge.net/sfx/icon_fm.gif") left center no-repeat;
+	padding: 0 0 0 18px;
+}
+
+#fm0_0.sel { background: url("http://images.sourceforge.net/sfx/icon_fm1.gif") left center no-repeat; }
+
+#sub0_0
+{
+	background: url("http://images.sourceforge.net/sfx/icon_sub.gif") left center no-repeat;
+	padding: 0 0 0 18px;
+}
+
+#sub0_0.sel { background: url("http://images.sourceforge.net/sfx/icon_nosub.gif") left center no-repeat; }
+
+.windows
+{
+	line-height: 140%;
+	background: url("http://images.sourceforge.net/sfx/icon_windows.gif") no-repeat left;
+	padding: 0 0 1px 20px;
+}
+
+.apple
+{
+	line-height: 140%;
+	background: url("http://images.sourceforge.net/sfx/icon_apple.gif") no-repeat left;
+	padding: 0 0 1px 20px;
+}
+
+.linux
+{
+	line-height: 140%;
+	background: url("http://images.sourceforge.net/sfx/icon_linux.gif") no-repeat left;
+	padding: 0 0 1px 20px;
+}
+
+.monitor
+{
+	background: url("http://images.sourceforge.net/sfx/icon_monitor.gif") no-repeat left;
+	padding: 0 0 1px 20px;
+}
+
+.monitors
+{
+	background: url("http://images.sourceforge.net/sfx/icon_monitor_s.gif") no-repeat left;
+	padding: 0 0 1px 20px;
+}
+
+.pmap .monitors { margin: 0 0 0 1.2em; }
+
+.suggest
+{
+	background: url("http://images.sourceforge.net/sfx/icon_suggest.gif") no-repeat left;
+	padding: 2px 0 3px 20px;
+}
+
+.home
+{
+	background: url("http://images.sourceforge.net/sfx/icon_home.gif") no-repeat left;
+	padding: 0 0 2px 20px;
+}
+
+.sel { font-weight: bold; }
+.sel a { color: #56626d; }
+.nosel { font-weight: normal; }
+
+/* Filters */
+.cnew:hover { text-decoration: underline; }
+.cnew { color: #03c !important; }
+
+table#searchtable tr#filter0_1 th
+{
+	border-bottom: 1px solid #adb9c4;
+	background: url("http://images.sourceforge.net/sfx/usernav_bg.gif") repeat-x bottom;
+}
+
+table#searchtable tr#filter0_2 th input
+{
+	margin: 0 0 0 .5em;
+	font-size: 90%;
+}
+
+table#searchtable tr th.gfilters, table#searchtable tr th.gfiltersl { color: #789; }
+
+table#searchtable tr#filter0_2 th
+{
+	color: #c8ced6;
+	border: none;
+	border-top: 2px solid #fff;
+	background: #789;
+}
+
+table#searchtable tr th.gfilters { text-align: left; }
+table#searchtable tr th.gfilters input { font-size: 90%; }
+
+table#searchtable tr th.gfiltersl
+{
+	padding: .2em 1em;
+	text-align: left;
+}
+
+table#searchtable tr th.gfiltersl input { width: 11em; }
+.cfilters, .myfilters { background: url("http://images.sourceforge.net/sfx/main_select_bg.gif") top repeat-x #789; }
+
+.myfilters small, .cfilters small, .gfilters small
+{
+	color: #56626d !important;
+	font-weight: bold;
+}
+
+table#searchtable th.myfilters
+{
+	font-size: 80%;
+	color: #fff;
+	text-align: left;
+	font-weight: normal;
+	border: none;
+	padding: .2em .8em;
+}
+
+table#searchtable th.cfilters
+{
+	font-size: 80%;
+	color: #fff;
+	text-align: right;
+	font-weight: normal;
+	border: none;
+	padding: .2em .8em;
+}
+
+table#searchtable th.cfilters label { font-weight: normal; }
+
+table#searchtable th.myfilters a, table#searchtable th.cfilters a
+{
+	font-size: 80%;
+	color: #fff;
+}
+
+.filteroptions { text-align: right; }
+.filteroptions label input { margin: 0 0 0 .4em; }
+.filteroptionsl { text-align: left; }
+.filteroptionsl, .filteroptions { background: #fff url("http://images.sourceforge.net/sfx/usernav_bg.gif") repeat-x bottom; }
+
+.searchsubmit
+{
+	background: #c8ced6;
+	text-align: center;
+}
+
+/* Search Table Results */
+table#searchtable caption, table#sponsortable caption { display: none; }
+form.searchtable label { display: inline; }
+table#searchtable { width: 98%; }
+
+.search .options
+{
+	text-align: right;
+	float: right;
+	margin: 0;
+}
+
+table#searchtable td.description
+{
+	line-height: 140%;
+	text-align: left;
+	font-size: 80%;
+	padding: .3em .3em 2em .3em;
+}
+
+table#searchtable td.summary
+{
+	line-height: 140%;
+	text-align: left;
+	font-size: 80%;
+	width: 28%;
+}
+
+table#searchtable td.p1, table#searchtable tbody tr:hover td.p1 { background: #dadada; }
+table#searchtable td.p2, table#searchtable tbody tr:hover td.p2 { background: #dad0d0; }
+table#searchtable td.p3, table#searchtable tbody tr:hover td.p3 { background: #dacaca; }
+table#searchtable td.p4, table#searchtable tbody tr:hover td.p4 { background: #dac0c0; }
+table#searchtable td.p5, table#searchtable tbody tr:hover td.p5 { background: #dababa; }
+table#searchtable td.p6, table#searchtable tbody tr:hover td.p6 { background: #dab0b0; }
+table#searchtable td.p7, table#searchtable tbody tr:hover td.p7 { background: #daaaaa; }
+table#searchtable td.p8, table#searchtable tbody tr:hover td.p8 { background: #da9090; }
+table#searchtable td.p9, table#searchtable tbody tr:hover td.p9 { background: #da8a8a; }
+
+table#searchtable.tool tbody tr:hover td
+{
+	border-bottom: 1px solid #789 !important;
+	background: #fff url("http://images.sourceforge.net/sfx/usernav_bg.gif") repeat-x bottom;
+}
+
+table#searchtable td.description ul li
+{
+	line-height: 140%;
+	text-align: left;
+	font-size: 80%;
+	padding: .3em .3em 2em .3em;
+}
+
+table#searchtable td.download
+{
+	padding-right: 20px;
+	font-size: 80%;
+}
+
+table#searchtable form input { font-size: 72.3%; }
+table#searchtable .date { white-space: nowrap; }
+table#searchtable td.project { width: 28%; }
+table#searchtable td.doc, table#searchtable th.doc { width: 70%; }
+
+table#searchtable td, table#searchtable th
+{
+	border: none;
+	width: 12%;
+}
+
+.tracker table#searchtable td, .tracker table#searchtable th
+{
+	width: 16%;
+	text-align: left;
+}
+
+table#searchtable td.select
+{
+	background: #eee;
+	font-weight: bold;
+}
+
+table#searchtable th.select
+{
+	background: #eee;
+	border: 1px solid #789;
+	border-bottom: 2px solid #ddd;
+	font-weight: bold;
+}
+
+table#searchtable th.select a
+{
+	color: #789;
+	font-weight: bold;
+}
+
+table#searchtable
+{
+	margin: 0 1em 0 0;
+	clear: left;
+}
+
+table#searchtable h3
+{
+	font-size: 130%;
+	padding: 0;
+	margin: 0;
+	display: inline;
+}
+
+table#searchtable th
+{
+	color: #789;
+	font-size: 70%;
+	padding: .3em;
+}
+
+table#searchtable h3.dead a { color: #56626d; }
+
+table#searchtable th a.sort, .sort
+{
+	background: url("http://images.sourceforge.net/sfx/icon_sort.gif") no-repeat left;
+	padding: 0 0 0 10px;
+}
+
+table#searchtable th a.sortu, .sortu
+{
+	background: url("http://images.sourceforge.net/sfx/icon_sort_up.gif") no-repeat left;
+	padding: 0 0 0 10px;
+}
+
+table#searchtable th a.sortd, .sortd
+{
+	background: url("http://images.sourceforge.net/sfx/icon_sort_dwn.gif") no-repeat left;
+	padding: 0 0 0 10px;
+}
+
+.tracker table#searchtable th.select a.sort, .sort
+{
+	background: url("http://images.sourceforge.net/icon_dwn.gif") no-repeat left;
+	padding: 0 0 0 10px;
+}
+
+table#searchtable td.description, table#searchtable th.project,  table#searchtable th.doc, table#searchtable td.doc, table#searchtable th.services, table#searchtable td.project, tr#filter0_1 th.project { text-align: left; }
+table#searchtable td { text-align: center; }
+table#searchtable tr.secondtier th { border-bottom: 2px solid #789; }
+
+table#searchtable td.description img, .most img
+{
+	float: right;
+	margin: .3em 1em 0 1em;
+	padding-bottom: 25px;
+	background: url("http://images.sourceforge.net/sfx/ss_shadow.gif") no-repeat;
+	background-position: bottom;
+}
+
+table#searchtable th small { color: #789; }
+
+table#searchtable td.results, table#searchtable th.results
+{
+	font-size: 80%;
+	text-align: left;
+	padding: .6em 0 0 0;
+}
+
+table#searchtable td.page, table#searchtable th.page
+{
+	font-size: 80%;
+	text-align: right;
+}
+
+table#sponsortable tr.ssponsor td.ssponsortag
+{
+	font-size: 80%;
+	text-align: right;
+	padding-left: 20px;
+}
+
+table#sponsortable tr.ssponsor td.download
+{
+	font-size: 80%;
+	text-align: right;
+}
+
+table#searchtable td.page select, table#searchtable th.page select
+{
+	font-size: 95%;
+	text-align: center;
+}
+
+table#searchtable td.btmsearch, table#searchtable th.btmsearch, table#searchtable td.btmsearch input
+{
+	text-align: center;
+	font-size: 80%;
+}
+
+table#searchtable td.btmsearch input.query, table#searchtable th.btmsearch input.query
+{
+	text-align: left;
+	width: 18em;
+}
+
+table#searchtable tr th
+{
+	padding-right: 13px;
+	border-bottom: 2px solid #789;
+}
+
+table#sponsortable tr.ssponsor td.project { width: 89%; }
+
+table#sponsortable tr.ssponsor td
+{
+	color: #696;
+	font-size: 70%;
+	vertical-align: top;
+	padding: .3em;
+	background: #ecf3e1;
+	border-top: 1px solid #696;
+}
+
+table#sponsortable tr.ssponsor td.description
+{
+	font-size: 80%;
+	background: #fff;
+	border-top: 1px solid #696;
+	color: #000;
+	padding: .3em .3em 2em .3em;
+}
+
+table#sponsortable h3
+{
+	font-size: 130%;
+	padding: 0;
+	margin: 0;
+	display: inline;
+}
+
+table#sponsortable tr.ssponsor td.download
+{
+	text-align: center;
+	background: #fff;
+	border-top: 1px solid #696;
+}
+
+table#searchtable tr td
+{
+	font-size: 70%;
+	padding: .3em;
+	vertical-align: top;
+	border-bottom: 1px solid #ddd;
+}
+
+.tracker table#searchtable tr td
+{
+	font-size: 80%;
+	padding: .3em;
+	vertical-align: top;
+	border-bottom: 1px solid #fff;
+}
+
+.activity { white-space: nowrap; }
+table#searchtable a span { display: none; }
+
+form.searchtable th select
+{
+	font-size: 100%;
+	margin: 0 0 0 .5em;
+}
+
+table#searchtable td.description p
+{
+	font-size: 90%;
+	border: none;
+	margin: .5em 0 .5em 0;
+	padding: 0;
+}
+
+table#searchtable td.description ul
+{
+	border: none;
+	margin: .5em 0 .5em 0;
+	padding: 0;
+}
+
+table#searchtable td.description ul li
+{
+	list-style: none;
+	border: none;
+	padding: 0 0 .5em 0;
+	font-size: 90%;
+}
+
+td.description span label { font-weight: normal; }
+
+.most
+{
+	width: 32%;
+	float: left;
+	margin: 0 2% 0 0;
+}
+
+/* Left Content */
+#miss0_1 .left_column
+{
+	float: left;
+	width: 38%;
+	margin: 0;
+}
+
+form.miscat select { width: 16em; }
+
+/* Right Content */
+#miss0_1 .right_column
+{
+	float: left;
+	width: 59%;
+}
+
+#miss0_1 .right_column ul.clean li
+{
+	padding: .5em;
+	line-height: 130%;
+}
+
+h4.subtitle, .tbar { clear: both; }
+.tbar { margin-top: 2em; }
+.topnav.map { margin: 0 330px 0 0; }
+.yes { background: #efe; }
+.no { background: #fdd; }
+
+#soptions, #soptions1
+{
+	float: left;
+	padding-left: .3em;
+	color: #789;
+	font-size: 70%;
+	font-weight: bold;
+}
+
+/* softwaremap index layout */
+#frame .col3
+{
+	text-align: center;
+	margin: 0 0 0 4% !important;
+	padding: 0 !important;
+	position: relative;
+}
+
+#frame .col3 h3
+{
+	margin: .2em 0 !important;
+	position: relative;
+	font-size: 120%;
+}
+
+#frame .col3 ul.clean, #frame .col3 .col
+{
+	float: left;
+	width: 28%;
+	margin: 0 3% 1em 0 !important;
+	padding: 0 !important;
+	position: relative;
+	text-align: left;
+}
+
+#frame .col3 .col ol
+{
+	margin: 0 3% 1em 0 !important;
+	text-align: left;
+	position: relative;
+}
+
+#frame .col3 ul.clean li
+{
+	font-size: 70% !important;
+	position: relative;
+}
+
+ul.hide { display: block; }
+ul.hide li { display: none; }
+ul.hide li.show { display: block; }
+.center { text-align: center; }
+fieldset { padding-left: 0; }
+legend { margin-bottom: 1em; }
+
+/* Rating */
+.rate
+{
+	text-indent: -7000em;
+	position: absolute;
+	padding: 0 0 0 46px;
+	background: url("http://images.sourceforge.net/rating_sm.gif") no-repeat;
+	font-size: 11px !important;
+}
+
+.ratehow
+{
+	margin: 0 0 0 50px;
+	padding: 0 .2em;
+}
+
+.rateorder { line-height: 160%; }
+.r0half { background-position: 0px -73px; }
+.r1 { background-position: 0px 4px; }
+.r1half { background-position: 0px -91px; }
+.r2 { background-position: 0px -16px; }
+.r2half { background-position: 0px -110px; }
+.r3 { background-position: 0px -35px; }
+.r3half { background-position: 0px -129px; }
+.r4 { background-position: 0px -54px; }
+.r4half { background-position: 0px -148px; }
+.r5 { background-position: 0px -167px; }
+
+.desc_left
+{
+	float: left;
+	line-height: 160%;
+	font-size: 85%;
+	width: 18em;
+	padding: .3em 1em;
+}
+
+.desc_right
+{
+	border-left: 1px solid #eee;
+	padding: .3em;
+	line-height: 160%;
+	font-size: 95%;
+	margin-left: 17em;
+	padding-left: 1em;
+}

@@ -1,0 +1,111 @@
+######################################################################
+##
+##  1. Copy necessary files from scale directory
+##  2. Train net
+##  3. Get reason codes
+##  4. Cap
+##
+######################################################################
+
+######################################################################
+##  
+##  1. usage: gmake MODEL_INC=Model-${MODEL_ID}.mk
+##
+######################################################################
+
+SHELL = /bin/sh
+
+# Get global parameters
+include ../Config.mk
+
+## Get model-specific parameters
+## The default model file 08_0 should always under root, otherwise 
+## the command <make clean> wont's run becuase MODEL_INC is empty 
+ifeq ($(MODEL_INC), )
+  MODEL_INC = Model-08_0.mk
+endif
+include ../$(MODEL_INC)
+
+MODEL_NAME = $(BASENAME)-$(NN_NAME)
+
+# Get rules for making costs file
+ifneq ($(COSTS_INC), )
+  include ../$(COSTS_INC)
+endif
+
+# Programs
+CFG2NN  = /home/dxl/tools/perl/cfg2nn_dxl.pl
+NN2WTA  = /work/price/falcon/$(OS)/bin/nn2wta
+NNET    = $(NN_BIN)
+NN2LOG	= /home/dxl/tools/perl/nn2log.pl
+REASBIN	= /work/price/falcon/$(OS)/bin/reasbin3
+CAPCFG  = /work/price/falcon/$(OS)/bin/capcfg40
+
+## NNET options
+NN_OPT = -v -t backprop -c $(MODEL_NAME).nncfg
+
+# NNET deps
+NN_DEPS = $(MODEL_NAME).nncfg $(MODEL_NAME).scl $(MODEL_NAME).tag
+
+# nncfg options
+CFG_OPT = 	-n=$(NN_HIDDEN) \
+				-g=$(NN_GAIN) \
+				-l=$(NN_LRATE) \
+				-a=$(NN_LRACCE) \
+				-d=$(NN_LRDECE) \
+				-s=$(NN_STEP) \
+				-bat=$(NN_EPOCHS) \
+				-e=$(NN_EPOCHS) \
+				-m=$(NN_MOMENTUM) \
+				-r=$(NN_SEED) \
+				-i=$(NN_INCREASE)
+
+ifeq ($(NN_COSTS), YES)
+	CFG_OPT += -c
+	NN_DEPS += $(MODEL_NAME).cst
+endif
+
+######################################################################
+# Targets
+######################################################################
+TARGET = training
+#ifeq ($(SENS), YES)
+#	TARGET += sensitivity
+#endif
+
+all: ${TARGET}
+	
+training:   $(MODEL_NAME).CAP.cfg 
+weights: 	$(MODEL_NAME).nnw
+reasons: 	$(MODEL_NAME).rrcd
+sensitivity: $(MODEL_NAME).sens
+
+######################################################################
+# Rules
+######################################################################
+$(MODEL_NAME).CAP.cfg: $(MODEL_NAME).cfg $(MODEL_NAME).rrcd
+	$(CAPCFG) -i$(MODEL_NAME) -o$(MODEL_NAME).CAP -m3 -d6
+$(MODEL_NAME).scl: ../scale/$(PROJECT).scl
+	ln -s $< $@
+$(MODEL_NAME).tag: ../scale/$(PROJECT).tag
+	ln -s $< $@
+$(MODEL_NAME).cfg: ../scale/$(PROJECT).cfg
+	ln -s $< $@
+$(MODEL_NAME).nncfg: $(MODEL_NAME).cfg
+	$(CFG2NN) $(CFG_OPT) $(MODEL_NAME)
+$(MODEL_NAME).nnw: $(NN_DEPS)
+	$(NNET) $(NN_OPT) -o $@ $(MODEL_NAME).scl
+$(MODEL_NAME).sens: $(MODEL_NAME).nnw
+	$(NNET) -v -c $< -z $@ $(MODEL_NAME).scl
+
+%.log: %.scl %.nnw
+	$(NNET) -c $*.nnw $*.scl\
+	| $(NN2LOG) > $@
+%.wta: %.nnw
+	$(NN2WTA) $< $*
+%.rrcd: %.log %.wta
+	$(REASBIN) -m$*
+
+clean:
+	find . -name CVS -prune -o \! -name Makefile \! -type d\
+	   -exec rm -f \{\} \;

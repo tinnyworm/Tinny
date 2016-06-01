@@ -1,0 +1,176 @@
+INCLUDE "new/vars/const4";
+
+/*
+CONST  CONV_TO_DOLLARS      = 1;
+CONST  MAX_AMOUNT           = 100000;
+*/
+CONST  NO_ERROR             = 0xff;
+CONST  DAILY_NUM_AUTH_LT_3  = 0xb1;
+/*
+CONST  DAY_SECS             = 86400;
+CONST  FAIL                 = 0x21010000;
+*/
+
+RULE MAIN_RULE;
+
+VAR 
+
+  STATUS            : NUMERIC;
+  ACTAGE            : NUMERIC;
+	
+  /* from fp3.0 (new) */
+  TranAmt           : NUMERIC;
+  SaveMerchPostCode : STRING;
+  SaveTranType      : STRING;
+
+  /* from ffm10.0 (old) */
+  /* ActAge          : NUMERIC; */
+  DolAmt          : NUMERIC;
+
+  AUTH_DELTA_TIME : FLOAT;
+  IsRapid         : NUMERIC;
+
+BEGIN
+
+/* --------------------- old ----------------------------------*/
+	IF (TRAN.TRAN_DATE < "20030501") THEN /* old model */
+	BEGIN
+
+	  SCOR.SCORE := 0;
+	  STATUS := 0;
+	  PROF.P16 := 0.0;
+	
+	
+	  IF (TRAN.AUTH_POST_FLAG in ("N","P","Q")) 
+	  THEN 
+	    TERMINATE;
+	
+	
+	  // prof.p203 = DAILY_NUM_AUTH_1D_98S
+	
+	  AUTH_DELTA_TIME := Date_Time_Convert(TRAN.TRAN_DATE,TRAN.TRAN_TIME) -
+	                     (PROF.Last_Score_Date + PROF.Last_Score_Time / DAY_SECS);
+	
+	  IF ((1 + exp(-AUTH_DELTA_TIME)*prof.p203) < 5.0) 
+	  THEN 
+	    IsRapid := 0;
+	  ELSE 
+	    IsRapid := 1;
+	
+	
+	  // Update global variables (DOL_AMT)
+	  IF (TRAN.TRAN_CURR_CODE = "840") 
+	  THEN
+	    DolAmt := TRAN.TRAN_AMOUNT;
+	  ELSE 
+	    IF (TRAN.TRAN_CURR_CODE = "   ") 
+	    THEN
+	      DolAmt := TRAN.TRAN_AMOUNT  * CONV_TO_DOLLARS;
+	    ELSE 
+	      IF (TRAN.TRAN_CURR_CODE = "124") 
+	      THEN
+	      BEGIN
+	        IF ((Valid_Amount(TRAN.TRAN_CURR_CONV)) AND
+		    (TRAN.TRAN_CURR_CONV > 0.0) AND
+		    (TRAN.TRAN_CURR_CONV < 0.999)) 
+	        THEN
+	          DolAmt := TRAN.TRAN_AMOUNT * TRAN.TRAN_CURR_CONV;
+	        ELSE
+	          DolAmt := TRAN.TRAN_AMOUNT  * 0.67;
+	      END;
+	      ELSE 
+	        IF ((Valid_Amount(TRAN.TRAN_CURR_CONV)) AND
+	            (TRAN.TRAN_CURR_CONV > 0.0)) 
+	        THEN
+	          DolAmt := TRAN.TRAN_AMOUNT * TRAN.TRAN_CURR_CONV;
+	        ELSE
+	          DolAmt := TRAN.TRAN_AMOUNT * CONV_TO_DOLLARS;
+	
+	
+	  IF (TRAN.CARD_TYPE = 'I') 
+	  THEN
+	  BEGIN
+	    IF ( DolAmt >= 250 ) 
+	    THEN
+	      SCOR.MODEL_ID := FIRE_MODEL("mhi03cr6", STATUS);
+	    ELSE
+	      SCOR.MODEL_ID := FIRE_MODEL("mge03cr5", STATUS); 
+	  END;
+	  ELSE
+	    IF ( DolAmt >= 250 ) 
+	    THEN
+	      SCOR.MODEL_ID := FIRE_MODEL("hid03cr2", STATUS);
+	    ELSE 
+	      IF (IsRapid = 1) 
+	      THEN 
+	        SCOR.MODEL_ID := FIRE_MODEL("rap03cr3", STATUS); 
+	      ELSE  	
+	        SCOR.MODEL_ID := FIRE_MODEL("gen03cr1", STATUS);
+	
+	
+	  IF (STATUS = (FAIL + NO_ERROR)) THEN TERMINATE;
+	  ELSE IF (STATUS <> 0) THEN TERMINATE STATUS;
+	
+	  PROF.Last_Score := SCOR.SCORE;
+	END;
+
+/* ----------------------- new ------------------------------ */
+	ELSE /* new model */
+	BEGIN
+	   ACTAGE := Date_Convert(TRAN.TRAN_DATE) - PROF.P222;
+	
+	   SaveMerchPostCode := TRAN.MERCH_POST_CODE;
+	
+	   IF (LEFT(TRAN.MERCH_POST_CODE, 3) = "000") 
+	   THEN
+	     TRAN.MERCH_POST_CODE := "         ";
+	
+	   SaveTranType := TRAN.TRAN_TYPE;
+	
+	   IF (TRAN.MERCH_CAT = "0004") 
+	   THEN
+	     TRAN.TRAN_TYPE := 'K';
+	 
+	   IF ( TRAN.TRAN_CURR_CODE = "840" ) 
+	   THEN
+	     TranAmt := TRAN.TRAN_AMOUNT;
+	   ELSE 
+	     IF ( TRAN.TRAN_CURR_CODE = "   " ) 
+	     THEN
+	       TranAmt := TRAN.TRAN_AMOUNT  * CONV_TO_DOLLARS;
+	     ELSE 
+	       IF ( TRAN.TRAN_CURR_CODE = "124" ) 
+	       THEN
+	       BEGIN
+	         IF ((Valid_Amount(TRAN.TRAN_CURR_CONV)) AND
+	             (TRAN.TRAN_CURR_CONV > 0.0) AND (TRAN.TRAN_CURR_CONV < 0.999) ) THEN
+	           TranAmt := TRAN.TRAN_AMOUNT * TRAN.TRAN_CURR_CONV;
+	         ELSE
+	           TranAmt := TRAN.TRAN_AMOUNT  * 0.67;
+	       END;
+	       ELSE 
+	         IF ((Valid_Amount(TRAN.TRAN_CURR_CONV)) AND
+	             (TRAN.TRAN_CURR_CONV > 0.0) ) THEN
+	           TranAmt := TRAN.TRAN_AMOUNT * TRAN.TRAN_CURR_CONV;
+	         ELSE
+	           TranAmt := TRAN.TRAN_AMOUNT  * CONV_TO_DOLLARS;
+	
+	     IF ( TranAmt >= 250 ) 
+	     THEN
+	       SCOR.MODEL_ID := FIRE_MODEL("hidfcr30", STATUS);
+	     ELSE	
+	       IF (ActAge < 45) 
+	       THEN
+	         SCOR.MODEL_ID := FIRE_MODEL("youfcr30", STATUS);
+	       ELSE 
+	         SCOR.MODEL_ID := FIRE_MODEL("genfcr30", STATUS);
+	
+	
+	   TRAN.MERCH_POST_CODE := SaveMerchPostCode;
+	   TRAN.TRAN_TYPE       := SaveTranType     ;
+	
+	   PROF.Last_Score := SCOR.SCORE;
+	END;
+
+ TERMINATE STATUS;
+ENDRULE;

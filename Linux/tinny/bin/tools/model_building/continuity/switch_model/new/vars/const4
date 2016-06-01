@@ -1,0 +1,103 @@
+
+//
+//*********************************************************
+// Customer Specific Default values
+//*********************************************************
+//
+CONST  GMT_OFFSET                          = -6;
+CONST  AUTH_GEO_LOGIC                      = "111";
+CONST  MAX_AMOUNT                          = 100000;
+CONST  CONV_TO_DOLLARS                     = 1;
+CONST  AUTH_LO_LIMIT                       = 10;
+CONST  AUTH_HI_LIMIT                       = 100;
+CONST  HI_DOL_RATE                         = 100;
+CONST  DEFAULT_CNTRY                       = 840;
+CONST  EQUIV_CNTRY                         = 124;
+CONST  SAFE_TIME                           = 7;
+CONST  MAX_RATIO                           = 100;
+CONST  PROF_INIT_VALUE                     = 1;
+CONST  ADJUST_RATIO_98S                    = 50;
+CONST  SICxAMT_ADJUST_RATIO_98S            = 20;
+
+//
+//*********************************************************
+// Customer Specific Country Equivalencing values
+//*********************************************************
+//
+CONST  NO_EQUIV                             = 1;
+CONST  WEAK_EQUIV                           = 2;
+CONST  STRONG_EQUIV                         = 3;
+CONST  EQUIV_LEVEL                          = WEAK_EQUIV;
+
+//
+//*********************************************************
+// Error codes
+//*********************************************************
+//
+CONST  BAD_TRAN_TIME                       = 0xa0;
+CONST  BAD_TRAN_DATE                       = 0xa1;
+CONST  BAD_TRAN_AMOUNT                     = 0xa2;
+CONST  TRAN_OUT_OF_ORDER                   = 0xa3;
+CONST  PROF_NO_INIT                        = 0xa5;
+CONST  BAD_SIC_CODE                        = 0xa6;
+CONST  TRAN_DUPLICATE                      = 0xa7;
+CONST  NOT_CASH_OR_MERCH                   = 0xa8;
+CONST  NOT_AUTH                            = 0xa9;
+CONST  BAD_MERCHANT_PROF                   = 0xb0;
+CONST  FAIL                                = 0x21010000;
+
+//
+//*********************************************************
+// Constant definitions
+//********************************************************
+//
+CONST  CON_A                               = "A";
+CONST  CON_C                               = "C";
+CONST  CON_I                               = "I";
+CONST  CON_Z                               = "Z";
+CONST  CON_0                               = 0;
+CONST  CON_1                               = 1;
+CONST  CON_179                             = 179;
+CONST  CON_3                               = 3;
+CONST  CON_4                               = 4;
+CONST  CON_5                               = 5;
+CONST  CON_6                               = 6;
+CONST  CON_8                               = 8;
+CONST  DAY_SECS                            = 86400;
+CONST  HOUR_SECS                           = 3600;
+CONST  DAY_HOURS                           = 24;
+CONST  _15MIN                              = 0.01041666666667;
+CONST  _1DAY                               = 1;
+CONST  _1HOUR                              = 0.04166666666667;
+CONST  _1MIN                               = 0.00069444444444;
+CONST  _2DAY                               = 2;
+CONST  _2WEEK                              = 14;
+CONST  _30MIN                              = 0.02083333333333;
+CONST  _3DAY                               = 3;
+CONST  _3MON                               = 90;
+CONST  _3WEEK                              = 21;
+CONST  _4DAY                               = 4;
+CONST  _4HOUR                              = 0.16666666666667;
+CONST  _6MON                               = 180;
+CONST  _7DAY                               = 7;
+CONST  _1EVENT                             = 1;
+CONST  _5EVENT                             = 5;
+CONST  _10EVENT                            = 10;
+CONST  _20EVENT                            = 20;
+CONST  _40EVENT                            = 40;
+CONST  _7_AM                               = 25200;
+CONST  SIC_VISAOTHRCSH                     = 4;
+CONST  SIC_VISAOTHRPCH                     = 8;
+
+//
+//************************************************
+// new VAR codes
+//************************************************
+//
+CONST  TELEPHONE_SIC1                      = 4812;
+CONST  TELEPHONE_SIC4                      = 4816;
+CONST  UNATTENDED_GAS_SIC                  = 5542;
+CONST  ATM_SIC                             = 6011;
+CONST  HIGH_RISK                           = 0.1;
+CONST  KEY_STRING                          = "KEY";
+CONST  NKY_STRING                          = "NKY";

@@ -1,0 +1,2 @@
+#define PATCHLEVEL 8
+#define SUBVERSION 2

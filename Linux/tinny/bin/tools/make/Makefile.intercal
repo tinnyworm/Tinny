@@ -1,0 +1,36 @@
+SEGMENTS = gen_2003
+
+RES_REF = res.reference
+
+OS = $(shell uname)
+
+TBLSMOOTH = /work/price/falcon/$(OS)/bin/calibSmooth
+CNVSCORE  = /work/price/falcon/$(OS)/bin/cnvscore
+INSCAL    = /work/price/falcon/bin/insert_calib4.pl
+
+#TARGET_NORM = $(foreach a, $(SEGMENTS), $(a)SCalNorm)
+#TARGET_HOL = $(foreach a, $(SEGMENTS), $(a)SCalHol)
+TARGET_TBL = $(foreach a, $(SEGMENTS), $(a)SCalNorm.tbl)
+
+# rules
+
+all : $(TARGET_TBL) 
+
+#hi_2003SCalNorm : hi_2003SCalNorm.tbl
+#	$(INSCAL) $@ $<
+	
+#%SCalNorm : %SCalNorm.tbl
+#	$(INSCAL) $@ $<
+	
+#%SCalHol : %SCalNorm.tbl
+#	$(INSCAL) $@ $<
+
+%SCalNorm.tbl : %SCalNorm-raw
+	$(TBLSMOOTH) 1 < $< | sed 's/1000,1000/1000,999/' | sed 's/^1,.*/1,1/'\
+	> $@
+	$(INSCAL) $*SCalNorm $@
+	$(INSCAL) $*SCalHol $@
+	
+
+%SCalNorm-raw : $(RES_REF) res.%.norm 
+	$(CNVSCORE) -g1 -f-10 $(RES_REF) res.$*.norm > $@

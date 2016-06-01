@@ -1,0 +1,114 @@
+#!/usr/local/bin/bash
+
+usage()
+{
+echo haha
+}
+
+HIST="histogram.pl"
+CUT="ufalcut"
+ANALY="analysis"
+ZNL="znl"
+
+test -d $ANALY || mkdir $ANALY
+
+if [[ $1 == *.gz ]]; then 
+  CMD="/usr/local/bin/zcat $1"
+else
+  CMD="cat $1"
+fi
+
+echo "#GENERAL CHECKS:" >$ANALY/auth.gen
+echo "####################################################################" >>$ANALY/auth.gen
+nor=`$ZNL $1 |awk '{print $1}'` 
+echo "1. Number of records:  $nor" >>$ANALY/auth.gen
+rl=`$CMD |head -1 |wc -c`
+echo "2. Record length:      $rl" >>$ANALY/auth.gen
+if ($CMD |is_sort -c1-36 &>/dev/null); then
+st="Yes!"
+else
+st="No!!!"
+fi
+echo "3. Is sorted?          $st" >>$ANALY/auth.gen
+echo "4. Hash value histogram" >>$ANALY/auth.gen
+$CMD | $CUT -c1-19 |getHashValues -s |$HIST >>$ANALY/auth.gen
+
+
+#auth.bin
+$CMD | $CUT -c1-6 | $HIST -s > $ANALY/auth.bin.hist
+
+#auth.tran_type
+$CMD | $CUT -c64 | $HIST > $ANALY/auth.tran_type.hist
+
+#auth.msg_exp_date
+$CMD | $CUT -c104-109 | $HIST > $ANALY/auth.msg_exp_date.hist
+
+jobname=auth.decision
+        $CMD | $CUT -c63 \
+        | $HIST > $ANALY/$jobname.hist
+
+jobname=auth.key-swipe
+        $CMD | $CUT -c103 \
+        | $HIST > $ANALY/$jobname.hist
+
+jobname=auth.zip3
+        $CMD | $CUT -c89-91 \
+        | $HIST > $ANALY/$jobname.hist
+
+jobname=auth.amount
+        $CMD | $CUT -c34-46 \
+        | $HIST > $ANALY/$jobname.hist
+
+jobname=auth.time
+        $CMD | $CUT -c28-31 \
+        | $HIST > $ANALY/$jobname.hist
+
+jobname=auth.curr-code
+        $CMD | $CUT -c47-49 \
+        | $HIST > $ANALY/$jobname.hist
+
+jobname=auth.curr-rate
+        $CMD | $CUT -c50-62 \
+        | $HIST > $ANALY/$jobname.hist
+
+jobname=auth.date
+        $CMD | $CUT -c20-27 \
+        | $HIST > $ANALY/$jobname.hist
+
+jobname=auth.avail-cred
+        $CMD | $CUT -c65-74 \
+        | $HIST > $ANALY/$jobname.hist
+
+jobname=auth.cred-line
+        $CMD | $CUT -c75-84 \
+        | $HIST > $ANALY/$jobname.hist
+
+jobname=auth.sic
+        $CMD | $CUT -c85-88 \
+        | $HIST > $ANALY/$jobname.hist
+
+jobname=auth.postal-code
+        $CMD | $CUT -c89-93 \
+        | $HIST > $ANALY/$jobname.hist
+
+jobname=auth.merch-cntry
+        $CMD | $CUT -c98-100 \
+        | $HIST -s > $ANALY/$jobname.hist
+
+jobname=auth.pin-ver
+        $CMD | $CUT -c101 \
+        | $HIST > $ANALY/$jobname.hist
+
+jobname=auth.cvv
+        $CMD | $CUT -c102 \
+        | $HIST > $ANALY/$jobname.hist
+
+jobname=auth.sic-pin
+        $CMD | $CUT -c85-88,101 \
+        | $HIST > $ANALY/$jobname.hist
+
+jobname=auth.sic-key-swipe
+        $CMD | $CUT -c85-88,103 \
+        | $HIST > $ANALY/$jobname.hist
+
+

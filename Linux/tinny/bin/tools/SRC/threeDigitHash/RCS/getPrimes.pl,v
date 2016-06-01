@@ -1,0 +1,65 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2003.10.20.17.24.38;	author pcd;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/usr/local/bin/perl -w
+#
+# Get the factors of the inputs.
+#
+#
+
+$INIT = 1;
+$MAX = 1000;
+
+print "Getting primes between $INIT and $MAX...\n";
+@@primes = ();
+for ($i = $INIT; $i < $MAX; $i++) {
+    @@fact = &getFactors ($i);
+    if (scalar (@@fact) == 2) {
+        push @@primes, $i;
+    }
+}
+for ($i = 0; $i < scalar (@@primes) - 1; $i++) {
+    print "$primes[$i], ";
+}
+print $primes[scalar (@@primes) - 1], "\n";
+
+############################################################
+
+sub getFactors () {
+    use strict;
+    my ($in) = @@_;
+    my ($i, $j);
+    my (@@retVal) = ();
+
+    for ($i = 1; $i <= $in; $i++) {
+        $j = $in / $i;
+        if ($j == int($j)) {
+            push @@retVal, $i;
+        }
+    }
+
+    return (@@retVal);
+}
+
+
+# vim:cindent:
+@

@@ -1,0 +1,176 @@
+#!/usr/local/bin/bash
+
+usage()
+{
+echo "$0 -c cards.dat.gz -a auths.dat.gz -f frauds.dat.gz"
+}
+
+HIST="histogram.pl"
+CUT="ufalcut"
+ANALY="analysis"
+BIN="bin"
+ZNL="/work/price/falcon/bin/znl -v -f"
+zz=/usr/local/bin/zcat
+printm=/work/gold/bin//printfield
+reclen=/work/price/falcon/bin//reclen
+CSUM=/work/price/falcon/bin/testChecksum
+
+#test -d $ANALY || mkdir -p $ANALY/$BIN
+
+test -d $ANALY || mkdir $ANALY
+
+while [ $# -gt 0 ]
+do
+
+ case "$1" in
+   -a) options="$options   $1"
+#        filetype=$2
+        file=`echo "auth"`
+        key=`echo "-c1-33"`
+        month=`echo "-c20-25"`
+        ZNLF="$ZNL $2"
+        map=`echo "auth.map"`
+     if [[ $2 == *.gz ]]; then 
+         CMD="/usr/local/bin/zcat $2"
+     else
+         CMD="cat $2"
+     fi
+     shift ;;
+
+   -c) options="$options   $1"
+#       filetype=$2
+        file=`echo "card"`
+        key=`echo "-c1-19,91-98"`
+        month=`echo "-c91-96"`
+       ZNLF="$ZNL $2"
+       map=`echo "card.map"`
+     if [[ $2 == *.gz ]]; then 
+         CMD="/usr/local/bin/zcat $2"
+     else
+         CMD="cat $2"
+     fi
+     shift ;;
+
+   -t) options="$options   $1"
+       file=`echo "post"`
+        key=`echo "-c1-19,49-56"`
+        month=`echo "-c49-54"`
+        ZNLF="$ZNL $2"
+        map=`echo "post.map"`
+     if [[ $2 == *.gz ]]; then 
+         CMD="/usr/local/bin/zcat $2"
+     else
+         CMD="cat $2"
+     fi
+     shift ;;
+   -f) options="$options   $1"
+       file=`echo "fraud"`
+        key=`echo "-c1-19,21-28"`
+        month=`echo "-c21-26"`
+        ZNLF="$ZNL $2"
+        map=`echo "fraud.map"`
+     if [[ $2 == *.gz ]]; then 
+         CMD="/usr/local/bin/zcat $2"
+     else
+         CMD="cat $2"
+     fi
+     shift ;;
+   -p) options="$options   $1"
+       file=`echo "pay"`
+        key=`echo "-c1-19,82-89"`
+        month=`echo "-c82-87"`
+        ZNLF="$ZNL $2"
+        map=`echo "payment.map"` 
+     if [[ $2 == *.gz ]]; then 
+         CMD="/usr/local/bin/zcat $2"
+     else
+         CMD="cat $2"
+     fi
+     shift ;;
+   -n) options="$options   $1"
+       file=`echo "non"`
+        key=`echo "-c1-19,21-28"`
+        month=`echo "-c21-26"`
+         ZNLF="$ZNL $2"
+         map=`echo "nonmon.map"`
+     if [[ $2 == *.gz ]]; then 
+         CMD="/usr/local/bin/zcat $2"
+     else
+         CMD="cat $2"
+     fi
+     shift ;;
+    -i) options="$options   $1"
+       file=`echo "inq"`
+        key=`echo "-c1-19,21-34"`
+        month=`echo "-c21-26"`
+         ZNLF="$ZNL $2"
+         map=`echo "inquiry.map"`
+     if [[ $2 == *.gz ]]; then 
+         CMD="/usr/local/bin/zcat $2"
+     else
+         CMD="cat $2"
+     fi
+     shift ;;
+   *) echo "wrong options $1" ;;
+ esac
+# sleep 5
+ echo " "
+
+     echo "#GENERAL CHECKS:" >$ANALY/$file.gen
+     echo "####################################################################" >>$ANALY/$file.gen
+     nor=`$ZNLF |  awk '{print $1}'` 
+     echo "1. Number of records:  $nor" >>$ANALY/$file.gen
+     rl=`$CMD |head -1 |wc -c`
+     echo "2. Record length:      $rl" >>$ANALY/$file.gen
+     if ($CMD |is_sort $key &>/dev/null); then
+       st="Yes!"
+     else
+       st="No!!!"
+     fi
+     echo "3. Is sorted?          $st" >>$ANALY/$file.gen
+     echo "4. $file Monthly distribution:    " >>$ANALY/$file.gen
+     $CMD | $CUT $month |  $HIST >>$ANALY/$file.gen
+   
+     echo "5. $file random record:    " >>$ANALY/$file.gen
+     $CMD | $printm -f/work/gold/maps/falcon.credit.$map -r24-25 >>$ANALY/$file.gen
+
+     echo "6. $file checking record length:    " >>$ANALY/$file.gen
+     $CMD | $reclen >>$ANALY/$file.gen
+     
+     echo "7. Account encrypted??" >> $ANALY/$file.gen
+     $CMD | $CSUM | $HIST >>$ANALY/$file.gen
+     
+      
+     echo "Hash value histogram" >>$ANALY/$file.hash.gen
+     $CMD | $CUT -c1-19 |getHashValues -s |$HIST >>$ANALY/$file.hash.gen
+    
+     echo "Running the analyzing code for $file" 
+
+	  verify="/home/yxc/scripts/Perl/v$file"
+	
+				
+     $CMD | $verify >$ANALY/verify_$file.analyze
+
+    
+    case "$file" in 
+    fraud) ;;
+    auth)  ;;
+#        $CMD | $CUT -c164-166 | $HIST >>$ANALY/$file.itmIDplus.gen;
+#        $CMD | $CUT -c167-195 | head -10 >> $ANALY/$file.itmIDplus.gen;
+#       echo "Sampling stats for records level and account level for $file" >>$ANALY/samplestat.list ;
+#       ~/scripts/Script/summary_stat.sh _ ../$file stat >>$ANALY/samplestat.list ;;
+    card) 
+       $CMD | /home/yxc/scripts/Python/findDupAccounts.py >>$ANALY/$file.duplicate.gen ;;
+#       echo "Sampling stats for records level and account level for $file" >>$ANALY/samplestat.list ;
+#       ~/scripts/Script/summary_stat.sh _ ../$file stat >>$ANALY/samplestat.list ;;
+
+    *) ;;
+#    echo "Sampling stats for records level and account level for $file" >>$ANALY/samplestat.list ;
+#       ~/scripts/Script/summary_stat.sh _ ../$file stat >>$ANALY/samplestat.list ;;
+    esac
+
+#    echo "generating hash saver for $filenm..." 
+#            multi_freq.pl -f$filenm,$binmonth
+#     mv hash.* $ANALY/$BIN
+  shift
+done

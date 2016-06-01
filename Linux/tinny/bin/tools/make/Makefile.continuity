@@ -1,0 +1,42 @@
+#############################################################################
+# Makefile for continuity test
+# 
+# Read the bigScr files from switch model for different settings (new_new and
+# old_new). Extract new bigScr files and generate corresponding research
+# files according the the $(RANGE)
+#
+# Two perl utilities are used 
+# calc_date.pl: calculate date according the offset
+# bigScrFilter.pl: filtering the bigScr file
+#
+# change DATA, DATE, and RANGE for different data and settings
+# change SRC if necessary (when the bigScr name format changes)
+#
+# - dxl, 11/17/03
+#############################################################################
+SHELL = /bin/sh 
+
+DATA = all_new_new
+SRC = $(DATA).bigScr.gz
+
+DATE = 20020715
+RANGE = 1day 7days 15days 1month 3months
+
+FILTER = bigScrFilter.pl
+
+START = $(shell calc_date.pl $(DATE) -1days)
+END = $(shell calc_date.pl $(DATE) $(THIS_RANGE))
+
+all:
+	for range in $(RANGE);\
+	do\
+	make res.$(DATA).$(DATE)_$${range} THIS_RANGE=$${range};\
+	done
+
+res.$(DATA).$(DATE)_$(THIS_RANGE) : $(DATA).bigScr.$(DATE)_$(THIS_RANGE)
+	big2res $< $@
+	
+$(DATA).bigScr.$(DATE)_$(THIS_RANGE) : $(SRC)
+	zcat $(DATA).bigScr.gz \
+	| $(FILTER) --after $(START) --before $(END) \
+	> $@

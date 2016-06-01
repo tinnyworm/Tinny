@@ -1,0 +1,1 @@
+/usr/local/bin/perl -wne 'chomp;while (substr($_,0,1) eq " "){substr($_,0,1)= ""};while (substr($_,-1,1) eq " "){chop};print length $_,"\n";' | /home/krh/tools/chart.pl -n

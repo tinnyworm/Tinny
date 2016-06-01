@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>Eclipse.org home</title><meta name="author" content="Eclipse Foundation, Inc." />
+<meta name="keywords" content="eclipse,project,plug-ins,plugins,java,ide,swt,refactoring,free java ide,tools,platform,open source,development environment,development,ide" /><link rel="stylesheet" type="text/css" href="/eclipse.org-common/themes/Phoenix/css/small.css" title="small" /><link rel="alternate stylesheet" type="text/css" href="/eclipse.org-common/themes/Phoenix/css/large.css" title="large" /><link rel="stylesheet" type="text/css" href="/eclipse.org-common/themes/Phoenix/css/visual.css" media="screen" /><link rel="stylesheet" type="text/css" href="/eclipse.org-common/themes/Phoenix/css/layout.css" media="screen" />
+<!--[if IE]> 	<link rel="stylesheet" type="text/css" href="/eclipse.org-common/themes/Phoenix/css/ie_style.css" media="screen"/> <![endif]-->
+<link rel="stylesheet" type="text/css" href="/eclipse.org-common/themes/Phoenix/css/print.css" media="print" />
+<link rel="stylesheet" type="text/css" href="/eclipse.org-common/themes/Phoenix/css/header.css" media="screen" />
+<script type="text/javascript" src="/eclipse.org-common/themes/Phoenix/styleswitcher.js"></script>
+<link rel="alternate" title="Eclipse RSS Feed" href="/home/eclipsenews.rss" type="application/rss+xml"></head>
+<body>
+<div id="header">
+	<div id="header-graphic" class="eclipse-main">
+		<a href="/"><img src="/eclipse.org-common/themes/Phoenix/images/eclipse_home_header.jpg" alt="" /></a><h1>Eclipse</h1>	
+	</div>
+	<div id="header-global-holder" class="eclipse-main-global">
+		<div id="header-global-links"><ul>
+<li><a href="/org/foundation/contact.php" class="first_one">Contact</a></li><li><a href="/legal/">Legal</a></li>
+			</ul>
+		</div>
+		<div id="header-icons">
+<a href="http://live.eclipse.org"><img src="/eclipse.org-common/themes/Phoenix/images/Icon_Live.png" width="28" height="28" alt="Eclipse Live" title="Eclipse Live" /></a>
+<a href="http://www.eclipseplugincentral.com"><img src="/eclipse.org-common/themes/Phoenix/images/Icon_plugin.png" width="28" height="28" alt="Eclipse Plugin Central" title="Eclipse Plugin Central" /></a>
+<a href="http://www.planeteclipse.org"><img src="/eclipse.org-common/themes/Phoenix/images/Icon_planet.png" width="28" height="28" alt="Planet Eclipse" title="Planet Eclipse" /></a>
+		</div>
+	</div></div><div id="header-menu"><div id="header-nav">
+		<ul>
+		<li><a class="first_one" href="/" target="_self">Home</a></li> 
+				<li><a  href="/community/" target="_self">Community</a></li> 
+				<li><a  href="/membership/" target="_self">Membership</a></li> 
+				<li><a  href="http://wiki.eclipse.org/index.php/Development_Resources" target="_self">Committers</a></li> 
+				<li><a  href="/downloads/" target="_self">Downloads</a></li> 
+				<li><a  href="/resources/" target="_self">Resources</a></li> 
+				<li><a  href="/projects/" target="_self">Projects</a></li> 
+				<li><a  href="/org/" target="_self">About Us</a></li> 
+				</ul>
+	</div>
+	<div id="header-utils">
+		<form action="http://www.google.com/cse" id="searchbox_017941334893793413703:sqfrdtd112s">
+	 	<input type="hidden" name="cx" value="017941334893793413703:sqfrdtd112s" />
+  		<input type="text" name="q" size="25" />
+  		<input type="submit" name="sa" value="Search" />
+		</form>
+		<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=searchbox_017941334893793413703%3Asqfrdtd112s&lang=en"></script>		<ul>
+			<li class="rss_feed"><a href="/home/eclipsenews.rss" target="_blank"><img src="/eclipse.org-common/themes/Phoenix/images/rss_btn.gif" alt="RSS" height="16" width="16" border="0" class="rss_icon" /></a></li>
+						<li class="text_size"><a class="smallText" title="Small Text" href="#" onclick="setActiveStyleSheet('small');return false;">A</a> <a class="largeText" title="Large Text" href="#" onclick="setActiveStyleSheet('large');return false;">A</a></li>
+		</ul>
+	</div></div><link rel="stylesheet" type="text/css" href="/home/layout.css" media="screen" />	
+<div id="econHeader" class="eclipseConHeader">
+	<div style="width:616px;float:left;">
+		<a href="http://www.eclipsecon.org/2008/index.php?page=registration/"><img src="/home/images/eclipsecon.gif"></a>
+	</div>
+	<div class="registerNow">
+		<span class="econDate">March 17th - 20th 2008<br/>Santa Clara, CA</span> <br/>
+		<a href="http://www.eclipsecon.org/2008/index.php?page=registration/"><img src="/home/images/registerNow.png"></a>
+		
+	</div>
+</div>		<link rel="stylesheet" type="text/css" href="/home/layout.css" media="screen" />	
+		<div>	
+		<div class="downloadSection">
+					<div class="screens" align="middle">
+						<center>
+							<a href="/screenshots/"><img width="162" height="114" src="/screenshots/images/thumbnails/Ant.png"/></a><br/>
+							<a href="/screenshots/" class="smallLinks">Screenshots</a>
+						</center>
+					</div>
+					<div class="downloadDescription">
+						<div style="padding-top:7px;"><h4>Eclipse - an open development platform</h4>
+						<br/>Eclipse is an open source community whose projects are focused on building an open development platform comprised of extensible frameworks, tools and runtimes for building, deploying and managing software across the lifecycle. A large and vibrant ecosystem of major technology vendors, innovative start-ups, universities, research institutions and individuals extend, complement and support the Eclipse platform. <a href="/home/newcomers.php">New to Eclipse?</a>
+						</div><br/>
+						<a href="/downloads/"><img src="/home/images/downloadbutton.gif" width="170" height="38"/></a><br/><br/>
+					</div>
+		</div>
+				<table cellspacing="0" cellpadding="0" width="100%">
+		<tr>
+			<td id="mymidcolumn" valign="top">
+				<div class="tracks">
+					<table cellspacing="0" cellpadding="0" width="100%">
+						<tr>
+							<td colspan="7"><h4>Eclipse is used for ...</h4></td>
+						</tr>
+						<tr>
+							<td class="trackIcon" width="20%" align="center"><a href="/home/categories/enterprise.php"><img width="64" height="64" src="/home/images/enterprise.gif"/></a><br/><a href="/home/categories/enterprise.php">Enterprise Development</a></td>
+							<td class="trackIcon" width="20%" align="center"><a href="/home/categories/embedded_device.php"><img width="64" height="64" src="/home/images/embedded.gif"/></a><br/><a href="/home/categories/embedded_device.php">Embedded + Device Development</a></td>
+							<td class="trackIcon" width="20%" align="center"><a href="/home/categories/rcp.php"><img width="64" height="64" src="/home/images/rcp.gif"/></a><br/><a href="/home/categories/rcp.php">Rich Client Platform</a></td>
+														<td class="trackIcon" width="20%"  align="center"><a href="/home/categories/frameworks.php"><img width="85" height="64" src="/home/images/af.gif"/></a><br/><a href="/home/categories/frameworks.php">Application Frameworks</a></td>
+							<td class="trackIcon" width="20%"  align="center"><a href="/home/categories/languages.php"><img width="75" height="66" src="/home/images/languages.gif"/></a><br/><a href="/home/categories/languages.php">Language IDE</a></td>
+												
+						</tr>
+
+					</table>
+				</div>
+						<div class="spacer"><br/><br/></div>
+						<table width="100%" cellspacing="0" cellpadding="0">
+				<tr>
+					<td class="announcements">
+						<div class="sectionTitle"><a href="/home/eclipsenews.rss"><img src="/images/rss2.gif" align="right" class="rssIcon"/></a><a href="/community/news/eclipsenews.php"><h4>Announcements</h4></a></div>
+						<div class="announcementsContent">
+										<ul>
+	<li> <a href="http://www.eclipse.org/org/press-release/20080304_AwardsFinalists.php">Finalists Announced for Eclipse Community Awards 2008</a> <span class="posted">+2&nbsp;days&nbsp;ago</span></li><li> <a href="http://www.eclipse.org/downloads/">Eclipse Europa Winter Maintenance Packages Are Now Available for Download</a> <span class="posted">+6&nbsp;days&nbsp;ago</span></li><li> <a href="http://www.eclipse.org/epp/ganymede.php">Ganymede M5 Packages Are Now Available for Download</a> <span class="posted">+1&nbsp;week&nbsp;ago</span></li><li> <a href="http://www.eclipsecon.org/2008/index.php?page=registration/">EclipseCon starts in less than 3 weeks, so don't forget to register today!</a> <span class="posted">+1&nbsp;week&nbsp;ago</span></li>		</ul>
+									<div class="more"><a href="/community/news/eclipsenews.php">More Announcements..</a></div>									
+						</div>
+					</td>
+					<td class="featuredItem">
+					
+						<div class="sectionTitle"><h4>Spotlights</h4></div>
+						<div class="spacer"><br/></div>
+							<div class="featuredItemTitle"><a href="http://www.regonline.com/CalendarNET/EventCalendar.aspx?CustomerId=240004&EventId=188879&view=Month">RCP Training Classes</a></div>
+							<div class="featuredItemContents">Eclipse RCP training classes take place May 19-June 13 around the world.  Register by March 31 for a 10% early bird discount.</div>
+						<div class="spacer"><br/></div>
+							<div class="featuredItemTitle"><a href="http://live.eclipse.org/node/418">Webinar: Eclipse Modeling Project as a DSL Toolkit</a></div>
+							<div class="featuredItemContents">Richard Gronback and Ed Merks are hosting a modeling webinar on March 27.</div>
+																
+				</td>
+				</tr>
+				<tr>
+					<td class="epicPlugins">
+							<div class="sectionTitle"><a href="http://www.eclipseplugincentral.com/pluginfeed.rss"><img src="/images/rss2.gif" align="right" class="rssIcon"/></a><a href="http://www.eclipseplugincentral.com"><h4>Eclipse Plugin Central</h4></a></div>
+							<div class="epicPluginsContent">
+										<ul>
+	<li><img src="/home/images/updated.gif"/> <a href="http://www.eclipseplugincentral.com/Web_Links-index-req-viewlink-cid-637.html">Pydev Extensions <span class="version">v1.3.14</span></a> <span class="posted">+6&nbsp;hours&nbsp;ago</span></li><li><img src="/home/images/updated.gif"/> <a href="http://www.eclipseplugincentral.com/Web_Links-index-req-viewlink-cid-235.html">PyDev - Python Development Environment for Eclipse <span class="version">v1.3.14</span></a> <span class="posted">+6&nbsp;hours&nbsp;ago</span></li><li><img src="/home/images/updated.gif"/> <a href="http://www.eclipseplugincentral.com/Web_Links-index-req-viewlink-cid-557.html">Design and Verification Tools - E, SystemVerilog <span class="version">v1.4.0</span></a> <span class="posted">+8&nbsp;hours&nbsp;ago</span></li><li><img src="/home/images/updated.gif"/> <a href="http://www.eclipseplugincentral.com/Web_Links-index-req-viewlink-cid-1151.html">BEM for Ganymede <span class="version">v0.9.0</span></a> <span class="posted">+8&nbsp;hours&nbsp;ago</span></li><li><img src="/home/images/updated.gif"/> <a href="http://www.eclipseplugincentral.com/Web_Links-index-req-viewlink-cid-702.html">EclEmma Java Code Coverage <span class="version">v1.3.1</span></a> <span class="posted">+8&nbsp;hours&nbsp;ago</span></li><li><img src="/home/images/new.gif"/> <a href="http://www.eclipseplugincentral.com/Web_Links-index-req-viewlink-cid-1195.html">IDE Wiki for Eclipse <span class="version">v1.0.6</span></a> <span class="posted">+1&nbsp;day&nbsp;ago</span></li><li><img src="/home/images/updated.gif"/> <a href="http://www.eclipseplugincentral.com/Web_Links-index-req-viewlink-cid-1193.html">LWJGL Plugin <span class="version">v1.1.4</span></a> <span class="posted">+1&nbsp;day&nbsp;ago</span></li><li><img src="/home/images/updated.gif"/> <a href="http://www.eclipseplugincentral.com/Web_Links-index-req-viewlink-cid-1146.html">jOra - Oracle DB Plugin <span class="version">v0.9.3</span></a> <span class="posted">+1&nbsp;day&nbsp;ago</span></li><li><img src="/home/images/updated.gif"/> <a href="http://www.eclipseplugincentral.com/Web_Links-index-req-viewlink-cid-586.html">Extended VS Presentation <span class="version">v1.4.3</span></a> <span class="posted">+1&nbsp;day&nbsp;ago</span></li><li><img src="/home/images/updated.gif"/> <a href="http://www.eclipseplugincentral.com/Web_Links-index-req-viewlink-cid-123.html">AnyEdit Tools <span class="version">v1.9.3</span></a> <span class="posted">+1&nbsp;day&nbsp;ago</span></li>		</ul>
+				   				  	<div class="epicLegend"><img src="/home/images/new.gif"/> New |  <img src="/home/images/updated.gif"/> Updated</div><div class="more"><a href="http://www.eclipseplugincentral.com" >More Plugins..</div>
+							</div>
+					</td>
+					<td class="communityNews">			
+							<div class="sectionTitle"><a href="/home/eclipseinthenews.rss"><img src="/images/rss2.gif" align="right" class="rssIcon"/></a><a href="/community/news/eclipseinthenews.php"><h4>Community News</h4></a></div>
+							<div class="communityNewsContent">
+									<ul>
+	   
+							<li><a href="http://www.eweek.com/c/a/Application-Development/CodeGear-Gives-Debugger-to-Eclipse/?kc=EWKNLWSU030508STR1" target="_blank">CodeGear Gives Debugger to Eclipse	
+							</a> 
+							<span class="posted">+1&nbsp;day&nbsp;ago</span></li>
+							
+							   
+							<li><a href="http://www.infoq.com/news/2008/02/higgins_1_0" target="_blank">Higgins 1.0: Identity Management Solutions from the Eclipse Foundation	
+							</a> 
+							<span class="posted">+2&nbsp;days&nbsp;ago</span></li>
+							
+							   
+							<li><a href="http://www.javaworld.com/javaworld/jw-03-2008/jw-03-osgi1.html" target="_blank">Hello, OSGi, Part 1: Bundles for beginners	
+							</a> 
+							<span class="posted">+2&nbsp;days&nbsp;ago</span></li>
+							
+							   
+							<li><a href="http://dev2dev.bea.com/blog/phumphrey/archive/2008/02/the_fastest_wor.html" target="_blank">The fastest Workshop release ever - BEA Workshop 10.2 is now available	
+							</a> 
+							<span class="posted">+3&nbsp;days&nbsp;ago</span></li>
+							
+							   
+							<li><a href="http://www.businesswire.com/portal/site/google/?ndmViewId=news_view&newsId=20080228005770&newsLang=en" target="_blank">OMG and Eclipse Partner to Organize Symposia On Open Software & Standards	
+							</a> 
+							<span class="posted">+1&nbsp;week&nbsp;ago</span></li>
+							
+							   
+							<li><a href="http://eclipse.sys-con.com/read/507094.htm" target="_blank">MBARI Puts JBuilder 2007 Enterprise Edition Through Its Paces	
+							</a> 
+							<span class="posted">+1&nbsp;week&nbsp;ago</span></li>
+							
+							   
+							<li><a href="http://www.myeclipseide.com/Article73.html" target="_blank">Genuitec Announces MyEclipse Blue Edition: A No-Risk Option to RAD for WebSphere Developers	
+							</a> 
+							<span class="posted">+3&nbsp;weeks&nbsp;ago</span></li>
+							
+									</ul>
+								</div>
+							<div class="more"><a href="/community/news/eclipseinthenews.php">More News..</a></div>
+					</td>
+				</tr>
+			</table>
+		<hr class="clearer" />
+		</td>
+				<td id="myrightcolumn">
+
+			<div class="sideitem">
+				<h6>Useful Links</h6>
+				<ul>
+					<li><a href="http://bugs.eclipse.org/bugs/">Bugs</a></li>
+					<li><a href="/documentation/">Documentation</a></li>
+					<li><a href="/newsgroups/">Newsgroups</a></li>
+					<li><a href="http://wiki.eclipse.org/index.php/IRC" target="_blank">IRC</a></li>
+					<li><a href="http://wiki.eclipse.org" target="_blank">Eclipse Project Wiki</a></li>			
+					<li><a href="http://planeteclipse.org/planet/" target="_blank">PlanetEclipse</a></li>
+					<li><a href="/community/events/index.php">Events Calendar</a></li>
+					<li><a href="/donate/">Donate to Eclipse</a></li>
+					<li><a href="http://www.cafepress.com/eclipseide" target="_blank">Eclipse Store</a></li>					
+				</ul>
+			</div>
+			<div class="sideitem">
+				<h6><a href="http://feeds.feedburner.com/eclipselive"><img src="images/rss2.gif" align="right" class="rssIcon"></a><a href="http://live.eclipse.org">Eclipse Live</a></h6>
+						<ul>
+	<li> <a href="http://live.eclipse.org/node/490">Upcoming Event: EclipseLink Project and its Persistence Services</a> <span class="posted">+1&nbsp;day&nbsp;ago</span></li><li> <a href="http://live.eclipse.org/node/489">Eclipse Working Sets - Part I</a> <span class="posted">+1&nbsp;day&nbsp;ago</span></li><li> <a href="http://live.eclipse.org/node/488">Upcoming Event: Using the BIRT Designer - BIRT Exchange Webinar Series</a> <span class="posted">+1&nbsp;day&nbsp;ago</span></li>		</ul>
+				</div>
+			<div class="sideitem">
+				<h6><a href="/resources/resources.rss"><img src="/images/rss2.gif" align="right" class="rssIcon"/></a><a href="/resources/">Resources</a></h6>
+				<ul><li><a href="/resources/resource.php?id=410">Develop iPhone Web applications with Eclipse</a> <span class="posted">+1&nbsp;month&nbsp;ago</span></li><li><a href="/resources/resource.php?id=411">Receive events from XMLBeans</a> <span class="posted">+1&nbsp;month&nbsp;ago</span></li><li><a href="/resources/resource.php?id=409">Using the Eclipse Workbench</a> <span class="posted">+1&nbsp;month&nbsp;ago</span></li></ul>				<div class="more"><a href="/resources/">More Resources..</a></div>
+			</div>
+			<div class="sideitem">
+				<h6><img src="/images/rss2.gif" align="right" class="rssIcon"/><a href="/community/news/rssfeeds.php">RSS Feeds</a></h6>
+			</div>
+		</td>
+	</tr>
+</table>
+</div><div id="footer">
+<ul id="footernav">
+<li class="first"><a href="/">Home</a></li>
+<li><a href="/legal/privacy.php">Privacy Policy</a></li>
+<li><a href="/legal/termsofuse.php">Terms of Use</a></li>
+</ul>
+<p>Copyright &copy; 2008 The Eclipse Foundation. All Rights Reserved</p>
+</div></body></html>

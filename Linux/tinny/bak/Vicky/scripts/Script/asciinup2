@@ -1,0 +1,7 @@
+#! /bin/csh -f
+
+foreach term ( $* )
+        nenscript -p- $term | psnup -2 | lpr -Php4
+        echo "done with $term"
+end
+echo "done with asciinup2"

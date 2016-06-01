@@ -1,0 +1,187 @@
+2008-03-03T19:25:35 Checking update-file '/usr/share/apps/kconf_update/kcmdisplayrc.upd' for new updates
+2008-03-03T19:25:35 kcmdisplayrc.upd: Found new update 'kde3'
+2008-03-03T19:25:37 Checking update-file '/usr/share/apps/kconf_update/kwinupdatewindowsettings.upd' for new updates
+2008-03-03T19:25:37 kwinupdatewindowsettings.upd: Found new update 'kde33b1'
+2008-03-03T19:25:37 kwinupdatewindowsettings.upd: Running script 'kwin_update_window_settings'
+2008-03-03T19:25:41 Checking update-file '/usr/share/apps/kconf_update/kwin3_plugin.upd' for new updates
+2008-03-03T19:25:41 kwin3_plugin.upd: Found new update 'kde3.2'
+2008-03-03T19:25:41 kwin3_plugin.upd: Running script 'kwin3_plugin.pl'
+2008-03-03T19:25:42 kwin3_plugin.upd: Updating kwinrc:Style:ButtonsOnLeft to 'M'
+2008-03-03T19:25:42 kwin3_plugin.upd: Updating kwinrc:Style:ButtonsOnRight to 'IAX'
+2008-03-03T19:25:42 kwin3_plugin.upd: Updating kwinrc:Style:CustomButtonPositions to 'true'
+2008-03-03T19:25:42 kwin3_plugin.upd: Updating kwinrc:Style:PluginLib to 'kwin3_bluecurve'
+2008-03-03T19:25:42 kwin3_plugin.upd: Updating kwinrc:Style:ShowToolTips to 'true'
+2008-03-03T19:25:42 kwin3_plugin.upd: Updating kwinrc:Windows:AutoRaise to 'off'
+2008-03-03T19:25:42 kwin3_plugin.upd: Updating kwinrc:Windows:AutoRaiseInterval to '0'
+2008-03-03T19:25:42 kwin3_plugin.upd: Updating kwinrc:Windows:BorderSnapZone to '10'
+2008-03-03T19:25:42 kwin3_plugin.upd: Updating kwinrc:Windows:ClickRaise to 'on'
+2008-03-03T19:25:42 kwin3_plugin.upd: Updating kwinrc:Windows:FocusPolicy to 'ClickToFocus'
+2008-03-03T19:25:42 kwin3_plugin.upd: Updating kwinrc:Windows:MoveMode to 'Opaque'
+2008-03-03T19:25:42 kwin3_plugin.upd: Updating kwinrc:Windows:ResizeMode to 'Opaque'
+2008-03-03T19:25:42 kwin3_plugin.upd: Updating kwinrc:Windows:WindowSnapZone to '10'
+2008-03-03T19:25:42 kwin3_plugin.upd: Updating kwinrc:Windows:WindowsPlacement to 'Smart'
+2008-03-03T19:25:43 Checking update-file '/usr/share/apps/kconf_update/khotkeys_32b1_update.upd' for new updates
+2008-03-03T19:25:44 khotkeys_32b1_update.upd: Found new update 'kde32b1'
+2008-03-03T19:25:44 khotkeys_32b1_update.upd: Running script 'khotkeys_update' with arguments '--id kde32b1'
+2008-03-03T19:25:47 Checking update-file '/usr/share/apps/kconf_update/kopete-jabberproxytype-kconf_update.upd' for new updates
+2008-03-03T19:25:47 kopete-jabberproxytype-kconf_update.upd: Found new update 'kopete0.9/r1'
+2008-03-03T19:25:47 kopete-jabberproxytype-kconf_update.upd: Running script 'kopete-jabberproxytype-kconf_update.sh'
+2008-03-03T19:25:49 Checking update-file '/usr/share/apps/kconf_update/ksmserver.upd' for new updates
+2008-03-03T19:25:49 ksmserver.upd: Found new update 'kde3'
+2008-03-03T19:25:49 ksmserver.upd: Running script 'move_session_config.sh'
+2008-03-03T19:25:51 Checking update-file '/usr/share/apps/kconf_update/konqueror_gestures_kde321_update.upd' for new updates
+2008-03-03T19:25:51 konqueror_gestures_kde321_update.upd: Found new update 'kde321'
+2008-03-03T19:25:51 konqueror_gestures_kde321_update.upd: Running script 'khotkeys_update' with arguments '--id konqueror_gestures_kde321'
+2008-03-03T19:25:54 Checking update-file '/usr/share/apps/kconf_update/kaccel.upd' for new updates
+2008-03-03T19:25:54 kaccel.upd: Found new update 'kde3.3/r1'
+2008-03-03T19:25:54 kaccel.upd: Running script 'convertShortcuts.pl'
+2008-03-03T19:25:56 Checking update-file '/usr/share/apps/kconf_update/kio_help.upd' for new updates
+2008-03-03T19:25:56 kio_help.upd: Found new update 'kde3_2'
+2008-03-03T19:25:56 kio_help.upd: Running script 'move_kio_help_cache.sh'
+2008-03-03T19:25:56 [Script] mv: cannot stat `/home/e28700/.kde/share/apps/kio_help/cache': No such file or directory
+2008-03-03T19:25:56 [Script] rmdir: `/home/e28700/.kde/share/apps/kio_help': No such file or directory
+2008-03-03T19:25:58 Checking update-file '/usr/share/apps/kconf_update/kcookiescfg.upd' for new updates
+2008-03-03T19:25:58 kcookiescfg.upd: Found new update 'kde2.2/b1'
+2008-03-03T19:25:59 kcookiescfg.upd: Found new update 'kde3.1/cvs'
+2008-03-03T19:26:01 Checking update-file '/usr/share/apps/kconf_update/kded.upd' for new updates
+2008-03-03T19:26:01 kded.upd: Found new update 'kde3.0'
+2008-03-03T19:26:03 Checking update-file '/usr/share/apps/kconf_update/kcalcrc.upd' for new updates
+2008-03-03T19:26:03 kcalcrc.upd: Found new update 'KDE_3_2_0'
+2008-03-03T19:26:05 Checking update-file '/usr/share/apps/kconf_update/kfmclient_3_2.upd' for new updates
+2008-03-03T19:26:05 kfmclient_3_2.upd: Found new update 'kfmclient_3_2'
+2008-03-03T19:26:05 kfmclient_3_2.upd: Running script 'kfmclient_3_2_update.sh'
+2008-03-03T19:26:05 kfmclient_3_2.upd: Script removes kfmclientrc:Settings:StartNewKonqueror
+2008-03-03T19:26:08 Checking update-file '/usr/share/apps/kconf_update/konsole.upd' for new updates
+2008-03-03T19:26:08 konsole.upd: Found new update 'kde2.2/r1'
+2008-03-03T19:26:09 konsole.upd: Found new update 'kde3.0/r1'
+2008-03-03T19:26:09 konsole.upd: Running script 'schemaStrip.pl'
+2008-03-03T19:26:09 konsole.upd: Updating konsolerc:Desktop Entry:MenuBar to 'Enabled'
+2008-03-03T19:26:09 konsole.upd: Updating konsolerc:Desktop Entry:TerminalSizeHint to 'false'
+2008-03-03T19:26:09 konsole.upd: Updating konsolerc:Desktop Entry:bellmode to '1'
+2008-03-03T19:26:09 konsole.upd: Updating konsolerc:Desktop Entry:defaultfont to 'Monospace,10,-1,5,50,0,0,0,1,0'
+2008-03-03T19:26:09 konsole.upd: Updating konsolerc:Desktop Entry:font to '6'
+2008-03-03T19:26:09 konsole.upd: Updating konsolerc:Desktop Entry:scrollbar to '2'
+2008-03-03T19:26:09 konsole.upd: Updating konsolerc:TipOfDay:RunOnStart to 'false'
+2008-03-03T19:26:11 Checking update-file '/usr/share/apps/kconf_update/kdeprintrc.upd' for new updates
+2008-03-03T19:26:11 kdeprintrc.upd: Found new update 'kde-3.1-toolbar'
+2008-03-03T19:26:11 kdeprintrc.upd: Skipping kdeprintrc:General:ViewMenuBar, already exists.
+2008-03-03T19:26:11 kdeprintrc.upd: RemoveKey removes kdeprintrc:General:ViewToolBar
+2008-03-03T19:26:13 Checking update-file '/usr/share/apps/kconf_update/kioslave.upd' for new updates
+2008-03-03T19:26:13 kioslave.upd: Found new update 'kde2.2/r1'
+2008-03-03T19:26:14 kioslave.upd: Skipping update 'kde2.2/r1'
+2008-03-03T19:26:14 kioslave.upd: Found new update 'kde2.2/r2'
+2008-03-03T19:26:14 kioslave.upd: Running script 'useragent.pl'
+2008-03-03T19:26:14 kioslave.upd: Script removes kioslaverc:UserAgent:EntriesCount
+2008-03-03T19:26:16 kioslave.upd: Found new update 'kde2.2/r3'
+2008-03-03T19:26:16 kioslave.upd: Running script 'proxytype.pl'
+2008-03-03T19:26:16 kioslave.upd: Script removes kioslaverc:Proxy Settings:UseProxy
+2008-03-03T19:26:18 Checking update-file '/usr/share/apps/kconf_update/klippershortcuts.upd' for new updates
+2008-03-03T19:26:18 klippershortcuts.upd: Found new update '04112002'
+2008-03-03T19:26:21 Checking update-file '/usr/share/apps/kconf_update/kwin.upd' for new updates
+2008-03-03T19:26:21 kwin.upd: Found new update 'kde3.0r1'
+2008-03-03T19:26:21 kwin.upd: Running script 'pluginlibFix.pl'
+2008-03-03T19:26:21 kwin.upd: Updating kwinrc:Style:ButtonsOnLeft to 'M'
+2008-03-03T19:26:21 kwin.upd: Updating kwinrc:Style:ButtonsOnRight to 'IAX'
+2008-03-03T19:26:21 kwin.upd: Updating kwinrc:Style:CustomButtonPositions to 'true'
+2008-03-03T19:26:21 kwin.upd: Updating kwinrc:Style:PluginLib to 'kwin3_bluecurve'
+2008-03-03T19:26:21 kwin.upd: Updating kwinrc:Style:ShowToolTips to 'true'
+2008-03-03T19:26:21 kwin.upd: Updating kwinrc:Windows:AutoRaise to 'off'
+2008-03-03T19:26:21 kwin.upd: Updating kwinrc:Windows:AutoRaiseInterval to '0'
+2008-03-03T19:26:21 kwin.upd: Updating kwinrc:Windows:BorderSnapZone to '10'
+2008-03-03T19:26:21 kwin.upd: Updating kwinrc:Windows:ClickRaise to 'on'
+2008-03-03T19:26:21 kwin.upd: Updating kwinrc:Windows:FocusPolicy to 'ClickToFocus'
+2008-03-03T19:26:21 kwin.upd: Updating kwinrc:Windows:MoveMode to 'Opaque'
+2008-03-03T19:26:21 kwin.upd: Updating kwinrc:Windows:ResizeMode to 'Opaque'
+2008-03-03T19:26:21 kwin.upd: Updating kwinrc:Windows:WindowSnapZone to '10'
+2008-03-03T19:26:21 kwin.upd: Updating kwinrc:Windows:WindowsPlacement to 'Smart'
+2008-03-03T19:26:22 kwin.upd: Found new update 'kde3.2Xinerama'
+2008-03-03T19:26:24 Checking update-file '/usr/share/apps/kconf_update/socks.upd' for new updates
+2008-03-03T19:26:24 socks.upd: Found new update 'kde3.0/r1'
+2008-03-03T19:26:27 Checking update-file '/usr/share/apps/kconf_update/kopete-pluginloader.upd' for new updates
+2008-03-03T19:26:27 kopete-pluginloader.upd: Found new update 'kopete0.7/r1'
+2008-03-03T19:26:27 kopete-pluginloader.upd: Running script 'kopete-pluginloader.pl'
+2008-03-03T19:26:27 kopete-pluginloader.upd: Script removes kopeterc::Modules
+2008-03-03T19:26:27 kopete-pluginloader.upd: Removing empty group kopeterc:
+2008-03-03T19:26:29 Checking update-file '/usr/share/apps/kconf_update/kwinsticky.upd' for new updates
+2008-03-03T19:26:29 kwinsticky.upd: Found new update 'stickyupd3.1'
+2008-03-03T19:26:31 Checking update-file '/usr/share/apps/kconf_update/kcharselect.upd' for new updates
+2008-03-03T19:26:31 kcharselect.upd: Found new update '1'
+2008-03-03T19:26:33 Checking update-file '/usr/share/apps/kconf_update/favicons.upd' for new updates
+2008-03-03T19:26:33 favicons.upd: Found new update 'kde3_2'
+2008-03-03T19:26:33 favicons.upd: Running script 'move_favicons.sh'
+2008-03-03T19:26:34 Checking update-file '/usr/share/apps/kconf_update/kickerrc.upd' for new updates
+2008-03-03T19:26:34 kickerrc.upd: Found new update 'kde_3_1_sizeChanges'
+2008-03-03T19:26:35 kickerrc.upd: Running script 'kicker-3.1-properSizeSetting.pl'
+2008-03-03T19:26:35 kickerrc.upd: Updating kickerrc:General:CustomSize to '54'
+2008-03-03T19:26:35 kickerrc.upd: Updating kickerrc:General:Size to '4'
+2008-03-03T19:26:36 Checking update-file '/usr/share/apps/kconf_update/kwiniconify.upd' for new updates
+2008-03-03T19:26:36 kwiniconify.upd: Found new update 'iconifyupd3.1'
+2008-03-03T19:26:39 Checking update-file '/usr/share/apps/kconf_update/knewsticker.upd' for new updates
+2008-03-03T19:26:39 knewsticker.upd: Found new update 'KNewsTicker-0.2'
+2008-03-03T19:26:39 knewsticker.upd: Running script 'knt-0.1-0.2.pl'
+2008-03-03T19:26:40 knewsticker.upd: Found new update 'KNewsTicker-0.2-Rename-KDE3'
+2008-03-03T19:26:42 knewsticker.upd: Found new update 'KNewsTicker-0.2-Rename-KDE3.1'
+2008-03-03T19:26:44 Checking update-file '/usr/share/apps/kconf_update/kopete-jabberpriorityaddition-kconf_update.upd' for new updates
+2008-03-03T19:26:44 kopete-jabberpriorityaddition-kconf_update.upd: Found new update 'kopete0.9/r1'
+2008-03-03T19:26:44 kopete-jabberpriorityaddition-kconf_update.upd: Running script 'kopete-jabberpriorityaddition-kconf_update.sh'
+2008-03-03T19:26:46 Checking update-file '/usr/share/apps/kconf_update/klipperrc.upd' for new updates
+2008-03-03T19:26:46 klipperrc.upd: Found new update '25082001'
+2008-03-03T19:26:46 klipperrc.upd: Running script 'klipper-1-2.pl'
+2008-03-03T19:26:47 klipperrc.upd: Found new update 'kde3.1'
+2008-03-03T19:26:47 klipperrc.upd: Running script 'klipper-kde31.sh'
+2008-03-03T19:26:48 klipperrc.upd: Updating klipperrc:General:AutoStart to 'true'
+2008-03-03T19:26:50 Checking update-file '/usr/share/apps/kconf_update/kopete-pluginloader2.upd' for new updates
+2008-03-03T19:26:50 kopete-pluginloader2.upd: Found new update 'kopete0.8/r1'
+2008-03-03T19:26:50 kopete-pluginloader2.upd: Running script 'kopete-pluginloader2.sh'
+2008-03-03T19:26:52 Checking update-file '/usr/share/apps/kconf_update/kopete-account-kconf_update.upd' for new updates
+2008-03-03T19:26:52 kopete-account-kconf_update.upd: Found new update 'kopete0.7/r1'
+2008-03-03T19:26:52 kopete-account-kconf_update.upd: Running script 'kopete-account-kconf_update.sh'
+2008-03-03T19:26:54 Checking update-file '/usr/share/apps/kconf_update/kuriikwsfilter.upd' for new updates
+2008-03-03T19:26:54 kuriikwsfilter.upd: Found new update 'post-kde3.1/cvs'
+2008-03-03T19:26:56 Checking update-file '/usr/share/apps/kconf_update/kwin_focus1.upd' for new updates
+2008-03-03T19:26:56 kwin_focus1.upd: Found new update 'kwin_focus1'
+2008-03-03T19:26:56 kwin_focus1.upd: Running script 'kwin_focus1.sh'
+2008-03-03T19:26:56 kwin_focus1.upd: Updating kwinrc:Windows:AutoRaise to 'off'
+2008-03-03T19:26:56 kwin_focus1.upd: Updating kwinrc:Windows:AutoRaiseInterval to '0'
+2008-03-03T19:26:56 kwin_focus1.upd: Updating kwinrc:Windows:BorderSnapZone to '10'
+2008-03-03T19:26:56 kwin_focus1.upd: Updating kwinrc:Windows:ClickRaise to 'on'
+2008-03-03T19:26:56 kwin_focus1.upd: Updating kwinrc:Windows:FocusPolicy to 'ClickToFocus'
+2008-03-03T19:26:56 kwin_focus1.upd: Updating kwinrc:Windows:IgnoreFocusStealingClasses to 'kded,kio_uiserver,kget'
+2008-03-03T19:26:56 kwin_focus1.upd: Updating kwinrc:Windows:MoveMode to 'Opaque'
+2008-03-03T19:26:56 kwin_focus1.upd: Updating kwinrc:Windows:ResizeMode to 'Opaque'
+2008-03-03T19:26:56 kwin_focus1.upd: Updating kwinrc:Windows:WindowSnapZone to '10'
+2008-03-03T19:26:56 kwin_focus1.upd: Updating kwinrc:Windows:WindowsPlacement to 'Smart'
+2008-08-11T11:29:46 Checking update-file '/usr/share/apps/kconf_update/kcmdisplayrc.upd' for new updates
+2008-08-11T11:29:46 Checking update-file '/usr/share/apps/kconf_update/kwinupdatewindowsettings.upd' for new updates
+2008-08-11T11:29:46 Checking update-file '/usr/share/apps/kconf_update/kwin3_plugin.upd' for new updates
+2008-08-11T11:29:46 Checking update-file '/usr/share/apps/kconf_update/khotkeys_32b1_update.upd' for new updates
+2008-08-11T11:29:47 Checking update-file '/usr/share/apps/kconf_update/kopete-jabberproxytype-kconf_update.upd' for new updates
+2008-08-11T11:29:47 Checking update-file '/usr/share/apps/kconf_update/ksmserver.upd' for new updates
+2008-08-11T11:29:47 Checking update-file '/usr/share/apps/kconf_update/konqueror_gestures_kde321_update.upd' for new updates
+2008-08-11T11:29:47 Checking update-file '/usr/share/apps/kconf_update/kaccel.upd' for new updates
+2008-08-11T11:29:47 Checking update-file '/usr/share/apps/kconf_update/kio_help.upd' for new updates
+2008-08-11T11:29:47 Checking update-file '/usr/share/apps/kconf_update/kcookiescfg.upd' for new updates
+2008-08-11T11:29:47 Checking update-file '/usr/share/apps/kconf_update/kded.upd' for new updates
+2008-08-11T11:29:47 Checking update-file '/usr/share/apps/kconf_update/kcalcrc.upd' for new updates
+2008-08-11T11:29:47 Checking update-file '/usr/share/apps/kconf_update/kfmclient_3_2.upd' for new updates
+2008-08-11T11:29:47 Checking update-file '/usr/share/apps/kconf_update/konsole.upd' for new updates
+2008-08-11T11:29:47 Checking update-file '/usr/share/apps/kconf_update/kdeprintrc.upd' for new updates
+2008-08-11T11:29:47 Checking update-file '/usr/share/apps/kconf_update/kioslave.upd' for new updates
+2008-08-11T11:29:47 kioslave.upd: Found new update 'kde2.2/r1'
+2008-08-11T11:29:47 kioslave.upd: Skipping update 'kde2.2/r1'
+2008-08-11T11:29:47 Checking update-file '/usr/share/apps/kconf_update/klippershortcuts.upd' for new updates
+2008-08-11T11:29:47 Checking update-file '/usr/share/apps/kconf_update/kwin.upd' for new updates
+2008-08-11T11:29:47 Checking update-file '/usr/share/apps/kconf_update/socks.upd' for new updates
+2008-08-11T11:29:47 Checking update-file '/usr/share/apps/kconf_update/kopete-pluginloader.upd' for new updates
+2008-08-11T11:29:47 Checking update-file '/usr/share/apps/kconf_update/kwinsticky.upd' for new updates
+2008-08-11T11:29:48 Checking update-file '/usr/share/apps/kconf_update/kcharselect.upd' for new updates
+2008-08-11T11:29:48 Checking update-file '/usr/share/apps/kconf_update/favicons.upd' for new updates
+2008-08-11T11:29:48 Checking update-file '/usr/share/apps/kconf_update/kickerrc.upd' for new updates
+2008-08-11T11:29:48 Checking update-file '/usr/share/apps/kconf_update/kwiniconify.upd' for new updates
+2008-08-11T11:29:48 Checking update-file '/usr/share/apps/kconf_update/knewsticker.upd' for new updates
+2008-08-11T11:29:48 Checking update-file '/usr/share/apps/kconf_update/kopete-jabberpriorityaddition-kconf_update.upd' for new updates
+2008-08-11T11:29:48 Checking update-file '/usr/share/apps/kconf_update/klipperrc.upd' for new updates
+2008-08-11T11:29:48 Checking update-file '/usr/share/apps/kconf_update/kopete-pluginloader2.upd' for new updates
+2008-08-11T11:29:48 Checking update-file '/usr/share/apps/kconf_update/kopete-account-kconf_update.upd' for new updates
+2008-08-11T11:29:48 Checking update-file '/usr/share/apps/kconf_update/kuriikwsfilter.upd' for new updates
+2008-08-11T11:29:48 Checking update-file '/usr/share/apps/kconf_update/kwin_focus1.upd' for new updates

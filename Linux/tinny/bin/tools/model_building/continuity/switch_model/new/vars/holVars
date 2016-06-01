@@ -1,0 +1,159 @@
+/*
+ * Variables to examine if we are in the holiday season, in the first
+ * weekend of that season, and how much longer we have to go:
+ *
+ *    IS_HOLIDAY            1 if between TDay and XMas, exclusive
+ *    IS_BLACK_WEEKEND      1 if the Fri, Sat, or Sun right after TDay
+ *    DAYS_LEFT_IN_HOLIDAY  33 if not in holiday season, otherwise
+ *                          countdown to Xmas-eve = 0
+ *
+ * Please do this CALCVARS(HOLIDAYVARS) after calculating DAYOWEEK_98S
+ * in CALCVARS(VARS).
+ *
+ * ASSUMPTION: That the TRAN.TRAN_DATE has already been validated.
+ * ASSUMPTION: That the DAYOWEEK_98S has already been calculated.
+ *
+ * pcd 3/12/04
+ */
+
+
+VAR DAYOMONTH : FLOAT
+GRP = HOLIDAYVARS
+RCOD = 1
+CALC = 
+BEGIN
+   RETURN(String_To_Num(right(TRAN.TRAN_DATE, 2)));
+ENDVAR;
+
+
+VAR MONTH : FLOAT
+GRP = HOLIDAYVARS
+RCOD = 1
+CALC = 
+BEGIN
+   RETURN(String_To_Num(mid(TRAN.TRAN_DATE, 4, 2)));
+ENDVAR;
+
+
+VAR  IS_HOLIDAY : FLOAT
+GRP = HOLIDAYVARS
+RCOD = 1
+CALC = 
+BEGIN
+   /* Are we in the holiday season?  This is defined as the day ofter
+    * Thanksgiving (i.e., the day after the fourth Thursday in November)
+    * through the day before Christmas (i.e., December 24).
+    */
+   IF (MONTH < 11) THEN
+       RETURN(0);
+
+   IF (MONTH = 12) THEN
+       BEGIN
+           IF (DAYOMONTH < 25) THEN
+               RETURN(1);
+           ELSE
+               RETURN(0);
+       END;
+
+   /* Must be November!
+    * The earliest that a fourth-thursday can be is the 22nd and the
+    * latest is the 28th.  So our "Black Friday" can only be from the
+    * 23rd through the 29th
+    */
+
+   IF (DAYOMONTH < 23) THEN
+       RETURN(0);
+   ELSE IF (DAYOMONTH > 28) THEN
+       RETURN(1);
+
+   /* O.K., we are November, less than the 29th, greater than the 22nd.
+    * If we are a Thursday, then we are Thanksgiving and so are not in
+    * the Holiday season yet.
+    */
+   IF (DAYOWEEK_98S = 5) THEN
+       RETURN (0);
+    
+   /* If we are not a Thursday, then lets find out if we are a Thursday
+    * or if the previous Thursday was on or after the 22nd.
+    */
+
+   IF (DAYOMONTH - MOD((DAYOWEEK_98S + 2),7) >= 22) THEN
+       RETURN (1);
+
+   RETURN(0);
+ENDVAR;
+
+
+VAR  IS_BLACK_WEEKEND : FLOAT
+GRP = HOLIDAYVARS
+RCOD = 1
+CALC = 
+VAR
+    DAYS_SINCE_TDAY : NUMERIC;
+    ADDITIONALDAYS  : NUMERIC;
+BEGIN
+   /* Are we in the first weekend after Thanksgiving (i.e., the weekend
+    * of Black Friday)?
+    */
+   /* ASSUMPTION: That the DAYOWEEK_98S has already been calculated. */
+   IF (IS_HOLIDAY = 0 OR (MONTH = 12 AND DAYOMONTH > 1)) THEN
+       RETURN(0);
+
+   /* Must be November!  Are we in the middle of the week (Monday
+    * through Thursday)? */
+   IF (1 < DAYOWEEK_98S AND DAYOWEEK_98S < 6) THEN
+       RETURN(0);
+
+   /* The earliest that Thanksgiving (the fourth-thursday) can be is the
+    * 22nd and the latest is the 28th.  So our "Black Friday" can only
+    * be from the 23rd through the 29th
+    *
+    * Lets figure out how long since Thanksgiving.  First, How long
+    * since the previous Thursday?  Then, if that is later than the
+    * 28th, add on a week.
+    */
+   DAYS_SINCE_TDAY := MOD((DAYOWEEK_98S + 2),7);
+   IF (MONTH = 12) THEN
+       ADDITIONALDAYS  := 30;
+   ELSE
+       ADDITIONALDAYS  := 0;
+   IF ((DAYOMONTH + ADDITIONALDAYS) - DAYS_SINCE_TDAY > 28) THEN
+       RETURN (0);
+       
+
+   /* We are:
+      (a) in the holiday season, 
+      (b) within November or the first day of December,
+      (c) on the weekend (Fri, Sat, Sun), and
+      (d) the previous Thursday was on or before the 28th
+
+      We are in the weekend immediately after Thanksgiving!
+   */
+   RETURN(1);
+ENDVAR;
+
+
+VAR  DAYS_LEFT_IN_HOLIDAY : FLOAT
+GRP = HOLIDAYVARS
+RCOD = 1
+CALC = 
+BEGIN
+   /* We will be valculating the number of days left until the end of
+    * the holiday season (notably, the day before Christmas).  On the
+    * day before Christmas, we equal zero.
+    *
+    * If we are not in the holiday season, use the one more than longest
+    * length of the holiday season: 1 + Nov 23 through Dec 24  = 33
+    * days.
+    */
+   IF (IS_HOLIDAY = 0) THEN
+       RETURN(33);
+
+   IF (MONTH = 12) THEN
+       RETURN(24 - DAYOMONTH);
+
+   /* Must be November! */
+   RETURN(24 + (30 - DAYOMONTH));
+
+ENDVAR;
+

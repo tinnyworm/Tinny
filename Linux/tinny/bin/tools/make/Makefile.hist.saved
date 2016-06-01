@@ -1,0 +1,325 @@
+SHELL = /bin/csh -f
+OS = $(shell uname)
+CUT = /work/price/falcon/$(OS)/bin/ufalcut
+HIST = ~/tools/perl/mhistogram.pl
+CHART = ~krh/tools/chart.pl
+FILTERAUTH = ~/tools/perl/filterAuth.pl
+
+## Some analysis on the data
+DIRS = .
+
+AUTHJOBS =	auth.tran-type \
+        	auth.decision \
+        	auth.key-swipe \
+        	auth.zip3 \
+			auth.legit-date \
+			auth.msg_exp_date \
+        	auth.amount \
+			auth.time \
+        	auth.curr-code \
+        	auth.curr-rate \
+        	auth.date \
+        	auth.avail-cred \
+        	auth.cred-line \
+        	auth.sic \
+			auth.merch-id \
+        	auth.merch-cntry \
+        	auth.pin-ver \
+        	auth.cvv \
+        	auth.sic-pin \
+        	auth.sic-key-swipe \
+			auth.falcon-score 
+#        	auth.Q1key-swipe \
+#        	auth.postal-code \
+#			auth.fraud-date \
+		
+FRAUDJOBS =	fraud.type \
+        	fraud.date-first \
+			fraud.typeXdate 
+		
+CARDJOBS =	card.postal-code \
+			card.cntry \
+			card.open-date \
+			card.issue-type \
+			card.expire-date \
+			card.type \
+			card.use \
+			card.num-cards \
+			card.rec-date 
+
+POSTJOBS =	post.amount-int \
+			post.amount-full \
+			post.curr-code \
+			post.curr-rate \
+			post.post-date \
+			post.tran-date \
+			post.tran-type \
+			post.authed	\
+			post.mcc \
+			post.zip3 \
+			post.merch-cntry \
+			post.sorce		
+
+## Targets
+all: all-jobs
+
+all-jobs: auth-jobs fraud-jobs card-jobs post-jobs
+
+auth-jobs:
+	$(foreach job, $(AUTHJOBS), make all-dirs JOB=$(job);)
+fraud-jobs:
+	$(foreach job, $(FRAUDJOBS), make all-dirs JOB=$(job);)
+card-jobs:
+	$(foreach job, $(CARDJOBS), make all-dirs JOB=$(job);)
+post-jobs:
+	$(foreach job, $(POSTJOBS), make all-dirs JOB=$(job);)
+	
+all-dirs:
+	$(foreach dir, $(DIRS), make $(JOB) DIR=$(dir);)
+
+	
+	
+auth.tran-type:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c64 \
+	| $(CHART) >! analysis/$@.hist
+
+auth.msg_exp_date:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c104-109 \
+	| $(CHART) >! analysis/$@.hist
+
+auth.%-date:
+	cd $(DIR);
+	zcat auths.dat.gz \
+	| $(FILTERAUTH) . $* \
+	| $(CUT) -c20-25 \
+	| $(CHART) >! analysis/$@.hist
+
+auth.decision:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c63 \
+	| $(CHART) >! analysis/$@.hist
+
+auth.key-swipe:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c103 \
+	| $(CHART) >! analysis/$@.hist
+
+auth.Q1key-swipe:
+	cd $(DIR);
+	zcat auths.dat.gz \
+	| perl -ne 'print if(substr($$_,19,6) le "199903");' \
+	| $(CUT) -c103 \
+	| $(CHART) >! analysis/$@.hist
+
+auth.zip3:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c89-91 \
+	| $(HIST) >! analysis/$@.hist
+
+auth.amount:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c34-46 \
+	| $(CHART) >! analysis/$@.hist
+
+auth.time:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c28-31 \
+	| $(CHART) >! analysis/$@.hist
+
+auth.curr-code:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c47-49 \
+	| $(CHART) >! analysis/$@.hist
+
+auth.curr-rate:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c50-62 \
+	| $(CHART) >! analysis/$@.hist
+
+auth.date:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c20-27 \
+	| $(CHART) >! analysis/$@.hist
+
+auth.avail-cred:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c65-74 \
+	| $(CHART) >! analysis/$@.hist
+
+auth.cred-line:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c75-84 \
+	| $(CHART) >! analysis/$@.hist
+
+auth.sic:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c85-88 \
+	| $(CHART) >! analysis/$@.hist
+
+auth.postal-code:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c89-93 \
+	| $(CHART) >! analysis/$@.hist
+
+auth.merch-id:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c124-139 \
+	| $(CHART) >! analysis/$@.hist
+
+auth.falcon-score:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c160-163 \
+	| $(CHART) >! analysis/$@.hist
+
+auth.merch-cntry:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c98-100 \
+	| $(CHART) >! analysis/$@.hist
+
+auth.pin-ver:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c101 \
+	| $(HIST) >! analysis/$@.hist
+
+auth.cvv:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c102 \
+	| $(CHART) >! analysis/$@.hist
+
+auth.sic-pin:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c85-88,101 \
+	| $(CHART) >! analysis/$@.hist
+
+auth.sic-key-swipe:
+	cd $(DIR);
+	zcat auths.dat.gz | $(CUT) -c85-88,103 \
+	| $(CHART) >! analysis/$@.hist
+
+fraud.type:
+	cd $(DIR);
+	zcat frauds.dat.gz | $(CUT) -c20 \
+	| $(CHART) >! analysis/$@.hist
+
+fraud.date-first:
+	cd $(DIR);
+	zcat frauds.dat.gz | $(CUT) -c21-26 \
+	| $(CHART) >! analysis/$@.hist
+
+fraud.typeXdate:
+	cd $(DIR);
+	zcat frauds.dat.gz | $(CUT) -c20-26 \
+	| $(CHART) >! analysis/$@.hist
+
+card.postal-code:
+	cd $(DIR);
+	zcat cards.dat.gz | $(CUT) -c20-24 \
+	| $(CHART) >! analysis/$@.hist
+
+card.cntry:
+	cd $(DIR);
+	zcat cards.dat.gz | $(CUT) -c29-31 \
+	| $(CHART) >! analysis/$@.hist
+
+card.open-date:
+	cd $(DIR);
+	zcat cards.dat.gz | $(CUT) -c32-37 \
+	| $(CHART) >! analysis/$@.hist
+
+card.issue-type:
+	cd $(DIR);
+	zcat cards.dat.gz | $(CUT) -c48 \
+	| $(CHART) >! analysis/$@.hist
+
+card.expire-date:
+	cd $(DIR);
+	zcat cards.dat.gz | $(CUT) -c49-54 \
+	| $(CHART) >! analysis/$@.hist
+
+card.type:
+	cd $(DIR);
+	zcat cards.dat.gz | $(CUT) -c86 \
+	| $(CHART) >! analysis/$@.hist
+
+card.use:
+	cd $(DIR);
+	zcat cards.dat.gz | $(CUT) -c87 \
+	| $(CHART) >! analysis/$@.hist
+
+card.num-cards:
+	cd $(DIR);
+	zcat cards.dat.gz | $(CUT) -c88-90 \
+	| $(CHART) >! analysis/$@.hist
+
+card.rec-date:
+	cd $(DIR);
+	zcat cards.dat.gz | $(CUT) -c91-96 \
+	| $(CHART) >! analysis/$@.hist
+
+# posting
+
+post.amount-int:
+	cd $(DIR);
+	zcat posts.dat.gz | $(CUT) -c20-29 \
+	| $(CHART) >! analysis/$@.hist
+
+post.amount-full:
+	cd $(DIR);
+	zcat posts.dat.gz | $(CUT) -c20-32 \
+	| $(CHART) >! analysis/$@.hist
+
+post.curr-code:
+	cd $(DIR);
+	zcat posts.dat.gz | $(CUT) -c33-35 \
+	| $(CHART) >! analysis/$@.hist
+
+post.curr-rate:
+	cd $(DIR);
+	zcat posts.dat.gz | $(CUT) -c36-48 \
+	| $(CHART) >! analysis/$@.hist
+
+post.post-date:
+	cd $(DIR);
+	zcat posts.dat.gz | $(CUT) -c49-56 \
+	| $(CHART) >! analysis/$@.hist
+
+post.tran-date:
+	cd $(DIR);
+	zcat posts.dat.gz | $(CUT) -c57-64 \
+	| $(CHART) >! analysis/$@.hist
+
+post.tran-type:
+	cd $(DIR);
+	zcat posts.dat.gz | $(CUT) -c91 \
+	| $(CHART) >! analysis/$@.hist
+	
+post.authed:
+	cd $(DIR);
+	zcat posts.dat.gz | $(CUT) -c92 \
+	| $(HIST) >! analysis/$@.hist
+	
+post.mcc:
+	cd $(DIR);
+	zcat posts.dat.gz | $(CUT) -c93-96 \
+	| $(CHART) >! analysis/$@.hist
+	
+post.zip3:
+	cd $(DIR);
+	zcat posts.dat.gz | $(CUT) -c97-99 \
+	| $(CHART) >! analysis/$@.hist
+	
+post.merch-cntry:
+	cd $(DIR);
+	zcat posts.dat.gz | $(CUT) -c106-108 \
+	| $(CHART) >! analysis/$@.hist
+	
+post.sorce:
+	cd $(DIR);
+	zcat posts.dat.gz | $(CUT) -c157-160 \
+	| $(CHART) >! analysis/$@.hist
+	
+
+
+	

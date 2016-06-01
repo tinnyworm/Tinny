@@ -1,0 +1,249 @@
+head	2.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	99.12.08.18.09.44;	author pcd;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	99.09.03.16.54.00;	author jcb;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	98.05.12.17.46.29;	author dkg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@Complete rewrite.  Now uses function hashValue in hashValue.[ch].
+Can compute one of four hash functions: sampstats, drv_falcon, each forward or bacwards.
+@
+text
+@static char rcsId_getHashValues[] = "$Id: getHashValues.c,v 2.1 1999/12/07 23:33:37 pcd Exp pcd $";
+/*
+ * hashvalue:
+ *   Print the hash value for an account number.  Value is based upon
+ *   one of four possible hashing functions currently in use in Falcon.
+ *
+ * Author: Paul C. Dulany (12/8/99)
+ *
+ * Input: (via stdin)
+ *   A series of lines (max length = BUFLEN), with the account number in
+ *   columns 1-19 (1-KEYLENMAX).
+ *
+ * Output: (via stdout)
+ *   A number between 0 and 99.  One output line per input line.
+ *
+ * Algorithms:
+ *   Taken out of the sampstats and drv_falcon source code (and
+ *   rearranged for readability).  In files hashValue.c/hashValue.h.
+ *
+ */
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+#include "hashValue.h"
+extern int getopt(int, char *const *, const char *);
+
+#define KEYLENMAX   19
+#define BUFLEN    1024
+
+typedef struct {
+   int hashType;
+   int hashDirection;
+} options_t;
+
+
+/******************************************************************************/
+
+
+static void usage (char *exename)
+{
+   fprintf (stderr,
+            "Usage:  %s [-t | -s] [-b]\n"
+            "\n"
+            "    Read from stdin a series of lines.  Each line begins\n"
+            "    with an account number in columns 1-19.\n"
+            "\n"
+            "    Output a number between 0 and 99.\n"
+            "\n"
+            "    The number is based upon a hashing function: by default\n"
+            "    the function used by sampstats to determine the\n"
+            "    sampling rate.\n"
+            "\n"
+            "        -t  Calculate based upon the drv_falcon hash\n"
+            "            function for the TEST/TRAIN/VALIDATE split.\n"
+            "\n"
+            "        -s  Calculate based upon the sampstats hash\n"
+            "            function for reducing the number of accouts\n"
+            "            in a sample (** default **).\n"
+            "\n"
+            "        -b  Perform a backwards hash.  (Modifies the above\n"
+            "            algorithms.  See dkg.)\n"
+            "\n"
+            "rcsId_getHashValues = %s\n"
+            "rcsId_HashValue = %s\n"
+            "rcsId_HashValue_h = %s\n"
+            "\n",
+      exename,
+      rcsId_getHashValues,
+      rcsId_hashValue(),
+      rcsId_hashValue_h);
+
+   exit (EXIT_FAILURE);
+}
+
+
+/******************************************************************************/
+
+
+static options_t getOptions (int argc, char ** argv)
+{
+   int c;
+   options_t returnVal;
+
+   returnVal.hashType = sampstats;
+   returnVal.hashDirection = forward;
+
+   while ((c = getopt (argc, argv, "stbh")) != EOF) {
+      switch (c) {
+         case 's':
+            returnVal.hashType = sampstats;
+            break;
+         case 't':
+            returnVal.hashType = testTrain;
+            break;
+         case 'b':
+            returnVal.hashDirection = backward;
+            break;
+         case 'h':
+         default:
+            fprintf (stderr, "ERROR: unknown options %c\n", (char) c);
+            usage (argv[0]);
+            break;
+      }
+   }
+
+   return returnVal;
+}
+            
+
+
+/******************************************************************************/
+
+
+int
+main (int argc, char **argv)
+{
+   char acct[KEYLENMAX+1];
+   char buffer[BUFLEN];
+   int  i;
+   options_t options;
+
+   /* 
+   while ( fscanf (stdin, "%s", acct) != EOF )
+      printf ("%s = %d, %d, %d, %d\n", acct,
+              hashValue(acct, testTrain, forward),
+              hashValue(acct, testTrain, backward),
+              hashValue(acct, sampstats, forward),
+              hashValue(acct, sampstats, backward));
+   */
+
+   options = getOptions (argc, argv);
+
+   for (i=0; i<KEYLENMAX-1; i++) {
+      acct[KEYLENMAX] = ' ';
+   }
+   acct[KEYLENMAX] = '\0';
+
+   while (fgets (buffer, BUFLEN, stdin) != NULL) {
+      strncpy (acct, buffer, KEYLENMAX);
+      fprintf (stdout, "%4d\n",
+               hashValue(acct, options.hashType, options.hashDirection));
+   }
+
+   return (0);
+
+}
+
+
+@
+
+
+1.2
+log
+@changed print format to 4i
+@
+text
+@d1 22
+d24 1
+d27 50
+a76 2
+#define ACCT_LEN 19
+#define BUFF_SIZE 1000
+a77 1
+int hashValue(char*);
+a80 7
+int main(){
+   char buff[BUFF_SIZE];
+   char acct[ACCT_LEN+1];
+
+   while (fgets(buff,BUFF_SIZE,stdin) != NULL){
+      strncpy(acct,buff,ACCT_LEN);
+      acct[ACCT_LEN]='\0';
+d82 25
+a106 1
+      fprintf(stdout,"%4i\n",hashValue(acct));
+d108 2
+a109 1
+   return 0;
+d111 2
+d116 22
+a137 10
+int hashValue(char* acctNum){
+   int coprime[] = {33,47,53,17,27,41};
+   int i, j, k, sum=0;
+
+   for (i=ACCT_LEN-1; !isalnum(acctNum[i]); i--);
+
+   if (i<12){
+      fprintf(stderr,
+              "Account number found of length only %d in hashValue!\n", i+1);
+       return(-1);
+d139 1
+d141 7
+a147 2
+   for (k=0, j=i-12; k<6; i--, j++, k++)
+      sum += (((acctNum[j] - '0') * 10) + (acctNum[i] - '0')) * coprime[k];
+a148 1
+   return(sum%100);
+d150 2
+a151 1
+/******************************************************************************/
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d19 1
+a19 1
+      fprintf(stdout,"%3d\n",hashValue(acct));
+@

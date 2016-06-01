@@ -1,0 +1,22 @@
+=head2 Mon Jan  8 14:19:55 2007: C<Module> L<Time::Simple|Time::Simple>
+
+=over 4
+
+=item *
+
+C<installed into: /home/yxc/scripts/Perl/PM/test/lib/perl5/site_perl/5.8.5>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.052>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+

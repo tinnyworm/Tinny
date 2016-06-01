@@ -1,0 +1,102 @@
+SHELL = /bin/sh
+
+
+# THERE IS AN IMPLICIT ASSUMPTION THAT THE TOP LEVEL RCS LINK IS IN PLACE
+# AND IS CORRECT TO MAKE THIS MAKEFILE FUNCTION CORRECTLY.
+
+WORKSPACE_TOP := .
+include $(WORKSPACE_TOP)/make.include.support
+
+
+#DIRS := MODEL RULES INPUT
+DIRS :=  MODEL RULES FILE_IO BUILDAPI SRC
+
+DIRS_RCS = $(addsuffix /RCS,$(DIRS))
+
+FILES =	make.include.checkedout \
+	make.include.support    \
+	make.include.makefile_deps \
+	README
+
+
+
+OLDDIRS = 
+OLDFILES = 
+
+##################################################################
+
+help :
+	@echo The possible targets are:
+	@echo all \(creates all executables in all subdirectories\)
+	@echo directories  \(creates all subdirectories recursively\)
+	@echo clean  \(removes executables and objects recursively\)
+	@echo realclean \(clean +\)
+	@echo retrieve \(gets all RCS stored files\)
+
+all : Makefile $(FILES) $(addsuffix .all,$(DIRS)) oldstuff
+
+$(addsuffix .all,$(DIRS)) : %.all: %/RCS
+	@echo Making all in $(basename $@)
+	cd $(basename $@) ; $(MAKE) all
+
+
+##
+
+directories : Makefile $(FILES) $(addsuffix .directories,$(DIRS)) oldstuff
+
+$(addsuffix .directories,$(DIRS)) : %.directories: %/RCS
+	@echo Making directories in $(basename $@)
+	cd $(basename $@) ; $(MAKE) directories
+
+##
+
+clean : Makefile $(FILES) $(addsuffix .clean,$(DIRS)) oldstuff
+
+$(addsuffix .clean,$(DIRS)) : %.clean: %/RCS
+	@echo Making clean in $(basename $@)
+	cd $(basename $@) ; $(MAKE) clean
+
+##
+
+realclean : Makefile $(FILES) $(addsuffix .realclean,$(DIRS)) oldstuff
+	rcsclean Makefile $(FILES)
+#	do not add rm -f RCS to this tag in this makefile. the RCS 
+#	directory is absolutely necessary to the continued health of the
+#	makefile directory structure
+
+$(addsuffix .realclean,$(DIRS)) : %.realclean: %/RCS
+	@echo Making realclean in $(basename $@)
+	cd $(basename $@) ; $(MAKE) realclean
+	-rmdir $(basename $@)
+
+##
+
+retrieve : Makefile $(FILES) $(addsuffix .retrieve,$(DIRS)) oldstuff
+
+$(addsuffix .retrieve,$(DIRS)) : %.retrieve: %/RCS
+	@echo Making retrieve in $(basename $@)
+	cd $(basename $@) ; $(MAKE) retrieve
+
+#do not include $(WORKSPACE_TOP)/make.include.makefile_deps
+#it will not work in this top level makefile
+Makefile : RCS RCS/Makefile,v $(FILES)
+	co $@
+
+
+include $(WORKSPACE_TOP)/make.include.checkedout
+
+
+############################################################################
+
+$(FILES) : %: RCS/%,v
+	@echo "FILES $a"
+	co $@
+
+$(DIRS_RCS) : 
+	if [ ! -d $(@D) ] ; then mkdir $(@D) ; fi
+	@echo "Work root " $(WORK_ROOT) " RCS " $(WORK_RCS)
+	ln -s $(subst $(WORK_ROOT),$(WORK_RCS),$(shell pwd)/$(@D)) ./$(@D)/RCS
+
+oldstuff :
+	@rm -rf $(OLDDIRS)
+	@rm -f $(OLDFILES)

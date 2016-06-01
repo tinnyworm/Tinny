@@ -1,0 +1,272 @@
+VAR HOUR_RISK : HOUR_RISK_DATA
+GRP = risk
+CALC =
+VAR
+   tmp_risk : HOUR_RISK_DATA
+BEGIN
+   Table_Lookup(CURRENT_HOUR,tmp_risk);
+   return(tmp_risk);
+ENDVAR;
+
+VAR HOUR_RISK_RATE : FLOAT
+GRP = risk
+RCOD = 0
+CALC =
+FAL_RISK_RATE(adjust_ratio, HOUR_RISK.NUMFRDS, 
+HOUR_RISK.TOTAL, def_risk_rate);
+
+VAR TRANTYPES_RISK : TRANTYPES_RISK_DATA
+GRP = risk
+CALC =
+VAR
+   tmp_risk : TRANTYPES_RISK_DATA
+BEGIN
+   Table_Lookup(CURRENT_TRANTYPES,tmp_risk);
+   return(tmp_risk);
+ENDVAR;
+
+VAR TRANTYPES_RISK_RATE : FLOAT
+GRP = risk
+RCOD = 0
+CALC =
+FAL_RISK_RATE(adjust_ratio, TRANTYPES_RISK.NUMFRDS, 
+TRANTYPES_RISK.TOTAL, def_risk_rate);
+
+VAR OPTYPES_RISK : OPTYPES_RISK_DATA
+GRP = risk
+CALC =
+VAR
+   tmp_risk : OPTYPES_RISK_DATA
+BEGIN
+   Table_Lookup(CURRENT_OPTYPES,tmp_risk);
+   return(tmp_risk);
+ENDVAR;
+
+VAR OPTYPES_RISK_RATE : FLOAT
+GRP = risk
+RCOD = 0
+CALC =
+FAL_RISK_RATE(adjust_ratio, OPTYPES_RISK.NUMFRDS, 
+OPTYPES_RISK.TOTAL, def_risk_rate);
+
+VAR AMT_RISK : AMT_RISK_DATA
+GRP = risk
+CALC =
+VAR
+   tmp_risk : AMT_RISK_DATA
+BEGIN
+   Table_Lookup(CURRENT_AMT,tmp_risk);
+   return(tmp_risk);
+ENDVAR;
+
+VAR AMT_RISK_RATE : FLOAT
+GRP = risk
+RCOD = 0
+CALC =
+FAL_RISK_RATE(adjust_ratio, AMT_RISK.NUMFRDS, 
+AMT_RISK.TOTAL, def_risk_rate);
+
+VAR PAYDATEREQ_RISK : PAYDATEREQ_RISK_DATA
+GRP = risk
+CALC =
+VAR
+   tmp_risk : PAYDATEREQ_RISK_DATA
+BEGIN
+   Table_Lookup(CURRENT_PAYDATEREQ,tmp_risk);
+   return(tmp_risk);
+ENDVAR;
+
+VAR PAYDATEREQ_RISK_RATE : FLOAT
+GRP = risk
+RCOD = 0
+CALC =
+FAL_RISK_RATE(adjust_ratio, PAYDATEREQ_RISK.NUMFRDS, 
+PAYDATEREQ_RISK.TOTAL, def_risk_rate);
+
+VAR FUNDTRANS_RISK : FUNDTRANS_RISK_DATA
+GRP = risk
+CALC =
+VAR
+   tmp_risk : FUNDTRANS_RISK_DATA
+BEGIN
+   Table_Lookup(CURRENT_FUNDTRANS,tmp_risk);
+   return(tmp_risk);
+ENDVAR;
+
+VAR FUNDTRANS_RISK_RATE : FLOAT
+GRP = risk
+RCOD = 0
+CALC =
+FAL_RISK_RATE(adjust_ratio, FUNDTRANS_RISK.NUMFRDS, 
+FUNDTRANS_RISK.TOTAL, def_risk_rate);
+
+VAR SRCSEG_RISK : SRCSEG_RISK_DATA
+GRP = risk
+CALC =
+VAR
+   tmp_risk : SRCSEG_RISK_DATA
+BEGIN
+   Table_Lookup(CURRENT_SRCSEG,tmp_risk);
+   return(tmp_risk);
+ENDVAR;
+
+VAR SRCSEG_RISK_RATE : FLOAT
+GRP = risk
+RCOD = 0
+CALC =
+FAL_RISK_RATE(adjust_ratio, SRCSEG_RISK.NUMFRDS, 
+SRCSEG_RISK.TOTAL, def_risk_rate);
+
+VAR BENREG_RISK : BENREG_RISK_DATA
+GRP = risk
+CALC =
+VAR
+   tmp_risk : BENREG_RISK_DATA
+BEGIN
+   Table_Lookup(CURRENT_BENREG,tmp_risk);
+   return(tmp_risk);
+ENDVAR;
+
+VAR BENREG_RISK_RATE : FLOAT
+GRP = risk
+RCOD = 0
+CALC =
+FAL_RISK_RATE(adjust_ratio, BENREG_RISK.NUMFRDS, 
+BENREG_RISK.TOTAL, def_risk_rate);
+
+VAR BENREGCAT_RISK : BENREGCAT_RISK_DATA
+GRP = risk
+CALC =
+VAR
+   tmp_risk : BENREGCAT_RISK_DATA
+BEGIN
+   Table_Lookup(CURRENT_BENREGCAT,tmp_risk);
+   return(tmp_risk);
+ENDVAR;
+
+VAR BENREGCAT_RISK_RATE : FLOAT
+GRP = risk
+RCOD = 0
+CALC =
+FAL_RISK_RATE(adjust_ratio, BENREGCAT_RISK.NUMFRDS, 
+BENREGCAT_RISK.TOTAL, def_risk_rate);
+
+VAR DESTBANK_RISK : DESTBANK_RISK_DATA
+GRP = risk
+CALC =
+VAR
+   tmp_risk : DESTBANK_RISK_DATA
+BEGIN
+   Table_Lookup(CURRENT_DESTBANK,tmp_risk);
+   return(tmp_risk);
+ENDVAR;
+
+VAR DESTBANK_RISK_RATE : FLOAT
+GRP = risk
+RCOD = 0
+CALC =
+FAL_RISK_RATE(adjust_ratio, DESTBANK_RISK.NUMFRDS, 
+DESTBANK_RISK.TOTAL, def_risk_rate);
+
+VAR DESTSEG_RISK : DESTSEG_RISK_DATA
+GRP = risk
+CALC =
+VAR
+   tmp_risk : DESTSEG_RISK_DATA
+BEGIN
+   Table_Lookup(CURRENT_DESTSEG,tmp_risk);
+   return(tmp_risk);
+ENDVAR;
+
+VAR DESTSEG_RISK_RATE : FLOAT
+GRP = risk
+RCOD = 0
+CALC =
+FAL_RISK_RATE(adjust_ratio, DESTSEG_RISK.NUMFRDS, 
+DESTSEG_RISK.TOTAL, def_risk_rate);
+
+VAR SRCDESTSEG_RISK : SRCDESTSEG_RISK_DATA
+GRP = risk
+CALC =
+VAR
+   tmp_risk : SRCDESTSEG_RISK_DATA
+BEGIN
+   Table_Lookup(CURRENT_SRCDESTSEG,tmp_risk);
+   return(tmp_risk);
+ENDVAR;
+
+VAR SRCDESTSEG_RISK_RATE : FLOAT
+GRP = risk
+RCOD = 0
+CALC =
+FAL_RISK_RATE(adjust_ratio, SRCDESTSEG_RISK.NUMFRDS, 
+SRCDESTSEG_RISK.TOTAL, def_risk_rate);
+
+VAR AUTHTYPE_RISK : AUTHTYPE_RISK_DATA
+GRP = risk
+CALC =
+VAR
+   tmp_risk : AUTHTYPE_RISK_DATA
+BEGIN
+   Table_Lookup(CURRENT_AUTHTYPE,tmp_risk);
+   return(tmp_risk);
+ENDVAR;
+
+VAR AUTHTYPE_RISK_RATE : FLOAT
+GRP = risk
+RCOD = 0
+CALC =
+FAL_RISK_RATE(adjust_ratio, AUTHTYPE_RISK.NUMFRDS, 
+AUTHTYPE_RISK.TOTAL, def_risk_rate);
+
+VAR PCHR_RISK : PCHR_RISK_DATA
+GRP = risk
+CALC =
+VAR
+   tmp_risk : PCHR_RISK_DATA
+BEGIN
+   Table_Lookup(CURRENT_PCHR,tmp_risk);
+   return(tmp_risk);
+ENDVAR;
+
+VAR PCHR_RISK_RATE : FLOAT
+GRP = risk
+RCOD = 0
+CALC =
+FAL_RISK_RATE(adjust_ratio, PCHR_RISK.NUMFRDS, 
+PCHR_RISK.TOTAL, def_risk_rate);
+
+VAR BROWSERTYPE_RISK : BROWSERTYPE_RISK_DATA
+GRP = risk
+CALC =
+VAR
+   tmp_risk : BROWSERTYPE_RISK_DATA
+BEGIN
+   Table_Lookup(CURRENT_BROWSERTYPE,tmp_risk);
+   return(tmp_risk);
+ENDVAR;
+
+VAR BROWSERTYPE_RISK_RATE : FLOAT
+GRP = risk
+RCOD = 0
+CALC =
+FAL_RISK_RATE(adjust_ratio, BROWSERTYPE_RISK.NUMFRDS, 
+BROWSERTYPE_RISK.TOTAL, def_risk_rate);
+
+VAR AGENT_RISK : AGENT_RISK_DATA
+GRP = risk
+CALC =
+VAR
+   tmp_risk : AGENT_RISK_DATA
+BEGIN
+   Table_Lookup(CURRENT_AGENT,tmp_risk);
+   return(tmp_risk);
+ENDVAR;
+
+VAR AGENT_RISK_RATE : FLOAT
+GRP = risk
+RCOD = 0
+CALC =
+FAL_RISK_RATE(adjust_ratio, AGENT_RISK.NUMFRDS, 
+AGENT_RISK.TOTAL, def_risk_rate);
+

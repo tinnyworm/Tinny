@@ -1,0 +1,16 @@
+                                           The SAS System                                          1
+
+            ----------------------------------------------------------------------------
+            |       FORMAT NAME: $FMETHOD LENGTH:   20   NUMBER OF VALUES:    7        |
+            |   MIN LENGTH:   1  MAX LENGTH:  40  DEFAULT LENGTH  20  FUZZ:        0   |
+            |--------------------------------------------------------------------------|
+            |START           |END             |LABEL  (VER. 8.1     23JUL2003:17:55:37)|
+            |----------------+----------------+----------------------------------------|
+            |                |                |Blank: Unknown                          |
+            |C               |C               |C: Customer Reported                    |
+            |F               |F               |F: FI System                            |
+            |P               |P               |P: PVV Check                            |
+            |S               |S               |S: Non-FI System                        |
+            |V               |V               |V: CVV/CVC Check                        |
+            |**OTHER**       |**OTHER**       |[$CHAR1.]                               |
+            ----------------------------------------------------------------------------

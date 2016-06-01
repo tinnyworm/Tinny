@@ -1,0 +1,9 @@
+[ScreenSaver]
+DPMS-dependent=false
+LockGrace=60000
+Timeout=1800
+
+[Version]
+KDEVersionMajor=3
+KDEVersionMinor=3
+KDEVersionRelease=1

@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+# Number the columns on output
+# I am learning awk (actually, gawk), so I used it.
+#
+
+COL=`/bin/stty -a | grep 'columns =* *' | sed -e 's/^.*columns =* *\([0-9]*\);.*/\1/'`
+export COL
+gawk 'BEGIN{ c = ENVIRON["COL"] 
+
+             while (c >= ++d)
+                if (d % 10 == 0)
+                   printf(" ")
+                else
+                   printf("%1d", d % 10)
+             print ""
+
+             while (c >= ++e)
+                if (e % 10 == 0)
+                   printf("%1d", (e % 100) / 10)
+                else
+                   printf(" ")
+             print ""
+
+             while (c >= ++f)
+                if (f % 100 == 0)
+                   printf("%1d", (f % 1000) / 100)
+                else
+                   printf(" ")
+             print ""
+
+           }' < /dev/null
+

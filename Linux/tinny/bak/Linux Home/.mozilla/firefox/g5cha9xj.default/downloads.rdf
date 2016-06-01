@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="file:///home/e28700/Desktop/tree-1.4b3-3.i386.rpm"
+                   NC:Name="tree-1.4b3-3.i386.rpm"
+                   NC:Transferred="22KB of 22KB">
+    <NC:URL RDF:resource="http://download.fedora.redhat.com/pub/fedora/linux/core/2/i386/os/Fedora/RPMS/tree-1.4b3-3.i386.rpm"/>
+    <NC:File RDF:resource="file:///home/e28700/Desktop/tree-1.4b3-3.i386.rpm"/>
+    <NC:DateStarted NC:parseType="Date">Tue May 06 16:16:31 CDT 2008 +721216</NC:DateStarted>
+    <NC:DateEnded NC:parseType="Date">Tue May 06 16:16:31 CDT 2008 +728894</NC:DateEnded>
+    <NC:DownloadState NC:parseType="Integer">1</NC:DownloadState>
+    <NC:ProgressPercent NC:parseType="Integer">100</NC:ProgressPercent>
+  </RDF:Description>
+  <RDF:Seq RDF:about="NC:DownloadsRoot">
+    <RDF:li RDF:resource="/home/e28700/Desktop/DISPACKAGE.tar.gz"/>
+    <RDF:li RDF:resource="file:///home/e28700/Desktop/tree-1.4b3-3.i386.rpm"/>
+    <RDF:li RDF:resource="file:///home/e28700/Desktop/mode-compile.el"/>
+    <RDF:li RDF:resource="file:///home/e28700/Desktop/nxml-mode-20041004.tar.gz"/>
+    <RDF:li RDF:resource="file:///home/e28700/Desktop/psgml-1.2.5.tar.gz"/>
+    <RDF:li RDF:resource="file:///home/e28700/Desktop/psvn.el"/>
+    <RDF:li RDF:resource="file:///home/e28700/Desktop/cedet-1.0pre4.tar.gz"/>
+    <RDF:li RDF:resource="file:///home/e28700/Desktop/speedbar-0.14beta4.tar.gz"/>
+    <RDF:li RDF:resource="file:///home/e28700/Desktop/eieio-0.17.tar.gz"/>
+    <RDF:li RDF:resource="file:///home/e28700/Desktop/semantic-1.4.4.tar.gz"/>
+  </RDF:Seq>
+  <RDF:Description RDF:about="file:///home/e28700/Desktop/psvn.el"
+                   NC:Name="psvn.el"
+                   NC:Transferred="269KB of 278KB">
+    <NC:URL RDF:resource="http://www.xsteve.at/prg/emacs/psvn.el"/>
+    <NC:File RDF:resource="file:///home/e28700/Desktop/psvn.el"/>
+    <NC:DateStarted NC:parseType="Date">Wed Apr 16 15:24:08 CDT 2008 +119557</NC:DateStarted>
+    <NC:DateEnded NC:parseType="Date">Wed Apr 16 15:24:08 CDT 2008 +676026</NC:DateEnded>
+    <NC:DownloadState NC:parseType="Integer">1</NC:DownloadState>
+    <NC:ProgressPercent NC:parseType="Integer">100</NC:ProgressPercent>
+  </RDF:Description>
+  <RDF:Description RDF:about="file:///home/e28700/Desktop/eieio-0.17.tar.gz"
+                   NC:Name="eieio-0.17.tar.gz"
+                   NC:Transferred="118KB of 118KB">
+    <NC:URL RDF:resource="http://osdn.dl.sourceforge.net/sourceforge/cedet/eieio-0.17.tar.gz"/>
+    <NC:File RDF:resource="file:///home/e28700/Desktop/eieio-0.17.tar.gz"/>
+    <NC:DateStarted NC:parseType="Date">Mon Apr 07 12:27:46 CDT 2008 +559637</NC:DateStarted>
+    <NC:DateEnded NC:parseType="Date">Mon Apr 07 12:27:46 CDT 2008 +577388</NC:DateEnded>
+    <NC:DownloadState NC:parseType="Integer">1</NC:DownloadState>
+    <NC:ProgressPercent NC:parseType="Integer">100</NC:ProgressPercent>
+  </RDF:Description>
+  <RDF:Description RDF:about="file:///home/e28700/Desktop/nxml-mode-20041004.tar.gz"
+                   NC:Name="nxml-mode-20041004.tar.gz"
+                   NC:Transferred="433KB of 433KB">
+    <NC:URL RDF:resource="http://www.thaiopensource.com/download/nxml-mode-20041004.tar.gz"/>
+    <NC:File RDF:resource="file:///home/e28700/Desktop/nxml-mode-20041004.tar.gz"/>
+    <NC:DateStarted NC:parseType="Date">Wed Apr 23 17:41:12 CDT 2008 +795801</NC:DateStarted>
+    <NC:DateEnded NC:parseType="Date">Wed Apr 23 17:41:12 CDT 2008 +818067</NC:DateEnded>
+    <NC:DownloadState NC:parseType="Integer">1</NC:DownloadState>
+    <NC:ProgressPercent NC:parseType="Integer">100</NC:ProgressPercent>
+  </RDF:Description>
+  <RDF:Description RDF:about="file:///home/e28700/Desktop/cedet-1.0pre4.tar.gz"
+                   NC:Name="cedet-1.0pre4.tar.gz"
+                   NC:Transferred="1419KB of 1419KB">
+    <NC:URL RDF:resource="http://internap.dl.sourceforge.net/sourceforge/cedet/cedet-1.0pre4.tar.gz"/>
+    <NC:File RDF:resource="file:///home/e28700/Desktop/cedet-1.0pre4.tar.gz"/>
+    <NC:DateStarted NC:parseType="Date">Mon Apr 07 13:22:36 CDT 2008 +397173</NC:DateStarted>
+    <NC:DateEnded NC:parseType="Date">Mon Apr 07 13:22:36 CDT 2008 +404426</NC:DateEnded>
+    <NC:DownloadState NC:parseType="Integer">1</NC:DownloadState>
+    <NC:ProgressPercent NC:parseType="Integer">100</NC:ProgressPercent>
+  </RDF:Description>
+  <RDF:Description RDF:about="file:///home/e28700/Desktop/mode-compile.el"
+                   NC:Name="mode-compile.el"
+                   NC:Transferred="1KB of  1KB">
+    <NC:URL RDF:resource="http://perso.tls.cena.fr/~boubaker/distrib/mode-compile.el"/>
+    <NC:File RDF:resource="file:///home/e28700/Desktop/mode-compile.el"/>
+    <NC:DateEnded NC:parseType="Date">Tue May 06 13:48:20 CDT 2008 +121879</NC:DateEnded>
+    <NC:DownloadState NC:parseType="Integer">1</NC:DownloadState>
+    <NC:ProgressPercent NC:parseType="Integer">100</NC:ProgressPercent>
+  </RDF:Description>
+  <RDF:Description RDF:about="file:///home/e28700/Desktop/speedbar-0.14beta4.tar.gz"
+                   NC:Name="speedbar-0.14beta4.tar.gz"
+                   NC:Transferred="112KB of 112KB">
+    <NC:URL RDF:resource="http://osdn.dl.sourceforge.net/sourceforge/cedet/speedbar-0.14beta4.tar.gz"/>
+    <NC:File RDF:resource="file:///home/e28700/Desktop/speedbar-0.14beta4.tar.gz"/>
+    <NC:DateStarted NC:parseType="Date">Mon Apr 07 12:31:00 CDT 2008 +337132</NC:DateStarted>
+    <NC:DateEnded NC:parseType="Date">Mon Apr 07 12:31:00 CDT 2008 +342920</NC:DateEnded>
+    <NC:DownloadState NC:parseType="Integer">1</NC:DownloadState>
+    <NC:ProgressPercent NC:parseType="Integer">100</NC:ProgressPercent>
+  </RDF:Description>
+  <RDF:Description RDF:about="file:///home/e28700/Desktop/psgml-1.2.5.tar.gz"
+                   NC:Name="psgml-1.2.5.tar.gz"
+                   NC:Transferred="238KB of 238KB">
+    <NC:URL RDF:resource="http://www.lysator.liu.se/~lenst/about_psgml/psgml-1.2.5.tar.gz"/>
+    <NC:File RDF:resource="file:///home/e28700/Desktop/psgml-1.2.5.tar.gz"/>
+    <NC:DateStarted NC:parseType="Date">Wed Apr 23 14:10:12 CDT 2008 +158251</NC:DateStarted>
+    <NC:DateEnded NC:parseType="Date">Wed Apr 23 14:10:12 CDT 2008 +165533</NC:DateEnded>
+    <NC:DownloadState NC:parseType="Integer">1</NC:DownloadState>
+    <NC:ProgressPercent NC:parseType="Integer">100</NC:ProgressPercent>
+  </RDF:Description>
+  <RDF:Description RDF:about="file:///home/e28700/Desktop/semantic-1.4.4.tar.gz"
+                   NC:Name="semantic-1.4.4.tar.gz"
+                   NC:Transferred="315KB of 315KB">
+    <NC:URL RDF:resource="http://internap.dl.sourceforge.net/sourceforge/cedet/semantic-1.4.4.tar.gz"/>
+    <NC:File RDF:resource="file:///home/e28700/Desktop/semantic-1.4.4.tar.gz"/>
+    <NC:DateStarted NC:parseType="Date">Mon Apr 07 12:13:02 CDT 2008 +257387</NC:DateStarted>
+    <NC:DateEnded NC:parseType="Date">Mon Apr 07 12:13:02 CDT 2008 +267726</NC:DateEnded>
+    <NC:DownloadState NC:parseType="Integer">1</NC:DownloadState>
+    <NC:ProgressPercent NC:parseType="Integer">100</NC:ProgressPercent>
+  </RDF:Description>
+  <RDF:Description RDF:about="/home/e28700/Desktop/DISPACKAGE.tar.gz"
+                   NC:Name="DISPACKAGE.tar.gz"
+                   NC:Transferred="610KB of 610KB">
+    <NC:URL RDF:resource="http://www.public.asu.edu/%7Ehuanliu/Discretization/DISPACKAGE.tar.gz"/>
+    <NC:File RDF:resource="/home/e28700/Desktop/DISPACKAGE.tar.gz"/>
+    <NC:DateStarted NC:parseType="Date">Mon May 19 17:18:31 CDT 2008 +250860</NC:DateStarted>
+    <NC:DateEnded NC:parseType="Date">Mon May 19 17:18:31 CDT 2008 +264237</NC:DateEnded>
+    <NC:DownloadState NC:parseType="Integer">1</NC:DownloadState>
+    <NC:ProgressPercent NC:parseType="Integer">100</NC:ProgressPercent>
+  </RDF:Description>
+</RDF:RDF>

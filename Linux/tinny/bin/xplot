@@ -1,0 +1,106 @@
+#!/usr/local/bin/perl -w
+
+#---------------------------------------------------#
+
+$usage="
+Usage: cat tab_delim_data | $0 [options]
+Options:
+        -xr  [x1:x2]
+        -yr  [y1:y2]
+        -x   xlable
+        -y   ylable
+        -n   number of columns
+        -wlp with_points_and_lines
+        -wp  with_points_no_lines
+        -t   title
+        -p   print_output_file
+        -c   color_print_output_file
+        -o   keep output data file
+";
+
+$garg  = "set data style lines\n";
+$garg .= "set grid\n";
+
+#---------------------------------------------------#
+
+my $cols = 2;
+my $out  = 0;
+
+while ( (scalar @ARGV) >0 ) {
+    $av = shift @ARGV;
+    if ($av =~ /^-([xy])r$/) {
+	$nx = shift @ARGV or die $usage;
+	$garg .= "set $1range $nx \n";
+    } elsif ($av =~ /^-([xy])$/) {
+	$nx = shift @ARGV or die $usage;
+	$garg .= "set $1label \'$nx\'\n";
+    }elsif ($av=~ /^-n/) {
+	$cols = shift @ARGV or die $usage;
+    } elsif ($av=~ /^-wlp/) {
+	$garg .= "set data style lp\n";
+    } elsif ($av=~ /^-wp/) {
+	$garg .= "set data style p\n";
+    } elsif ($av=~ /^-t/) {
+	$nx = shift @ARGV or die $usage;
+	$garg .= "set title \'$nx\'\n";
+    } elsif ($av=~ /^-o/) {
+	$out = 1;
+    } elsif ($av=~ /^-p/) {
+	$p=1;
+	$pname = shift @ARGV or die $usage;
+    } elsif ($av=~ /^-c/) {
+	$c=1;
+	$pname = shift @ARGV or die $usage;
+    } else {
+	die "Unknow option $av!\n $usage";
+    }
+}
+
+#---------------------------------------------------#
+
+open(TOUT,"> xplot.out") or die;
+
+while ( <STDIN> ) {
+    print TOUT $_;
+}
+
+close(TOUT) or die "$!\n";
+
+#---------------------------------------------------#
+
+my $p_cmd = "plot \'xplot.out\' using ";
+
+for ( my $i=0; $i<$cols; $i++) {
+    $p_cmd .= $i+1 . ":"
+}
+
+$p_cmd =~ s/:$//;
+$p_cmd .= "\n";
+
+#---------------------------------------------------#
+
+open(GNU,"|gnuplot -persist") or die "No GNUPLOT Installed?";
+
+print GNU "$garg";
+
+if (defined $p) {
+    print GNU "set terminal postscript\n";
+    print GNU "set output \"$pname\" \n";
+}
+
+if (defined $c) {
+    print GNU "set terminal postscript enhanced color \n";
+    print GNU "set output \"$pname\" \n";
+}
+
+print GNU "$p_cmd \n";
+
+close (GNU);
+
+#---------------------------------------------------#
+
+if ( $out == 0 ) {
+    system ("rm -f xplot.out");
+}
+
+#---------------------------------------------------#

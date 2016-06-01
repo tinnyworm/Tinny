@@ -1,0 +1,6 @@
+#!/usr/local/bin/tcsh
+#
+# build histogram for auth.date and fraud.first-date
+
+make -f ~/tools/make/Makefile.hist auth.date
+make -f ~/tools/make/Makefile.hist fraud.first-date

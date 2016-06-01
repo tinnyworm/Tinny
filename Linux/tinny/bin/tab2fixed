@@ -1,0 +1,39 @@
+#!/usr/bin/env perl
+
+# (C) 2004 Fair Isaac Corporation
+#
+# $Id: tab2fixed.pl,v 1.1.1.1 2004/01/20 16:48:00 ufm Exp $
+#
+# $Log: tab2fixed.pl,v $
+# Revision 1.1.1.1  2004/01/20 16:48:00  ufm
+# initial import
+#
+
+$COLUMNS=15;
+$DELIMITOR="\t";
+$SEPARATOR='';
+while ($ARGV[0] =~ /^-/) {
+  if ($ARGV[0] eq '-c' && $ARGV[1] =~ /^\d+$/) {
+    $COLUMNS=$ARGV[1];
+  } elsif ($ARGV[0] eq '-d' && defined($ARGV[1])) {
+    $DELIMITOR=$ARGV[1];
+  } elsif ($ARGV[0] eq '-s' && defined($ARGV[1])) {
+    $SEPARATOR=$ARGV[1];
+  } else {
+    die "Unknown option \"$ARGV[0]\" to tab2fixed.pl\n";
+  }
+  shift(@ARGV);
+  shift(@ARGV);
+}
+
+$blank=' ' x $COLUMNS;
+
+while (<>) {
+  chomp;
+  @f=split(/$DELIMITOR/,$_,-1);
+  print $SEPARATOR;
+  for ($i=0; $i<@f; $i++) {
+    print substr($f[$i].$blank,0,$COLUMNS).$SEPARATOR;
+  }
+  print "\n";
+}

@@ -1,0 +1,39 @@
+#!/bin/sh
+#set -v
+
+OSTYPE="`uname`"
+FALCONHOME="/work/price/falcon"
+JAVAHOME=${FALCONHOME}"/local/${OSTYPE}/java/jdk1.5.0"
+JAVALIB=${FALCONHOME}"/local/java/lib"
+CLASSPATH=${JAVALIB}"/falcon.jar"
+CLASSPATH=${CLASSPATH}:${JAVALIB}"/colt.jar"
+CLASSPATH=${CLASSPATH}:${JAVALIB}"/commons-math.jar"
+JAVA=${JAVAHOME}/bin/java
+
+PACK="com.fi.falcon"
+MAIN=${PACK}.VerifyPay
+
+check_java_version()
+{
+  if [ ! -x $JAVA ]; then
+    echo ${JAVA} not found
+    exit 1
+  fi
+  #v=`java -version 2>&1`
+  #echo "$v"
+  return 0
+}
+
+if [ $# -gt 0 ]
+then
+  if [ $1 = "-h" ]
+  then
+    echo "Usage: verify_pay {[-n records_to_process] -d filename} >& out.verify_pay &"
+    echo "if -d arg not given, then will read from stdin"
+    exit 1
+  fi
+fi
+
+check_java_version
+
+${JAVA} -cp ${CLASSPATH} ${MAIN} $*

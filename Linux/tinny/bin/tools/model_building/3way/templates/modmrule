@@ -1,0 +1,285 @@
+//
+//************************************************
+// Model ID Constant
+//************************************************
+//
+CONST  MODEL_ID                            = 0xa100;
+
+INCLUDE "vars/ukConst4"
+INCLUDE "tabs/ukTypes4"
+
+INCLUDE "vars/ukAInit4"
+INCLUDE "vars/ukAVars4"
+INCLUDE "tabs/COMMREF4"
+INCLUDE "tabs/826LLtab"
+INCLUDE "tabs/risk_table_here"
+
+INCLUDE "vars/MerchSumm.vars";
+INCLUDE "vars/FPPCross.vars";
+INCLUDE "vars/FPPDerived.vars";
+INCLUDE "vars/FPPNewDerived.vars";
+
+INCLUDE "vars/initCrossProf.inc";
+
+INCLUDE "nets/varlists"
+INCLUDE "nets/basenameScrCal"
+
+//
+//************************************************
+// Main scoring rule
+//************************************************
+//
+RULE MAIN;
+VAR
+   STATUS     : NUMERIC;
+   NSCORE     : NUMERIC;
+   NOT_ERROR  : NUMERIC;
+   SCORE_CONV : basename_SCORE_CONVERT;
+
+BEGIN
+
+   NOT_ERROR := 0xFF;
+   /* Make sure profile initialization flag has been set */
+   IF (PROF_INIT <> PROF_INIT_VALUE) THEN
+   BEGIN
+      RECENT_ERROR := FAIL + MODEL_ID + PROF_NO_INIT;
+      TERMINATE RECENT_ERROR;
+   END;
+
+   /* This is an AUTH ONLY model */ 
+   IF (TRAN.AUTH_POST_FLAG <> 'A') THEN
+   BEGIN
+      RECENT_ERROR := FAIL + MODEL_ID + BAD_SCORE_TYPE;
+      TERMINATE RECENT_ERROR;
+   END;
+
+   /* Make sure transaction is cash or merchandise */
+   IF (TRAN.TRAN_TYPE IN ("A", "B", "K", "R", "S", "T", "V", "X")) THEN 
+	TERMINATE NOT_ERROR;
+
+   IF NOT (TRAN.TRAN_TYPE IN ('C', 'M')) THEN
+   BEGIN
+      RECENT_ERROR := FAIL + MODEL_ID + NOT_CASH_OR_MERCH;
+      TERMINATE RECENT_ERROR;
+   END;
+
+   /* Check transaction specific date/time information */
+   IF NOT(Valid_Date(TRAN.TRAN_DATE)) THEN
+   BEGIN
+      RECENT_ERROR := (FAIL + MODEL_ID + BAD_TRAN_DATE);
+      TERMINATE RECENT_ERROR;
+   END;
+
+   IF NOT(Valid_Time(TRAN.TRAN_TIME)) THEN
+   BEGIN
+      RECENT_ERROR := (FAIL + MODEL_ID + BAD_TRAN_TIME);
+      TERMINATE RECENT_ERROR;
+   END;
+
+   /* Make sure the transaction amount is valid */
+   /* Note that we assume that the amount is capped in the variable DOLLAR_AMOUNT */
+	IF NOT(Valid_Amount(TRAN.TRAN_AMOUNT)) OR
+      (TRAN.TRAN_AMOUNT <= (0.0 + AUTH_ROUNDING_ADD_FACTOR) ) THEN
+   BEGIN
+      RECENT_ERROR := (FAIL + MODEL_ID + BAD_TRAN_AMOUNT);
+      TERMINATE RECENT_ERROR;
+   END;
+
+   /* Make sure the SIC code is valid */
+   IF (NOT Is_Int_String(TRAN.MERCH_CAT) OR 
+      (TRAN.MERCH_CAT < 0 OR TRAN.MERCH_CAT > 9999)) THEN
+   BEGIN
+      RECENT_ERROR := (FAIL + MODEL_ID + BAD_SIC_CODE);
+      TERMINATE RECENT_ERROR;
+   END;
+
+/* FP--> */
+   CALCVARS(MRCHSUMM);
+
+   /*
+    * Check the merchant profile for a few key values that should always
+    * be non-zero positive numbers.  If any one of them is off, then
+    * terminate with a bad merchant profile error.
+    */
+   IF (
+       /* We must have some activity */
+       MRCH_COUNT_3EV_BYMCC <= 0.0
+       OR MRCH_COUNT_12EV_BYMCC <= 0.0
+       OR MRCH_DOL_3EV_BYMCC <= 0.0
+       OR MRCH_DOL_12EV_BYMCC <= 0.0
+
+       /* We cannot only have negative fraud activity */
+       OR MRCH_FRD_COUNT_3EV_BYMCC < 0.0
+       OR MRCH_FRD_COUNT_12EV_BYMCC < 0.0
+       OR MRCH_FRD_DOL_3EV_BYMCC < 0.0
+       OR MRCH_FRD_DOL_12EV_BYMCC < 0.0
+      ) THEN
+   BEGIN
+      RECENT_ERROR := (FAIL + MODEL_ID + BAD_MERCHANT_PROF);
+      TERMINATE RECENT_ERROR;
+   END;
+/* <--FP */
+
+   /* Calculate the input variables */
+   calcvars(INP);
+
+/* FP--> */
+	/* Initialize the cross profile if needed, and calculate input variables */
+	/* 07/23/04 dxl: this also takes cares of the new falcon profile vars */
+   STATUS := @INIT_CROSS_PROF;
+   CALCVARS(FPPINP);
+/* <--FP */
+
+   IF (AUTH_DELTA_TIME < 0.0) THEN
+   BEGIN
+      RECENT_ERROR := (FAIL + MODEL_ID + TRAN_OUT_OF_ORDER);
+      TERMINATE RECENT_ERROR;
+   END;
+
+   IF (AUTH_DELTA_TIME = 0.0 AND
+        (DOLLAR_AMOUNT = LAST_AUTH_AMOUNT) AND 
+        (CURRENT_SIC = RECENT_SIC) AND
+        (CURRENT_SIC <> 4812 AND 
+         CURRENT_SIC <> 4814 AND 
+         CURRENT_SIC <> 5961 AND 
+         CURRENT_SIC <> 6011 AND
+        (CURRENT_SIC < 3000  OR CURRENT_SIC > 3350))) THEN
+   BEGIN
+      RECENT_ERROR := (FAIL + MODEL_ID + TRAN_DUPLICATE);
+      TERMINATE RECENT_ERROR;
+   END;
+
+   calcvars(CURR);
+   calcvars(AUTH);
+   calcvars(PROF);
+   calcvars(DERIVE);
+   CALCVARS(CROSSSUMM);
+   CALCVARS(MRCH_DER);
+   CALCVARS(MRCH_DER2);
+   CALCVARS(MRCH_DER3);
+   CALCVARS(MRCH_DER4);
+
+
+   /* Run the model */   
+   SCALE_DEVELOP(); /* Scaling */
+
+   /* Increase the score if the amount is more than MAX_AMOUNT */
+   IF(DOLLAR_AMOUNT >= MAX_AMOUNT) THEN
+        NSCORE := 900.0+(99.0/999.0)*NSCORE;
+
+   /* Calibrate the score */   
+   Table_Range_Lookup(NSCORE, SCORE_CONV);
+
+   NSCORE := SCORE_CONV.NEW_SCORE;
+
+   /* Return score */
+   SCOR.SCORE := NSCORE;
+
+   RECENT_SCORE := SCOR.SCORE;
+
+   /* Calculate the last variables */
+   CALCVARS(LAST_CROSSSUMM);
+   calcvars(LAST);
+   RECENT_M_POSTAL := Old_Pack_Zip(TRAN.MERCH_POST_CODE);
+   RECENT_M_CTRY := MCNTRY;
+
+ENDRULE;
+
+
+//
+//************************************************
+// Profile Init rules
+//************************************************
+//
+PROF_INIT_RULEBASE PINIT;
+
+/* FP--> */
+INCLUDE "vars/clearCardProf.inc";
+/* <--FP */
+
+RULE PINIT;
+VAR
+	STATUS	: 	NUMERIC;
+	TranAmt  :	NUMERIC;
+
+BEGIN
+	
+   /* 1/6/99  jcb  if tran type is not auth, nonmon, post, or payment, error
+	* out */
+	/* 08/17/04 dxl change it to only accept auth and post */
+   IF ( NOT (TRAN.AUTH_POST_FLAG IN ("A", "P")) ) THEN
+     TERMINATE(FAIL + MODEL_ID + NOT_AUTH);
+
+   /* Check transaction specific date/time information for all acceptable tran types */
+   IF NOT(Valid_Date(TRAN.TRAN_DATE)) THEN
+      TERMINATE(FAIL + MODEL_ID + BAD_TRAN_DATE);
+
+   /* 1/6/99  jcb  if tran is auth or post, make sure it is a valid
+	* transaction to initialize the profile*/
+   TranAmt := TRAN.TRAN_AMOUNT  * CONV_TO_DOLLARS;
+
+   /* Make sure the transaction amount is valid */
+   IF NOT(Valid_Amount(TRAN.TRAN_AMOUNT)) OR
+      (TranAmt > MAX_AMOUNT) OR
+      (TranAmt <= 0.0) THEN
+      TERMINATE(FAIL + MODEL_ID + BAD_TRAN_AMOUNT);
+
+   /* Make sure the SIC code is valid */
+   IF NOT Is_Int_String(TRAN.MERCH_CAT) THEN
+      TERMINATE(FAIL + MODEL_ID + BAD_SIC_CODE);
+	
+	/* Prof_Init(); */
+   /*
+    * We do not want to clear the merchant profiles!
+    * So we have a function which clears the cardholder profile,
+    * including the cross-profile variables.
+    */
+   STATUS := @CLEAR_CARD_PROF ();
+   //IF (STATUS <> 0) THEN
+   //    writeln ("Profile initialized!");
+   /* 
+    * set up some info for he cardholder profile
+    */
+   CALCVARS(INP);
+
+   IF((CURRENT_DATE - CARD_OPNDATE) > 90.0) THEN
+   BEGIN
+      PROF.Start_Date := CURRENT_DATE - 90.0;
+      START_DATE := CURRENT_DATE - 90.0;
+   END;
+   ELSE
+   BEGIN
+      PROF.Start_Date := CARD_OPNDATE;
+      START_DATE := CARD_OPNDATE;
+   END;
+
+	/* 7/23/04 dxl: set START_DATE for the new profile vars */
+	START_DATE_98S := START_DATE;
+
+   AUTH_RECENT_UPDATE_DATE := START_DATE;
+   AUTH_RECENT_UPDATE_TIME := 0.0;
+
+   RECENT_CREDIT_LIMIT  :=  CARD_CREDIT_LIMIT;
+
+   /* 
+    * Set up some infor the the FPP cross-profile variables
+    */
+   CALCVARS(FPPINP);
+
+   IF((CURRENT_DATE - CARD_OPNDATE) > 90.0) THEN
+      FPP_START_DATE := CURRENT_DATE - 90.0;
+   ELSE
+      FPP_START_DATE := CARD_OPNDATE;
+
+   FPP_RECENT_UPDATE_DATE := FPP_START_DATE;
+   FPP_RECENT_UPDATE_TIME := 0.0;
+
+
+   /*
+    * Finish the initializations
+    */
+
+   //PROF.MATR_DATE := 1;
+   PROF_INIT := PROF_INIT_VALUE;
+
+ENDRULE;

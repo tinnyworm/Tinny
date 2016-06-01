@@ -1,0 +1,49 @@
+SHELL = /bin/csh -f
+OS = $(shell uname)
+
+## Name of new risk file
+RSK = Brazil03rskt
+
+## Options
+DATA_ROOT = /work/apollo/Unibanco/data_5pct
+DATA_RISK =\
+ -i$(DATA_ROOT)/199901_200002  -lselect.rgen.Unibanco_1999 -z-3 -r0.5865 -c124 \
+ -i$(DATA_ROOT)/200203_200303  -lselect.rgen.Unibanco_2002 -z-3 -r0.5865 -c124 \
+
+
+OPT_RISKAMT  = -c076 -B50,100,150,250,500,1000,2000 $(DATA_RISK)
+OPT_RISKTAB  = -c076 -K -t0 $(DATA_RISK)
+
+## Binaries
+
+RISKTABGEN   = /work/price/falcon/$(OS)/bin/risktabgen40
+RISKAMTGEN   = /work/price/falcon/$(OS)/bin/riskamtgen40
+FIX_PENNY    = /work/price/falcon/bin/fix_risk_penny-sdev.pl
+CLEAN_POSTAL = /home/jas/perl/clean_postal_risk.pl
+
+## FILES
+
+RISKTABS =	HWR4tab\
+		ASR4tab\
+		APR4tab\
+		ACR4tab\
+		AUR4tab
+
+RISKAMT =	ASAR4tab
+
+# Targets
+
+all: $(RSK)
+
+
+$(RSK): $(RISKTABS) AUR4tab $(RISKAMT)
+	cat $^ \
+	| sed 's/ POST_RISK_DATA/ POSTAL_RISK_DATA/' \
+	| $(FIX_PENNY) \
+	| $(CLEAN_POSTAL) > $@
+$(RISKTABS): AUR4tab
+AUR4tab:
+	$(RISKTABGEN) $(OPT_RISKTAB)
+
+$(RISKAMT):
+	$(RISKAMTGEN) $(OPT_RISKAMT)

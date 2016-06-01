@@ -1,0 +1,70 @@
+#! /usr/bin/perl -w -s
+
+our( $header, $target, $source, $d );
+
+if ( ! defined $header or ! defined $target or ! defined $source ) {
+    print STDERR "Usage: $0 [-d=delimiter] -header=header_file -target=target_file -source=source_file\n";
+    print STDERR "Target file and source file must be Gzipped\n";
+    exit(1);
+}
+
+defined $d or $d = "\t";
+
+#############################################################
+# Reading the head file. The first column of config file are
+# column numbers of corresponding variables in the target data
+# set. The second column of the head file are names of variables.
+#############################################################
+
+open( HEAD, "$header" ) or die "$!: $header";
+
+my $idx = 0;
+my %field_map;
+
+while ( <HEAD> ) {
+
+    chomp;
+    my @data = split /\s+/;
+    $field_map{ $idx } = $data[0];
+    ++$idx;
+
+}
+
+close(HEAD);
+
+#############################################################
+# Target file is the file needed to be replaced
+# Source file contains numeric variables binned
+#############################################################
+
+my $line1;
+my $line2;
+
+open( DATA1, "zcat $target |" ) or die "$!: $target";
+open( DATA2, "zcat $source |" ) or die "$!: $source";
+
+while ( $line1 = <DATA1> ) {
+
+    $line2 = <DATA2>;
+
+    chomp($line1);
+    chomp($line2);
+
+    my @data1 = split /${d}/, $line1;
+    my @data2 = split /${d}/, $line2;
+
+    for ( my $i = 0; $i < @data2; ++$i ) {
+
+	$data1[ $field_map{ $i } - 1 ] = $data2[$i];		      # replace the binned value
+
+    }
+
+    $" = "$d";
+    print "@data1\n";
+
+}
+
+close(DATA2);
+close(DATA1);
+
+#############################################################

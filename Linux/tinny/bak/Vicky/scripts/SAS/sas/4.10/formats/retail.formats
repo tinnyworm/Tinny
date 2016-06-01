@@ -1,0 +1,107 @@
+                                           The SAS System                                          1
+
+            ----------------------------------------------------------------------------
+            |       FORMAT NAME: $APIN    LENGTH:   18   NUMBER OF VALUES:    4        |
+            |   MIN LENGTH:   1  MAX LENGTH:  40  DEFAULT LENGTH  18  FUZZ:        0   |
+            |--------------------------------------------------------------------------|
+            |START           |END             |LABEL  (VER. 8.1     05MAR2002:09:55:27)|
+            |----------------+----------------+----------------------------------------|
+            |                |                |Blank: Not Checked                      |
+            |I               |I               |I: Invalid                              |
+            |V               |V               |V: Valid                                |
+            |**OTHER**       |**OTHER**       |[$CHAR1.]                               |
+            ----------------------------------------------------------------------------
+
+
+            ----------------------------------------------------------------------------
+            |       FORMAT NAME: $ATYPE   LENGTH:   24   NUMBER OF VALUES:   10        |
+            |   MIN LENGTH:   1  MAX LENGTH:  40  DEFAULT LENGTH  24  FUZZ:        0   |
+            |--------------------------------------------------------------------------|
+            |START           |END             |LABEL  (VER. 8.1     05MAR2002:09:55:27)|
+            |----------------+----------------+----------------------------------------|
+            |                |                |Blank: Unknown                          |
+            |A               |A               |A: Address Verification                 |
+            |C               |C               |C: Cash                                 |
+            |K               |K               |K: Convenience Check                    |
+            |M               |M               |M: Merchandise                          |
+            |O               |O               |O: Other                                |
+            |R               |R               |R: Crediting the Account                |
+            |T               |T               |T: Balance Transfer                     |
+            |V               |V               |V: Reversal                             |
+            |**OTHER**       |**OTHER**       |[$CHAR1.]                               |
+            ----------------------------------------------------------------------------
+
+
+            ----------------------------------------------------------------------------
+            |       FORMAT NAME: $INCENTV LENGTH:   23   NUMBER OF VALUES:   12        |
+            |   MIN LENGTH:   1  MAX LENGTH:  40  DEFAULT LENGTH  23  FUZZ:        0   |
+            |--------------------------------------------------------------------------|
+            |START           |END             |LABEL  (VER. 8.1     05MAR2002:09:55:27)|
+            |----------------+----------------+----------------------------------------|
+            |                |                |Blank: Unknown                          |
+            |A               |A               |A: Auto Discount                        |
+            |C               |C               |C: Cashback                             |
+            |D               |D               |D: Discount                             |
+            |F               |F               |F: Frequent Flier Miles                 |
+            |G               |G               |G: Gas Discount                         |
+            |H               |H               |H: Charity Contribution                 |
+            |I               |I               |I: Incentive affinity                   |
+            |L               |L               |L: Telephone Discount                   |
+            |N               |N               |N: No Incentive                         |
+            |O               |O               |O: Other                                |
+            |**OTHER**       |**OTHER**       |[$CHAR1.]                               |
+            ----------------------------------------------------------------------------
+
+
+            ----------------------------------------------------------------------------
+            |       FORMAT NAME: $STATUS  LENGTH:   30   NUMBER OF VALUES:   17        |
+            |   MIN LENGTH:   1  MAX LENGTH:  40  DEFAULT LENGTH  30  FUZZ:        0   |
+            |--------------------------------------------------------------------------|
+            |START           |END             |LABEL  (VER. 8.1     05MAR2002:09:55:27)|
+            |----------------+----------------+----------------------------------------|
+            |                |                |Blank: Unknown                          |
+            |CB              |CB              |CB: Closed, bankruptcy                  |
+            |CC              |CC              |CC: Closed, chargeoff                   |
+            |CF              |CF              |CF: Closed, fraud                       |
+            |CI              |CI              |CI: Closed, inactive                    |
+            |CO              |CO              |CO: Closed, other                       |
+            |CR              |CR              |CR: Closed, cardholder request          |
+            |D1              |D1              |D1: 30 days past due                    |
+            |D2              |D2              |D2: 60 days past due                    |
+            |D3              |D3              |D3: 90 days past due                    |
+            |D4              |D4              |D4: 120 days past due                   |
+            |D5              |D5              |D5: 150 days past due                   |
+            |D6              |D6              |D6: 180 days past due                   |
+            |NS              |NS              |NS: Non-Statused, open                  |
+            |OV              |OV              |OV: Overlimit                           |
+            |SO              |SO              |SO: Statused, other (blocked)           |
+            |**OTHER**       |**OTHER**       |[$CHAR2.]                               |
+            ----------------------------------------------------------------------------
+
+
+            ----------------------------------------------------------------------------
+            |       FORMAT NAME: $TYPE    LENGTH:   14   NUMBER OF VALUES:    5        |
+            |   MIN LENGTH:   1  MAX LENGTH:  40  DEFAULT LENGTH  14  FUZZ:        0   |
+            |--------------------------------------------------------------------------|
+            |START           |END             |LABEL  (VER. 8.1     05MAR2002:09:55:27)|
+            |----------------+----------------+----------------------------------------|
+            |                |                |Blank: Unknown                          |
+            |G               |G               |G: Gold                                 |
+            |O               |O               |O: Other                                |
+            |S               |S               |S: Standard                             |
+            |**OTHER**       |**OTHER**       |[$CHAR1.]                               |
+            ----------------------------------------------------------------------------
+
+
+            ----------------------------------------------------------------------------
+            |       FORMAT NAME: $USE     LENGTH:   19   NUMBER OF VALUES:    5        |
+            |   MIN LENGTH:   1  MAX LENGTH:  40  DEFAULT LENGTH  19  FUZZ:        0   |
+            |--------------------------------------------------------------------------|
+            |START           |END             |LABEL  (VER. 8.1     05MAR2002:09:55:27)|
+            |----------------+----------------+----------------------------------------|
+            |                |                |Blank: Unknown                          |
+            |B               |B               |B: Business (Small)                     |
+            |O               |O               |O: Other                                |
+            |P               |P               |P: Personal                             |
+            |**OTHER**       |**OTHER**       |[$CHAR1.]                               |
+            ----------------------------------------------------------------------------

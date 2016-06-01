@@ -1,0 +1,142 @@
+1                                                          The SAS System                                17:11 Monday, July 28, 2003
+
+NOTE: Copyright (c) 1999-2000 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software Release 8.1 (TS1M0)
+      Licensed to FAIR ISAAC & CO INC, Site 0039085032.
+NOTE: This session is executing on the SunOS 5.8 platform.
+
+
+
+
+This message is contained in the SAS news file, and is presented upon
+initialization.  Edit the files "news" in the "misc/base" directory to
+display site-specific news and information in the program log.
+The command line option "-nonews" will prevent this display.
+
+
+
+NOTE: SAS initialization used:
+      real time           0.17 seconds
+      cpu time            0.05 seconds
+      
+1          libname macrolib '.';
+NOTE: Libref MACROLIB was successfully assigned as follows: 
+      Engine:        V8 
+      Physical Name: /work/gold/projects/bin/CCDS/4.10/formats
+2          libname library '/work/gold/projects/bin/CCDS/4.10/formats';
+NOTE: Libname LIBRARY refers to the same physical library as MACROLIB.
+NOTE: Libref LIBRARY was successfully assigned as follows: 
+      Engine:        V8 
+      Physical Name: /work/gold/projects/bin/CCDS/4.10/formats
+3          options mstored sasmstore=macrolib;
+4          options errors=2 nodate ls=100 ps=1000;
+5          
+6          /************************* Add new entries into macrolib.formats
+6        ! **************************/
+7          proc format library= library.credit;
+8          
+9             value $payhist    ' ' = 'Blank'
+10                              'Z' = 'No statement'
+11         		     0-7 = 'No postings'
+12         		     'I' = 'Not delinquent'
+13         		     'J' = '1 cycle delinquent'
+14         		     'K' = '2 cycles delinquent'
+15         		     'L' = '3 cycles delinquent'
+16         		     'M' = '4 cycles delinquent'
+17         		     'N' = '5 cycles delinquent'
+18         		     'O' = '6 cycles delinquent'
+19         		     'P' = '7 cycles delinquent'
+20         		     'Q' = 'Not delinquent'
+21         		     'R' = '1 cycle delinquent'
+22         		     'S' = '2 cycles delinquent'
+23         		     'T' = '3 cycles delinquent'
+24         		     'U' = '4 cycles delinquent'
+25         		     'V' = '5 cycles delinquent'
+26         		     'W' = '6 cycles delinquent'
+27         		     'X' = '7 cycles delinquent'
+28         		     '%' = 'Credit balance with no activity'
+29         		     '#' = 'Credit balance with debit and credit activity'
+30         		     '+' = 'Credit balance with debit activity only'
+31         		     '-' = 'Credit balance with credit activity only'
+32         		     ',' = 'Data does not exist'
+33         		     ';' = 'Data intentionally blank'
+34         		   other = [$CHAR1.];
+NOTE: Format $PAYHIST has been written to LIBRARY.CREDIT.
+35         		
+36         run;
+
+NOTE: PROCEDURE FORMAT used:
+      real time           0.04 seconds
+      cpu time            0.01 seconds
+      
+
+37         		   	   	
+38         proc format library= library.debit;
+39            value $payhist    ' ' = 'Blank'
+40                              'Z' = 'No statement'
+41         		     0-7 = 'No postings'
+42         		     'A' = 'Not delinquent'
+43         		     'B' = '1 cycle delinquent'
+44         		     'C' = '2 cycles delinquent'
+45         		     'D' = '3 cycles delinquent'
+46         		     'E' = '4 cycles delinquent'
+47         		     'F' = '5 cycles delinquent'
+48         		     'G' = '6 cycles delinquent'
+49         		     'H' = '7 cycles delinquent'
+50         		     'Q' = 'Not delinquent'
+51         		     'R' = '1 cycle delinquent'
+52         		     'S' = '2 cycles delinquent'
+53         		     'T' = '3 cycles delinquent'
+54         		     'U' = '4 cycles delinquent'
+55         		     'V' = '5 cycles delinquent'
+56         		     'W' = '6 cycles delinquent'
+57         		     'X' = '7 cycles delinquent'
+58         		     '%' = 'Credit balance with no activity'
+59         		     '#' = 'Credit balance with debit and credit activity'
+60         		     '+' = 'Credit balance with debit activity only'
+61         		     '-' = 'Credit balance with credit activity only'
+62         		     ',' = 'Data does not exist'
+63         		     ';' = 'Data intentionally blank'
+64         		   other = [$CHAR1.];
+NOTE: Format $PAYHIST has been written to LIBRARY.DEBIT.
+65         		
+66         run;
+
+NOTE: PROCEDURE FORMAT used:
+      real time           0.03 seconds
+      cpu time            0.01 seconds
+      
+
+67         
+68         proc catalog catalog=macrolib.credit;
+69         contents;
+70         run;
+
+71         
+
+NOTE: The PROCEDURE CATALOG printed page 1.
+NOTE: PROCEDURE CATALOG used:
+      real time           0.06 seconds
+      cpu time            0.06 seconds
+      
+
+72         proc catalog catalog=macrolib.debit;
+73         contents;
+74         run;
+
+75         		   		   		
+76         /*proc format
+77             library = library.newcard fmtlib;
+78          select  $Caipsta $Caipdyn $Caipver $Caiprsk $Caipiaa $Cmedia $country $issue;
+79          run;
+NOTE: The PROCEDURE CATALOG printed page 2.
+NOTE: PROCEDURE CATALOG used:
+      real time           0.01 seconds
+      cpu time            0.02 seconds
+      
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+      real time           0.35 seconds
+      cpu time            0.15 seconds
+      

@@ -1,0 +1,2 @@
+cat FalUKday01Score.txt.060609 | dd conv=ebcdic | ~/go-lives/short_api.pl 501
+

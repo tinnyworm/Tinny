@@ -1,0 +1,10 @@
+#!/bin/csh -f
+
+  echo "  "
+foreach i (`/bin/ls *0186*gz`)
+  echo "=================================================================="
+  echo "  Processing file $i"
+  gzcat $i | colgrep 20 "   " | gzip > blankcardzips.$i
+end
+
+  echo "=================================================================="

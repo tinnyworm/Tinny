@@ -1,0 +1,102 @@
+//************************************************
+// Model ID Constant
+//************************************************
+CONST  MODEL_ID                          = 0xa300;
+
+//************************************************
+// Constants and type definitions
+//************************************************
+INCLUDE "old/vars/const4";
+INCLUDE "old/tabs/types4";
+
+//************************************************
+// GEO & HOW reference tabs tables 
+//************************************************
+INCLUDE "old/tabs/COMMREF4";
+INCLUDE "old/tabs/840+124LLtab";
+
+//************************************************
+//  risk data tables
+//************************************************
+INCLUDE "old/tabs/uscred02rskt";
+
+//************************************************
+// Variables
+//************************************************
+INCLUDE "old/vars/globalVars4";
+INCLUDE "old/vars/initVars4";
+INCLUDE "old/vars/inputVars4";
+INCLUDE "old/vars/calcV98S4";
+INCLUDE "old/vars/lastVars4";
+
+//************************************************
+// Standard Calibration tables
+//************************************************
+INCLUDE "old/nets/holidaySCal";
+
+//************************************************
+// External functions
+//************************************************
+INCLUDE "old/func/update_var";
+INCLUDE "old/func/update_last";
+INCLUDE "old/func/scr_rules";
+
+//************************************************
+// Model-specific includes
+//************************************************
+INCLUDE "old/nets/rap200n4";
+INCLUDE "old/nets/cred_rapSCal";
+
+//
+//************************************************
+// Main scoring rule
+//************************************************
+//
+RULE MAIN;
+VAR
+  STATUS     : NUMERIC;
+  NSCORE     : NUMERIC;
+  RAW_SCORE  : FLOAT;
+  SCORE_CONV : cred_rap_SCORE_CONVERT;
+BEGIN
+
+
+
+  STATUS := @UPDATE_VAR;
+  IF (STATUS <> 0) THEN TERMINATE STATUS;
+
+  RAW_SCORE := @CALC_rap200n4_SCORE();
+
+  NSCORE := MAX(1, (RAW_SCORE + 1) * 500);
+  NSCORE := MIN(999, NSCORE);
+
+  // Segment calibration
+  //SCOR.SCORE := MAX(SCOR.SCORE,NSCORE);
+  //  SCOR.SCORE := NSCORE;
+
+
+  Table_Range_Lookup(NSCORE, SCORE_CONV);
+  SCOR.SCORE := SCORE_CONV.NEW_SCORE;
+
+
+  // Last variables + final calibration
+  @UPDATE_LAST;
+
+  IF (SCOR.SCORE > EXPF.EXPL_THRESH) THEN
+    Get_Reasons(RAW_SCORE, MAX_DIFF,
+                SCOR.REASON1, SCOR.REASON2, SCOR.REASON3);
+  
+  // Apply rule-based score manipulation
+  @ScoreRules;
+
+ENDRULE;
+
+//
+//************************************************
+// Profile Init rules
+//************************************************
+//
+PROF_INIT_RULEBASE PINIT;
+
+INCLUDE "old/func/pinitrul";
+

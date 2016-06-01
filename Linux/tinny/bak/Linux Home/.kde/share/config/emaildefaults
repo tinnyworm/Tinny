@@ -1,0 +1,11 @@
+[Defaults]
+Profile=Default
+[PROFILE_Default]
+EmailAddress=e28700@lux1
+EmailClient=/usr/bin/mutt
+FullName=Hu, Wenjie
+IncomingServer=/var/mail/e28700
+IncomingServerType=localbox
+OutgoingCommand=/usr/sbin/sendmail
+OutgoingServerType=local
+TerminalClient=true

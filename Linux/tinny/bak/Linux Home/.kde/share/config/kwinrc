@@ -1,0 +1,8 @@
+[$Version]
+update_info=kwin3_plugin.upd:kde3.2,kwin.upd:kde3.0r1,kwin.upd:kde3.2Xinerama,kwin_focus1.upd:kwin_focus1
+
+[Style]
+PluginLib=kwin3_bluecurve
+
+[Windows]
+IgnoreFocusStealingClasses=kded,kio_uiserver,kget

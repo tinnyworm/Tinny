@@ -1,0 +1,109 @@
+//
+//************************************************
+// Main rule  -  Variable Calculation
+//************************************************
+//
+FUNCTION UPDATE_VAR : INT32;
+
+VAR    SaveValPosEntCd : STRING;
+
+BEGIN
+  IF (UPDATE_FLAG > 0.5) THEN RETURN(0);
+
+  SaveValPosEntCd := TRAN.AUTH_KEYED_SWIPED;
+  IF (TRAN.TRAN_TYPE = 'K') THEN TRAN.AUTH_KEYED_SWIPED := 'K';
+
+  // If tran type is not auth, error out
+  IF ( NOT (TRAN.AUTH_POST_FLAG = "A") ) THEN
+  BEGIN
+    RECENT_ERROR := FAIL + MODEL_ID + NOT_AUTH;
+    RETURN(RECENT_ERROR);
+  END;
+
+  /* Check transaction specific date/time information */
+  IF NOT(Valid_Date(TRAN.TRAN_DATE)) THEN
+  BEGIN
+     RECENT_ERROR := (FAIL + MODEL_ID + BAD_TRAN_DATE);
+     RETURN(RECENT_ERROR);
+  END;
+
+  /* Make sure profile initialization flag has been set */
+  IF (PROF_INIT <> PROF_INIT_VALUE) THEN
+  BEGIN
+     RECENT_ERROR := FAIL + MODEL_ID + PROF_NO_INIT;
+     RETURN(RECENT_ERROR);
+  END;
+
+  /* Make sure transaction is cash, merchandise, cashback, or kcheck */
+  IF ( TRAN.TRAN_TYPE IN ("A", "R", "S", "T", "V", "X") ) THEN 
+     RETURN (FAIL+NO_ERROR);
+  ELSE IF ( NOT (TRAN.TRAN_TYPE IN ("C", "M", "B", "K")) ) THEN
+  BEGIN
+     RECENT_ERROR := FAIL + MODEL_ID + NOT_CASH_OR_MERCH;
+     RETURN(RECENT_ERROR);
+  END;
+
+  /* Make sure the SIC code is valid */
+  IF ( NOT Is_Int_String(TRAN.MERCH_CAT) OR
+         (TRAN.MERCH_CAT < 0 OR TRAN.MERCH_CAT > 9999) ) THEN
+  BEGIN
+      RECENT_ERROR := (FAIL + MODEL_ID + BAD_SIC_CODE);
+      RETURN(RECENT_ERROR);
+  END;
+
+  IF ( NOT(Valid_Time(TRAN.TRAN_TIME)) ) THEN
+  BEGIN
+     RECENT_ERROR := (FAIL + MODEL_ID + BAD_TRAN_TIME);
+     RETURN(RECENT_ERROR);
+  END;
+
+  /* Calculate the input variables */
+  CALCVARS(GLB);
+  CALCVARS(INP);
+
+  IF (AUTH_DELTA_TIME < 0.0) THEN
+  BEGIN
+     RECENT_ERROR := (FAIL + MODEL_ID + TRAN_OUT_OF_ORDER);
+     RETURN(RECENT_ERROR);
+  END;
+
+  /* XXS: add internet merchants, some airlines to the exclude list */
+  /* This is tran-duplicate check block */
+  IF (AUTH_DELTA_TIME = 0.0 AND
+     ( (RECENT_AUTH_RESULT = TRAN.AUTH_RESULT)  OR
+       (RECENT_AUTH_RESULT = ' ' AND TRAN.AUTH_RESULT ='A') OR
+       (RECENT_AUTH_RESULT = 'A' AND TRAN.AUTH_RESULT =' ') ) AND
+     (DOL_AMT = LAST_AUTH_AMT) AND
+     (CURRENT_SIC = RECENT_SIC) AND
+     NOT(
+      (CURRENT_SIC>=5960 AND CURRENT_SIC<=5969) OR
+      (CURRENT_SIC>=4814 AND CURRENT_SIC<=4816) OR
+      (CURRENT_SIC>=3000 AND CURRENT_SIC<=3350) OR
+      (CURRENT_SIC=6011 OR CURRENT_SIC=5411 OR CURRENT_SIC=4511))) THEN
+  BEGIN
+     RECENT_ERROR := (FAIL + MODEL_ID + TRAN_DUPLICATE);
+     RETURN(RECENT_ERROR);
+  END;
+
+  /* Make sure the transaction amount is valid */
+  IF ( NOT(Valid_Amount(TRAN.TRAN_AMOUNT)) OR
+       DOL_AMT <= 0.0 ) THEN
+  BEGIN
+    RECENT_ERROR := (FAIL + MODEL_ID + BAD_TRAN_AMOUNT);
+    RETURN(RECENT_ERROR);
+  END;
+
+  CALCVARS(VARS);
+  CALCVARS(MAXVARXXS);
+  CALCVARS(DVARXXS);
+
+  TRAN.AUTH_KEYED_SWIPED := SaveValPosEntCd;
+
+  RETURN(0);
+ENDRULE;
+
+
+
+
+
+

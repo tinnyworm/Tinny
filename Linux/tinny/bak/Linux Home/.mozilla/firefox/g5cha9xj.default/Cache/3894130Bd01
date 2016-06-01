@@ -1,0 +1,471 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Server: sf-web24 -->
+<!--
+  ~ SourceForge.net: Create, Participate, Evaluate
+  ~ Copyright (c) 1999-2007 OSTG, Inc. All rights reserved.
+  ~ @version $Id: header.html 23751 2008-03-14 17:20:35Z sazriel $
+  -->
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="description" content="The world's largest development and download repository of Open Source code and applications" />
+        <meta name="keywords" content="Open Source, Development, Developers, Projects, Downloads, OSTG, VA Software, SF.net, SourceForge" />
+        <link rel="alternate" type="application/rss+xml" title="SourceForge.net Project News" href="/export/rss2_sfnews.php?group_id=1&amp;rss_fulltext=1" />
+        <link rel="alternate" type="application/rss+xml" title="SourceForge.net News" href="/export/rss2_projnews.php?group_id=141424&amp;rss_fulltext=1" />
+        <title>SourceForge.net: Files</title>
+       <link rel="stylesheet" type="text/css" href="http://static.sourceforge.net/css/sfx.php?secure=0&amp;20080327-1035" media="screen" title="SFx" />
+        <script type="text/javascript">
+	//<![CDATA[
+                var link = document.createElement('link');
+                link.setAttribute('rel', 'stylesheet');
+                link.setAttribute('type', 'text/css');
+                link.setAttribute('href', 'http://static.sourceforge.net/css/sfxjs.php?secure=0&amp;20080327-1035');
+                document.getElementsByTagName('head')[0].appendChild(link);
+
+                function help_window(helpurl) {
+                        HelpWin = window.open( 'http://sourceforge.net' + helpurl,'HelpWindow','scrollbars=yes,resizable=yes,toolbar=no,height=400,width=400');
+                }
+	//]]>
+        </script>
+        <script type="text/javascript">
+	//<![CDATA[
+                var sf_proj_home = 'http://sourceforge.net/projects/cedet';
+	//]]>
+        </script>
+        <script type="text/javascript" src="http://static.sourceforge.net/include/thickbox/jquery.js"></script>
+        <script type="text/javascript">
+        //<![CDATA[
+            jQuery.noConflict();
+        //]]>
+        </script>
+        <script type="text/javascript" src="http://static.sourceforge.net/include/thickbox/goods.js"></script>
+        <script type="text/javascript"
+        src="http://static.sourceforge.net/include/js/Util.js"></script>
+<!--pageid filespackage -->
+        <script type="text/javascript">
+	//<![CDATA[
+                jQuery(document).ready(function(){
+                        if(jQuery.browser.msie || jQuery.browser.mozilla ){
+                        jQuery('div.firstwave li ul').append("<iframe src=\"javascript:false\"></iframe>");
+                        jQuery('#fad36 li ul').append('<iframe src=\"javascript:false\"></iframe>');
+                        };
+                });
+	//]]>
+        </script>
+		<script type="text/javascript" src="http://static.sourceforge.net/include/thickbox/thickbox.js"></script>
+	<script type="text/javascript" src="http://static.sourceforge.net/include/thickbox/dialog.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://static.sourceforge.net/include/thickbox/thickbox.php?secure=0&amp;20080327-1035" media="screen" title="SFx" />
+        <!--[if IE]><link rel="stylesheet" type="text/css" media="screen" href="http://static.sourceforge.net/css/iestyles.php?secure=0&amp;20080327-1035"  /><![endif]-->
+        <script type="text/javascript" src="http://static.sourceforge.net/sfx.js"></script>
+       <link rel="stylesheet" type="text/css" href="http://static.sourceforge.net/css/print.php?secure=0&amp;20080327-1035" media="print" />
+<!-- BEGIN: AdSolution-Tag 4.2: Global-Code [PLACE IN HTML-HEAD-AREA!] -->
+<!-- DoubleClick Random Number -->
+<script language="JavaScript" type="text/javascript">
+   dfp_ord=Math.random()*10000000000000000;
+   dfp_tile = 1;
+</script>
+<!-- End DoubleClick Random Number -->
+
+<script type="text/javascript">
+	var google_page_url = 'http://sourceforge.net/projects/cedet';
+	var sourceforge_project_name = 'cedet';
+	var sourceforge_project_description = 'Collection of Emacs Development Environment Tools';
+</script>
+<!-- END: AdSolution-Tag 4.2: Global-Code -->
+<!-- after META tags -->
+
+<script type="text/javascript">
+var sf_net_pageid = "filespackage";
+var krugle_elements = new Object;
+var krugleLinks = "";
+</script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-32013-6");
+pageTracker._initData();
+</script>
+
+</head>
+<body>
+<!-- End OSDN NavBar gid: 17886 keywords: cedet,os_groups,independent,lisp,ide,emacs,editors,development:softdev -->
+	<div id="hd">
+                <h1>
+                        <a href="/" title="">SourceForge.net</a>
+                </h1>
+                <ul class="jump">
+                        <li><a href="#content">Jump to main content</a></li>
+                                        <li><a href="#projectnav">Jump to project navigation</a></li>
+                        <li><a href="/project/showfiles.php?group_id=17886#downloads">Jump to downloads for CEDET</a></li>
+                                </ul>
+                <div id="topuser">
+                        <a href="https://sourceforge.net/account/login.php" title="Log in and gain access to additional features including the Marketplace">Log in</a> <a href="/account/registration/" title="Get a SourceForge.net account">Create account</a> <a href="/support/getsupport.php" title="Get help and support on SourceForge.net">Help</a>
+                        
+                </div>
+	</div>
+        <ul id="mainnav">
+                <li><a href="/">Home</a></li>
+                <li class="selected"><a href="/softwaremap/">Browse&nbsp;Software</a></li>
+                <li class="new"><a href="/services/buy/index.php">Marketplace<sup><b>NEW</b></sup></a></li>
+                <li><a href="/community/">Community</a></li>
+                <li><a href="/register-project/">Create&nbsp;Project</a></li>
+        		<li><a href="http://jobs.sourceforge.net">Jobs</a></li>
+        </ul>
+        <div id="kahuna">
+                <form action="/search/" method="get" name="searchform">
+                        <input type="hidden" name="type_of_search" value="soft" />
+                        <fieldset>
+                                <legend>Search</legend>
+                                <label>Search SourceForge.net Projects </label>
+                                <select name="type_of_search">
+                                        <option value="soft" selected="selected">Software</option>
+                                        <option value="projectsWithServices">Marketplace</option>
+                                </select>
+                                <input type="text" value="" id="searchbox" name="words" tabindex="1" /><input type="submit" value="Search" id="searchsubmit" tabindex="0" />&nbsp;&nbsp;<a href="/search/" class="advanced">Advanced</a>
+                        </fieldset>
+                </form>
+        </div>
+	<div id="frame" class="filespackage">
+		<!-- begin content -->
+
+        <div id="innerframe" class="project">
+
+        <div id="fad1p">&nbsp;</div>
+
+        <ul id="breadcrumb">
+                                        <li class="begin"><a href="/">SF.net</a></li>
+<li><a href="/softwaremap/">Projects</a></li>
+<li><a href="/projects/cedet/">CEDET</a></li>
+<li class="selected"><a href="/project/showfiles.php?group_id=17886&amp;package_id=14924&amp;release_id=80017">Files</a></li>
+                        </ul>
+
+        <a name="projectnav"></a>
+        <div class="topnav">
+            <h2><span>CEDET</span></h2>
+                <form action="/search/" method="get" class="projectsearch">
+                                                        
+            <input type="hidden" name="type_of_search" value="files" />                <input type="hidden" name="group_id" value="17886" />
+                <label>Search  Files </label><input type="text" value=" Files" class="searchword passive" id="projectsearchbox" name="words" tabindex="4" onfocus="this.className='active'; if(this.value==' Files')this.value='';" onblur="if(this.value=='')this.value=' Files';this.className='passive';" />
+                <input type="submit" value="Search" class="submit" tabindex="5" />
+                <a href="/search/?group_id=17886&amp;type_of_search=files" class="advanced">Advanced</a>
+            </form>
+
+                            <div class="firstwave">
+                    <ul class="nav">
+                        <li class="website"><a href="http://cedet.sourceforge.net" >Project&nbsp;Web&nbsp;Site</a></li>
+<li class="begin"><a href="/projects/cedet/" >Project</a><ul>
+<li class="begin"><a href="/projects/cedet/">Summary</a></li>
+<li><a href="http://cedet.sourceforge.net">Web Site</a></li>
+<li><a href="/project/screenshots.php?group_id=17886">Screenshots</a></li>
+<li><a href="/project/stats/?group_id=17886&amp;ugn=cedet">Statistics</a></li>
+</ul>
+</li>
+<li><a href="/tracker/?group_id=17886" >Tracker</a><ul>
+<li><a href="/tracker/?group_id=17886">Tracker Summary</a></li>
+<li><a href="/tracker/?group_id=17886&amp;atid=117886">Bugs</a></li>
+<li><a href="/tracker/?group_id=17886&amp;atid=367886">Feature Requests</a></li>
+<li><a href="/tracker/?group_id=17886&amp;atid=317886">Patches</a></li>
+<li class="tools"><a href="/project/stats/detail.php?group_id=17886&amp;ugn=cedet&amp;type=tracker">Statistics</a></li>
+<li><a href="/search/?group_id=17886&amp;type_of_search=artifact">Search</a></li>
+</ul>
+</li>
+<li><a href="/mail/?group_id=17886" >Mailing&nbsp;Lists</a><ul>
+<li><a href="/mail/?group_id=17886">Mailing Lists Summary</a></li>
+<li><a href="/mailarchive/forum.php?forum_name=cedet-semantic">cedet-semantic</a></li>
+<li><a href="/mailarchive/forum.php?forum_name=cedet-eieio">cedet-eieio</a></li>
+<li><a href="/mailarchive/forum.php?forum_name=cedet-devel">cedet-devel</a></li>
+<li class="tools"><a href="/search/?group_id=17886&amp;type_of_search=mlists">Search</a></li>
+</ul>
+</li>
+<li><a href="/cvs/?group_id=17886" >Code</a><ul>
+<li><a href="/cvs/?group_id=17886">CVS</a></li>
+<li><a href="http://cedet.cvs.sourceforge.net/cedet/">CVS Browse</a></li>
+<li><a href="/project/stats/detail.php?group_id=17886&amp;ugn=cedet&amp;type=cvs">CVS Statistics</a></li>
+</ul>
+</li>
+<li><a href="/services/project_services.php?project_id=17886" >Services</a><ul>
+<li><a href="/services/project_services.php?project_id=17886">Get Services</a></li>
+</ul>
+</li>
+<li class="selected"><a href="/project/showfiles.php?group_id=17886" >Download</a><ul>
+<li><a href="/project/showfiles.php?group_id=17886">Browse All Files</a></li>
+<li class="tools"><a href="/project/stats/detail.php?group_id=17886&amp;ugn=cedet&amp;type=prdownload">Statistics</a></li>
+<li><a href="/search/?group_id=17886&amp;type_of_search=files">Search</a></li>
+</ul>
+</li>
+<li><a href="http://cedet.wiki.sourceforge.net/" >Wiki</a><ul>
+<li><a href="http://cedet.wiki.sourceforge.net/">Wiki Home</a></li>
+<li><a href="http://cedet.wiki.sourceforge.net/space/page">Create Page</a></li>
+<li><a href="http://cedet.wiki.sourceforge.net/space/pagelist">List Pages</a></li>
+<li><a href="http://cedet.wiki.sourceforge.net/space/changes">Recent Changes</a></li>
+<li><a href="http://cedet.wiki.sourceforge.net/space/filelist">List and Upload Files</a></li>
+<li><a href="http://cedet.wiki.sourceforge.net/space/createtemplate">Manage Templates</a></li>
+<li class="tools"><a href="http://cedet.wiki.sourceforge.net/space/stats">Statistics</a></li>
+</ul>
+</li>
+
+                    </ul>
+                </div>
+                            <div id="thirdwave">
+                                    </div>
+                <small class="options">
+                    
+                    <a href="/project/project_donations.php?group_id=17886" class="donate" title="Donate to this project">Donate</a>
+					                    <a href="/project/stats/?group_id=17886&amp;ugn=cedet" class="sitestats" title="Project Stats  - Activity: 97.85%">Stats</a>
+					                    <a href="/export/rss2_project.php?group_id=17886" class="rss">RSS</a>
+                </small>
+                <br />
+            </div>
+
+            <!-- begin right column -->
+
+<a name="content"></a>
+						 
+
+<!--
+/frs/showfiles.html - Copyright 1999-2006 (c) Open Source Technology Group
+@version $Id: showfiles.html 23815 2008-03-21 14:42:36Z jwh $
+-->
+
+<!-- being right column -->
+<!-- placeholder for ad position 2 -->
+			<div id="fad6p">&nbsp;</div>
+        <!-- end right column -->
+
+<!-- begin left column -->
+<div style="margin: .8em 360px 1em 0">		<h3 class="titlebar">File Releases</h3>
+		<p>
+			<br />
+			<strong>You have selected to download 
+							the 1.4beta4 release.
+						</strong>
+		</p>
+		<p>
+			Below is a list of 
+							files contained in this release.
+						<br />Before downloading, you may want to read the release notes.
+		</p>
+		<a href='/awards/cca/?group_id=17886&from=http%3A%2F%2Fsourceforge.net%2Fproject%2Fshowfiles.php%3Fgroup_id%3D17886%26package_id%3D14924%26release_id%3D80017'><img class='cca_link' src='/awards/cca/badge_img.php?group_id=17886&style=5' /></a>
+</div><a name="files"></a>
+
+<script type="text/javascript">
+
+	function si(object) {
+		if (document.getElementById){
+		document.getElementById(object).style.display = 'inline';
+		} 
+	}
+	function sb(object) { 
+		if (document.getElementById){
+		document.getElementById(object).style.display = 'block'; 
+		}
+	}
+	function h(object) { 
+		if (document.getElementById){
+		document.getElementById(object).style.display = 'none'; 
+		} 
+	}
+	function hl(linav) { 
+		if (document.getElementById){
+		mainnav=document.getElementById("nav").childNodes; 
+		i=0; while(mainnav[i]){ mainnav[i].id=""; i++;} 
+			linav.id="high"; 
+		}	
+	}
+	function boo(id) {
+		var obj=document.getElementById(id);
+		if(obj.style.display!="none"){
+			obj.style.display="none";
+		}else{
+			obj.style.display="";
+		}
+	}
+	
+	function report_expand(id, newC) {
+		var i=0;
+		var obj;
+		while (obj = document.getElementById(id+"_"+i)) {
+			if (newC) { 
+				obj.className = newC; 
+			} else if (obj.className == 'show') { 
+				obj.className = 'hide'; 
+			} else if (obj.className == 'hide') { 
+				obj.className = 'show';
+			} else if (obj.className == 'tdwn') { 
+				obj.className = 'tup'; 
+			} else if (obj.className == 'tup') { 
+				obj.className = 'tdwn'; 
+			}
+			i++;
+		}
+
+	}
+
+</script>
+<a name="downloads"></a>
+	<table border="0" cellspacing="0" cellpadding="0" summary="File listings for the CEDET project" id="stripes"  style="clear: both">
+	<colgroup>
+		<col class="package" />
+		<col class="release" />
+		<col class="filename" />
+		<col class="size" />
+		<col class="downloads" />
+		<col class="arch" />
+		<col class="type" />
+	</colgroup>
+	<thead>
+		<tr>
+			<th>Package</th>
+			<th>Release <small> (date) </small></th>
+			<th>Filename</th>
+			<th>Size <small> (bytes) </small></th>
+			<th>Downloads</th>
+			<th>Architecture</th>
+			<th>Type</th>
+		</tr>
+	</thead>
+	<tfoot>
+		<tr>
+			<td>Totals:</td>
+			<td>1</td>
+			<td>1</td>
+			<td>114994</td>
+			<td>36773</td>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+	</tfoot>
+	
+	<tbody>
+		<tr class="package">
+			<td colspan="7">
+				<a href="#" onclick="report_expand('pkg0'); void(0); return false;" class="tup" id="pkg0_0">
+					speedbar
+				</a>
+			</td>
+		</tr>
+	</tbody>
+	<tbody class="show" id="pkg0_1">
+		<tr class="release current" id="pkg0_1rel0">
+			<td><small>Latest</small></td>
+			<td colspan="6"><a href="showfiles.php?group_id=17886&amp;package_id=14924&amp;release_id=80017" onclick="report_expand('pkg0_1rel0'); void(0); return false;" class="tup" id="pkg0_1rel0_0">1.4beta4</a> <span class="notes"><a href="shownotes.php?release_id=80017&amp;group_id=17886" title="View notes">Notes</a></span> <small>(2002-03-16 21:00) </small></td>
+		</tr>
+		<tr class="show" id="pkg0_1rel0_1">
+			<td colspan="2" >&nbsp;</td>
+			<td ><a href="http://downloads.sourceforge.net/cedet/speedbar-0.14beta4.tar.gz?modtime=1016341200&amp;big_mirror=0" onClick="window.location='/project/downloading.php?group_id=17886&amp;use_mirror=superb-east&amp;filename=speedbar-0.14beta4.tar.gz&amp;'+Math.floor(Math.random()*100000000); return false;">speedbar-0.14beta4.tar.gz</a>
+			&nbsp;<span class="mirrors"><a href="mirror_picker.php?height=350&amp;width=300&amp;group_id=17886&amp;use_mirror=superb-east&amp;filename=speedbar-0.14beta4.tar.gz" class="thickbox" title="Currently downloading from McLean, Virginia - North America">Mirror</a></span>
+			</td>
+			<td >114994</td>
+			<td ><a href="/project/stats/detail.php?type=prdownload&amp;group_id=17886&amp;ugn=cedet&amp;package_id=14924&amp;release_id=80017&amp;file_id=148162">36773</a></td>
+			<td >Any</td>
+			<td >Source .gz</td>
+		</tr>
+	</tbody>
+</table>
+	<div id="fadbtmp">&nbsp;</div>
+	</div>
+</div>
+
+
+
+<div id="footer">
+        <ul>
+		<li><a href="/docs/about">About SourceForge.net</a></li>
+		<li><a href="/tos/privacy.php">Privacy Statement</a></li>
+		<li><a href="/tos/tos.php">Terms of Use</a></li>
+		<li><a href="http://web.sourceforge.com/media_kit.php">Advertise</a></li>
+		<li><a href="/support/getsupport.php">Get Support</a></li>
+		<li><a href="/supporters.php">Our Supporters</a></li>
+		<li><a href="/subscriptions.php">Subscribe</a></li>
+		<li><a href="http://newsletters.ostg.com/wws/subrequest/sourceforge-daily">Newsletter</a></li>
+		<li><a href="/export/rss2_sfnews.php?group_id=1&amp;rss_fulltext=1">RSS</a></li>
+	</ul>
+	<p>
+		&copy;Copyright 1999-2008 - <a href="http://sourceforge.com"  title="Network which provides and promotes Open Source software downloads, development, discussion and news.">SourceForge</a>, Inc., All Rights Reserved 
+	</p>
+        	<ul class="ostgnavbar">
+		<li class="begin"><a href="http://sourceforge.com">SourceForge</a></li>
+		<li><a href="http://thinkgeek.com">ThinkGeek</a></li>
+		<li><a href="http://slashdot.org">Slashdot</a></li>
+		<li><a href="http://itmj.com">ITMJ</a></li>
+		<li><a href="http://linux.com">Linux.com</a></li>
+		<li><a href="http://newsforge.com">NewsForge</a></li>
+		<li><a href="http://freshmeat.net">freshmeat</a></li>
+		<li><a href="http://newsletters.ostg.com">Newsletters</a></li>
+		<li><a href="http://sourceforge.pricegrabber.com/">PriceGrabber</a></li>
+		<li><a href="http://ad.doubleclick.net/clk;177533387;24688860;z?http://seeker.dice.com/jobsearch/genthree/index.jsp">Jobs</a></li>
+	</ul>
+</div>
+ 
+<!-- Ad calls and positioning -->
+<div id="adbatch" class="filespackage">
+	 
+		<div id="fad6">
+			<div>
+				<!-- DoubleClick Ad Tag -->
+<script type="text/javascript">
+//<![CDATA[
+   document.write('<script src="http://ad.doubleclick.net/adj/ostg.sourceforge/softdev_p6_imu;pg=/project/showfiles.php;psrch=0;logged_in=0;tile='+dfp_tile+';tpc=cedet;tpc=os_groups;tpc=independent;tpc=lisp;tpc=ide;tpc=emacs;tpc=editors;tpc=development;ord='+dfp_ord+'?" type="text/javascript"><\/script>');
+   dfp_tile++;
+//]]>
+</script>
+<!-- End DoubleClick Ad Tag -->
+		</div>
+		</div>
+	 
+
+	
+		<div id="fad1">
+			<div>
+				<div>
+				<!-- DoubleClick Ad Tag -->
+<script type="text/javascript">
+//<![CDATA[
+   document.write('<script src="http://ad.doubleclick.net/adj/ostg.sourceforge/softdev_p1_leader;pg=/project/showfiles.php;psrch=0;logged_in=0;tile='+dfp_tile+';tpc=cedet;tpc=os_groups;tpc=independent;tpc=lisp;tpc=ide;tpc=emacs;tpc=editors;tpc=development;ord='+dfp_ord+'?" type="text/javascript"><\/script>');
+   dfp_tile++;
+//]]>
+</script>
+<!-- End DoubleClick Ad Tag -->
+				</div>
+							</div>
+		</div>
+		
+		<div id="fadfadbtm"><div></div></div>
+<div id="fadbtm"><div id="ad34"><div class="sponsor"><!-- DoubleClick Ad Tag -->
+<script type="text/javascript">
+//<![CDATA[
+   document.write('<script src="http://ad.doubleclick.net/adj/ostg.sourceforge/softdev_p33_utility;pg=/project/showfiles.php;psrch=0;logged_in=0;tile='+dfp_tile+';tpc=cedet;tpc=os_groups;tpc=independent;tpc=lisp;tpc=ide;tpc=emacs;tpc=editors;tpc=development;ord='+dfp_ord+'?" type="text/javascript"><\/script>');
+   dfp_tile++;
+//]]>
+</script>
+<!-- End DoubleClick Ad Tag --></div></div><div class="dual"><div id="ad7"><!-- DoubleClick Ad Tag -->
+<script type="text/javascript">
+//<![CDATA[
+   document.write('<script src="http://ad.doubleclick.net/adj/ostg.sourceforge/softdev_p7_bottom_center;pg=/project/showfiles.php;psrch=0;logged_in=0;tile='+dfp_tile+';tpc=cedet;tpc=os_groups;tpc=independent;tpc=lisp;tpc=ide;tpc=emacs;tpc=editors;tpc=development;ord='+dfp_ord+'?" type="text/javascript"><\/script>');
+   dfp_tile++;
+//]]>
+</script>
+<!-- End DoubleClick Ad Tag --></div><div id="ostgservices"><!-- DoubleClick Ad Tag -->
+<script type="text/javascript">
+//<![CDATA[
+   document.write('<script src="http://ad.doubleclick.net/adj/ostg.sourceforge/softdev_p40_bottom_right_svcs;pg=/project/showfiles.php;psrch=0;logged_in=0;tile='+dfp_tile+';tpc=cedet;tpc=os_groups;tpc=independent;tpc=lisp;tpc=ide;tpc=emacs;tpc=editors;tpc=development;ord='+dfp_ord+'?" type="text/javascript"><\/script>');
+   dfp_tile++;
+//]]>
+</script>
+<!-- End DoubleClick Ad Tag --></div></div></div>
+
+	 
+</div>
+
+
+<script type="text/javascript">
+pageTracker._trackPageview();
+</script>
+
+
+</body>
+</html>
+ 	  	 

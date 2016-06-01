@@ -1,0 +1,54 @@
+December 10, 1998
+
+I found Bruce V's gdchart package after hunting the Net for an app which
+would produce professional-standard graphs.  It was easily the most 
+comprehensive and powerful (and free) one I came across.
+
+The only problem I had with the package was that it only provided a C
+interface.  This presented a problem a) because I know very little about
+C and b) because perl, which I do know a bit about, was the only language
+I could do anything meaningful with.  I toyed with the idea of piping the C
+to gcc within my scripts, but that seemed like more trouble than it was
+worth.
+
+PerlXS was way more than I wanted to deal with, specifically with the 
+means of translating arrays to lists.  That's when I found SWIG.  Whoever
+wrote the docs to SWIG did an outstanding job (not to mention whoever
+wrote the code)--with a decent amount of effort, I was able to call
+the C functions from my perl scripts.
+
+The task of porting the package over was large mostly because of the 
+number of options, roughly 50 of them.  I tried to put the most relevant of
+them within the function calls themselves, e.g. colors, titles, styles.  The
+rest are tweakable.  
+
+For those users of the gdchart app, you'll notice that
+some options are missing, either because the data types were difficult to
+convert or I haven't figured out how to correctly incorporate them within
+the framework of the module.  Also, because of the wrapper's limitation
+regarding variable length argument lists, stacked graphs have their own
+function calls, e.g. double-stacked and triple-stacked.  I can take
+this list ad infinitum (sextuple-stacked?), but I figure I'll wait for
+demand.
+
+This is what's not there:
+
+scatters
+
+I figured the best way to document the different graph types and options
+was to give plenty of examples, which I've done.  You can either view them
+over the web or grab the tarball.  The HREFs assume that you're untarring
+from your web root.
+
+I've tested as much as possible each option, but there's always the possibility
+something isn't working the way it's supposed to.  The cause may be in either
+the C or the perl ... please check the C distribution's notes before you
+forward problems.  If you do have problems, forward me the code.  
+
+Error checking is minimal at this point.  There are still situations where
+the module will return without creating the graph or the module will hang.
+
+Good luck, have fun and let me know if you have any problems.
+
+--matt hempel
+mhempel@aestus.net

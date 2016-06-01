@@ -1,0 +1,16 @@
+[$Version]
+update_info=konsole.upd:kde2.2/r1,konsole.upd:kde3.0/r1
+
+[Desktop Entry]
+AllowResize=false
+BlinkingCursor=false
+CtrlDrag=true
+CutToBeginningOfLine=false
+EnableBidi=false
+LineSpacing=0
+SilenceSeconds=10
+WarnQuit=true
+XonXoff=false
+has frame=true
+schema=Transparent_darkbg.schema
+wordseps=:@-./_~

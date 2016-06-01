@@ -1,0 +1,3 @@
+#! /bin/bash
+
+cat <(find . -name *.h -print) <(find . -name '*.cpp' -print) | xargs etags -

@@ -1,0 +1,3 @@
+* linreg and logreg tools
+   . perl/genScaleDes.pl
+     Generate var description from varlist file

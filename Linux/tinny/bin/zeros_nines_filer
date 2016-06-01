@@ -1,0 +1,3 @@
+#! /usr/bin/perl -wnlaF'\t'
+
+print if $F[0] !~ /^\s*(0+|9+)\s*$/;

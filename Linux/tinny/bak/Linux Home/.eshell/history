@@ -1,0 +1,106 @@
+ls
+clear
+clear
+l
+ls
+cat error | less
+q
+ls
+clear
+ls
+exit
+ls
+cd tinny/
+ls
+cd temp/
+ls
+cat error 
+clear
+less error 
+cat error | less
+qNo
+clear
+less error 
+clear
+ls
+ls
+zcat result.gz | less
+q
+zcat result.gz | less
+zcat result.gz | less
+zcat result.gz | less
+exit
+clear
+ls
+clear
+ls
+clear
+ls
+zcat result.gz | less
+Yes
+ls
+clear
+ls
+cd
+ls
+clear
+ls
+less error 
+clear
+ls
+zcat result.gz | less
+ls
+clear
+ls
+less error 
+clear
+ls
+less test.cpp
+clear
+ls
+less error 
+clear
+less test.cpp
+clear
+ls
+zcat result.gz 
+clear
+ls
+zcat result.gz | more
+ls
+clear
+ls
+exit
+clear
+ls
+zcat result.gz | less
+clear
+ls
+cd
+exit
+ls
+clear
+ls
+cd tinny/
+ls
+cd temp/
+ls
+zcat result.gz | more
+zcat result.gz | wc -l
+clear
+ls
+zcat result.gz | head -42
+cd
+ls
+cd projects/FalconID/FID_Modeling/Data/
+ls
+cd ParsedHistoricalData/
+ls
+clear
+ls
+cd CreditDebit/
+ls
+zcat kart-tagged.tab.gz | less
+clear
+zcat kart-tagged.tab.gz | head -42
+exit

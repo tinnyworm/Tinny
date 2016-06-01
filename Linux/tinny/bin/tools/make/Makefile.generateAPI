@@ -1,0 +1,96 @@
+# Makefile for generate API
+#
+# The last part of the select
+# file should be the same as the corresponding data directory. For example:
+# 		DATA : DATA_DIR/cap1
+#		SELECT : select.muse.cap1
+#
+# It can (and usually should) be run in parallel using
+#		make -j<njobs> -l<maxload>
+#			njobs: Allow N jobs at once; infinite jobs with no arg.
+#			maxload: Don't start multiple jobs unless load is below N.
+# See the help of make for detail information (using make --help)
+# 
+# NTRAN : # of max transactions will be scored, all if not specified
+#
+# dxl: 03/24/2005
+
+SHELL = /bin/sh
+
+#>>>>>> change start from here >>>>>>
+
+DATA = cap1 
+#       fdi_0 \
+#                 fdi_1 \
+#                 fdi_2 \
+#                 fdi_3 \
+#                 fdi_4 \
+#                 fdi_5 \
+#                 fdi_6 \
+#                 fdi_7 \
+#                 fdi_8 \
+#                 fdi_9 \
+#       rbs_0 \
+#                 rbs_1 \
+#                 rbs_2 \
+#                 rbs_3 \
+#                 rbs_4 \
+#                 rbs_5 \
+#                 rbs_6 \
+#                 rbs_7 \
+#                 rbs_8 \
+#                 rbs_9 
+
+MODEL_DIR=/work/fpchico/UK_2004/FFM70/segments/12_hid_changevars/research/model
+MODEL_NAME = UKFFMV7
+DATA_DIR = /work/fpchico/UK_2004/orig_data/final_data_3pct
+SEL_DIR = /work/fpchico/UK_2004/FFM70/segments/10_hid/select
+EVAL_DIR = ${shell pwd}
+
+## Flags for Falconer4 options
+# FP? [YES/NO]
+FP = NO
+# shrtScr? [YES/NO]
+SCR = NO
+# MAX TRAN #
+NTRAN = 100
+
+#<<<<<< change end here <<<<<<
+
+## Falconer4 options
+FALOPT = -R silent
+ifeq (${FP}, YES)
+	FALOPT += -p mp=70
+endif
+FALOPT += -f noposts 
+FALOPT += -d std_kchk,buildcard30
+ifeq (${SCR}, YES)
+	FALOPT += -s ${EVAL_DIR}/$*.shrtScr.gz
+endif
+ifneq (${NTRAN}, )
+	FALOPT += -n ${NTRAN}
+endif
+
+## Binaries
+OS = $(shell uname)
+ifeq (${OS}, SunOS)
+	FALCONER = /work/gold/bin/falconer4
+else
+	FALCONER = /work/gold/linux/bin/falconer4
+endif
+
+API_OBJS = $(foreach a, ${DATA}, ${a}.API.gz)
+
+## rules
+all : ${API_OBJS}
+
+%.API.gz :
+	cd ${MODEL_DIR};\
+	${FALCONER} \
+		-i dir=${DATA_DIR}/$*,select=${SEL_DIR}/select.muse.$* \
+		${FALOPT} \
+		-A ${EVAL_DIR}/$@ \
+		${MODEL_NAME}.cnf 
+
+clean : 
+	find ./ ! -name Makefile -exec rm {} \;
