@@ -1,0 +1,93 @@
+#####################################################################
+
+Python naming convention
+
+module_name, package_name, ClassName, method_name, ExceptionName, function_name, 
+GLOBAL_CONSTANT_NAME, global_var_name, instance_var_name, function_parameter_name, local_var_name
+
+#####################################################################
+
+Postgre SQL client
+
+* pgAdmin
+* PSequel
+
+My SQL client
+
+* Sequel Pro
+* MySQL Bench
+
+#####################################################################
+
+Running ipython notebook in VM
+
+1. forwarding port 8888 to port 8888 (TCP; Host IP: empty; Host port: 8888; guest port: 8888)
+2. In your virtual machine, run the IPython notebook server: ipython notebook ––ip=0.0.0.0
+3. View the notebook in the host’s browser: http://localhost:8888
+
+#####################################################################
+
+Tricks
+
+Awk
+awk -F'|' '{print NF;}' 
+
+Find out the linux system
+$ cat /proc/version
+
+turn on color
+$ ls --color=auto
+
+#####################################################################
+
+Upgrade R in Ubuntu
+
+1.sudo gedit /etc/apt/sources.list
+
+This will open up your sources.list file in gedit, where you can add the following line.
+
+2.deb http://cran.cnr.berkeley.edu/bin/linux/ubuntu/ version/
+
+Replace version/ with whatever version of Ubuntu you are using (eg, precise/, oneric/, and so on). If you're getting a "Malformed line error", check to see if you have a space between /ubuntu/ and version/.
+
+3.Fetch the secure APT key with gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9.
+
+4.Feed it to apt-key with gpg -a --export E084DAB9 | sudo apt-key add -
+
+5.Update your sources and upgrade your installation with sudo apt-get update && sudo apt-get upgrade.
+
+#####################################################################
+
+Get the proxy right. 
+
+export http_proxy="xxxxxx"
+
+If you normally use sudo to run apt-get you will need to login as root first for this to work unless you also add some explicit environment settings to /etc/sudoers, e.g. Defaults env_keep = "http_proxy https_proxy ftp_proxy"
+ 
+don't know why, but it works.
+ 
+gksu gedit /etc/default/apport
+apport = 0
+
+#####################################################################
+
+Install Python Lib
+
+Download the package
+run: python setup.py install
+
+#####################################################################
+
+Disable http_proxy
+unset http_proxy 
+
+#####################################################################
+
+# contents of $HOME/.ssh/config
+
+Host dev
+    HostName dev.example.com
+    Port 22000
+    User fooey
+
+#####################################################################
