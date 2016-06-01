@@ -1,0 +1,26 @@
+# .bashrc
+
+# if not logging in interactively do nothing 
+[ -z "$PS1" ] && return 
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+# User specific aliases
+alias cp='cp -i'                                # interactive copy
+alias mv='mv -i'                                # interactive move
+alias rm='rm -i'                                # interactive remove
+alias grep='grep --color'                       # show differences in colour
+alias clean='rm -f *~'                          # clean temporary
+alias less='less -S'                            # long line display
+alias ls='ls -G'                                # ls color output
+
+# permission
+umask 0007
+
+export PATH=~/Tinny/bin:$PATH
+export PYTHONPATH=/Library/Python/2.7/site-packages/Django-1.7.1-py2.7.egg/:$PYTHONPATH
+
+export PS1="\w@ "
