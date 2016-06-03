@@ -1,0 +1,37 @@
+id: 0-1.0.r1/0
+type: dir
+count: 0
+cpath: /project_1
+copyroot: 0 /
+
+id: 2-1.0.r1/67
+type: dir
+count: 0
+cpath: /project_2
+copyroot: 0 /
+
+PLAIN
+K 9
+project_1
+V 14
+dir 0-1.0.r1/0
+K 9
+project_2
+V 15
+dir 2-1.0.r1/67
+END
+ENDREP
+id: 0.0.r1/221
+type: dir
+pred: 0.0.r0/17
+count: 1
+text: 1 135 73 73 9e1df4ede6eaa08a8618123d357533e9
+cpath: /
+copyroot: 0 /
+
+_0.0.t0-0 add-dir false false /project_1
+
+_2.0.t0-0 add-dir false false /project_2
+
+
+221 346
