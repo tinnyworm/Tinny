@@ -1,0 +1,168 @@
+# Statistical challenges of high-dimensional data
+# http://rsta.royalsocietypublishing.org/content/367/1906/4237.full
+
+# import the data
+all_data <- read.csv(file = "data.csv", header = T)
+
+# carve out the train/test
+train_data <- all_data[all_data$train>0,]
+test_data  <- all_data[all_data$train<1,]
+
+# drop useless colume, I used target_practice as the target and drop the target_eval
+train_data$id <- NULL
+train_data$train <- NULL
+train_data$target_eval <- NULL
+
+test_data$id <- NULL
+test_data$train <- NULL
+test_data$target_eval <- NULL
+
+# check the histogram
+hist(train_data$target_practice)
+
+# Note that, large P, small N, PCA is not eligiable
+# correlation check
+col <- cor(train_data)
+quantile(cor[,1], probs = seq(0,1,0.05))
+
+#########################################################################
+#           0%            5%           10%           15%           20% 
+#-0.1456502945 -0.0797992040 -0.0527205991 -0.0346818431 -0.0228738637 
+#          25%           30%           35%           40%           45% 
+#-0.0092128946 -0.0008360083  0.0075541254  0.0145236796  0.0219010746 
+#          50%           55%           60%           65%           70% 
+# 0.0325615090  0.0414111087  0.0505540131  0.0611283679  0.0701381856 
+#          75%           80%           85%           90%           95% 
+# 0.0806166191  0.0945491939  0.1023656797  0.1218681762  0.1387556691 
+#         100% 
+# 1.0000000000 
+#########################################################################
+
+#check var_188, var_176, not correlated vars (<1%)
+plot(train_data$target_practice, train_data$var_188)
+plot(train_data$target_practice, train_data$var_176)
+
+#check var_38, correlated vars (> 20%)
+plot(train_data$target_practice, train_data$var_38)
+
+#get positive/negative sets
+pos <- train_data[train_data$target_practice>0,]
+neg <- train_data[train_data$target_practice<1,]
+
+######################################################
+# Check distributions of pos/neg set
+#
+# summary(pos$var_188)
+#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+# 0.0010  0.2370  0.5220  0.5018  0.7950  0.9930 
+# summary(neg$var_188)
+#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+# 0.0130  0.2460  0.5020  0.5024  0.7920  0.9960 
+# 
+# summary(pos$var_176)
+#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+# 0.0030  0.2420  0.4920  0.4989  0.7480  0.9910 
+# summary(neg$var_176)
+#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+# 0.0230  0.2660  0.4960  0.4983  0.7730  0.9970 
+# 
+# summary(neg$var_38)
+#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+# 0.0210  0.2110  0.4220  0.4488  0.6300  0.9910 
+# summary(pos$var_38)
+#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+# 0.0210  0.4000  0.5840  0.5885  0.8250  0.9980 
+######################################################
+
+# select vars with top 40% (positive correlated) and bottom 10% vars (negative correlated) (150 vars in total)
+# created a training set called train_selected (many data manipulation steps skipped)
+# conducted PCA analysis on train_selected. The first 50 component explains only 64% of variation. Don't think 
+# PCA will improve it a lot.
+
+# Tried Multivariate Shrinkage Regression which is specifically designed for small N large P problem. But I cannot get it work in R since the function
+# Looks like mvr.shrink and mvr.predict are expired in corpcor package
+
+# use libsvm for classification purpose
+# package e1071
+
+svm.model <- svm(target_practice ~ ., data = train_selected, type = "C-classification", cost = 1, gamma = 0.2)
+
+################
+# accuracy: 58%
+################
+#     true
+#pred    0    1
+#   0 5832 4371
+#   1 3987 5560
+################
+
+# select vars with top 15% (positive correlated) and bottom 5% vars (negative correlated) (60 vars in total)
+
+svm.model <- svm(target_practice ~ ., data = train_selected, type = "C-classification", cost = 1.2, gamma = 0.05)
+
+################
+# accuracy: 63%
+################
+#     true
+#pred    0    1
+#   0 6000 3505
+#   1 3819 6426
+################
+
+# stepwise selection (43 vars in total)
+fit <- lm(target_practice ~ ., data=train_selected)
+step <- stepAIC(fit, direction="both")
+
+################
+#Step:  AIC=-496.81
+#target_practice ~ var_38 + var_42 + var_4 + var_72 + var_199 + var_225 + var_274 + var_87 + var_217 + var_77 + var_64 +  var_114 + var_135 + var_263 + var_83 + var_282 + var_270 + var_65 + var_129 + var_208 + var_54 + var_178 + var_117 + var_14 + var_101 + var_24 + var_279 + var_94 + var_166 + var_63 + var_190 + var_197 + var_184 + var_288 + var_285 + var_131 + var_167 + var_1 + var_115 + var_12 + var_284 + var_260 + var_106
+
+################
+# accuracy: 62%
+################
+#     true
+#pred    0    1
+#   0 6090 3774
+#   1 3729 6151
+################
+
+library(e1071)
+library(ROCR)
+
+svm.model <- svm(target_practice ~ ., data = train_selected, type = "C-classification", cost = 1.2, gamma = 0.05, probability = TRUE)
+pred <- predict(svm.model, newdata = test_data, probability = TRUE)
+prediction = attr(pred, "probabilities")
+rocPred <- ROCR::prediction(prediction[,2], test_data$target_practice)
+perf <- ROCR::performance(rocPred, "tpr", "fpr")
+auc <- ROCR::performance(rocPred, "auc")
+plot(perf,col=rainbow(10))
+
+library(caret)
+caret::confusionMatrix(pred, test_data$target_practice)
+
+#Confusion Matrix and Statistics
+
+#          Reference
+# Prediction    0    1
+#          0 6000 3509
+#          1 3819 6422
+                                          
+#               Accuracy : 0.629           
+#                 95% CI : (0.6222, 0.6357)
+#    No Information Rate : 0.5028          
+#    P-Value [Acc > NIR] : < 2.2e-16       
+                                          
+#                  Kappa : 0.2578          
+# Mcnemar's Test P-Value : 0.0003066       
+                                          
+#            Sensitivity : 0.6111          
+#            Specificity : 0.6467          
+#         Pos Pred Value : 0.6310          
+#         Neg Pred Value : 0.6271          
+#             Prevalence : 0.4972          
+#         Detection Rate : 0.3038          
+#   Detection Prevalence : 0.4815          
+                                          
+#       'Positive' Class : 0               
+
+

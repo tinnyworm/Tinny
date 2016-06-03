@@ -1,0 +1,107 @@
+set.seed(47)
+
+fitControl <- trainControl(method = "repeatedcv",
+                           number =  3,
+                           repeats = 3,
+                           classProbs = TRUE,
+                           summaryFunction = twoClassSummary)
+
+fitGrid <- expand.grid(.mtry = c(1:6)*2)
+						   
+cforest_model <- caret::train(as.factor(target_practice) ~ ., 
+							  data = train_data,
+							  method = "cforest",
+							  tuneGrid = fitGrid,
+                              trControl = fitControl,
+                              metric = "ROC",
+                              preProc = c("center", "scale"))
+							  
+cforest_model_all <- caret::train(as.factor(target_practice) ~ ., 
+							  data = train_test,
+							  method = "cforest",
+							  tuneGrid = fitGrid,
+                              trControl = fitControl,
+                              metric = "ROC",
+                              preProc = c("center", "scale"))
+							  
+#> cforest_model
+#  250 samples
+#  300 predictors
+#  2 classes: '0', '1' 
+
+# Pre-processing: centered, scaled 
+# Resampling: Cross-Validation (10 fold, repeated 10 times) 
+
+# Summary of sample sizes: 225, 226, 225, 224, 224, 225, ... 
+
+# Resampling results across tuning parameters:
+#
+#  mtry  ROC    Sens   Spec   ROC SD  Sens SD  Spec SD
+#  2     0.645  0.56   0.606  0.109   0.254    0.238  
+#  4     0.661  0.585  0.63   0.0999  0.186    0.175  
+#  6     0.676  0.57   0.659  0.104   0.179    0.175  
+
+# ROC was used to select the optimal model using the largest value.
+# The final value used for the model was mtry = 6. 
+
+# > cforest_model
+# 250 samples
+# 300 predictors
+# 2 classes: '0', '1' 
+
+# Pre-processing: centered, scaled 
+# Resampling: Cross-Validation (5 fold, repeated 5 times) 
+
+# Summary of sample sizes: 200, 200, 200, 200, 200, 200, ... 
+
+# Resampling results across tuning parameters:
+
+#  mtry  ROC    Sens   Spec   ROC SD  Sens SD  Spec SD
+#  2     0.66   0.586  0.618  0.0704  0.173    0.204  
+#  4     0.662  0.555  0.64   0.0399  0.174    0.165  
+#  6     0.678  0.578  0.653  0.0723  0.137    0.142  
+#  8     0.673  0.566  0.658  0.062   0.128    0.11   
+#  10    0.657  0.57   0.653  0.0787  0.132    0.0892 
+#  12    0.667  0.542  0.693  0.0779  0.115    0.0943 
+
+# ROC was used to select the optimal model using  the largest value.
+# The final value used for the model was mtry = 6. 
+# > plot(cforest_model)
+
+cforestProbs <-predict(cforest_model$finalModel, newdata = test_data, type = "prob")
+confusionMatrix(data = cforestClasses, test_data$target_practice)
+
+# Loading required package: class
+# Confusion Matrix and Statistics
+
+#          Reference
+# Prediction    0    1
+#          0    0    0
+#          1 9819 9931
+                                          
+#               Accuracy : 0.5028          
+#                 95% CI : (0.4958, 0.5098)
+#    No Information Rate : 0.5028          
+#    P-Value [Acc > NIR] : 0.5028          
+                                          
+#                  Kappa : 0               
+# Mcnemar's Test P-Value : <2e-16          
+                                          
+#            Sensitivity : 0.0000          
+#            Specificity : 1.0000          
+#         Pos Pred Value :    NaN          
+#         Neg Pred Value : 0.5028          
+#             Prevalence : 0.4972          
+#         Detection Rate : 0.0000          
+#   Detection Prevalence : 0.0000          
+                                          
+#       'Positive' Class : 0               
+                                          
+cforestPredProbs <- sapply(cforestProbs, "[", c(2))
+cforestRocPred <- ROCR::prediction(cforestPredProbs, test_data$target_practice)
+cforestPerf <- ROCR::performance(cforestRocPred, "tpr", "fpr")
+cforestAUC <- ROCR::performance(cforestRocPred, "auc")
+plot(cforestPerf,col=rainbow(10))
+
+
+
