@@ -1,1 +1,3 @@
 MobaXterm
+
+Diving into data blog - feature selection.
