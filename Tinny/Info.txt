@@ -19,7 +19,7 @@ Windows Analytics Environment
   
 * install R
 
-* install Anaconda
+* install Anaconda (download the zip file if behind a firewall)
   - from within cygwin, run python -i
 
 * download Rstudio and extract.
