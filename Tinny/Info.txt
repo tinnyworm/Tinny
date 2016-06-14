@@ -1,3 +1,16 @@
 MobaXterm
 
 Diving into data blog - feature selection.
+
+Windows Analytics Environment
+
+* install cygwin (--no-admin)
+  - emacs
+  - perl
+  - gcc
+  - g++
+  - make
+  
+* install R
+
+* install Anaconda
