@@ -1,0 +1,40 @@
+'Saving a range as Text – the proper way
+
+Sub saveText2()
+    Dim filename As String, lineText As String
+    Dim myrng As Range, i, j
+    
+    filename = ThisWorkbook.Path & "\textfile-" & Format(Now, "ddmmyy-hhmmss") & ".txt"
+    
+    Open filename For Output As #1
+    
+    Set myrng = Range("data")
+    
+    For i = 1 To myrng.Rows.Count
+        For j = 1 To myrng.Columns.Count
+            lineText = IIf(j = 1, "", lineText & ",") & myrng.Cells(i, j)
+        Next j
+        Print #1, lineText
+    Next i
+    
+    Close #1
+End Sub
+
+'Find unique values in a range
+
+Public Sub Test()
+  ActiveSheet.Range("A2:A65536").AdvancedFilter Action:=xlFilterCopy, CopyToRange:=ActiveSheet.Range("B2"), Unique:=True
+End Sub
+
+# referencing range in other sheet
+
+Dim sh1 As Worksheet
+Dim sh2 As Worksheet
+
+Set sh1 = ActiveWorkbook.Sheets("Temp")
+Set sh2 = ActiveWorkbook.Sheets("Overview")
+
+With sh1
+    .Range(.Cells(1,1), .Cells(1,1).End(xlDown)).Copy
+End With
+sh2.Range("C40").PasteSpecial
