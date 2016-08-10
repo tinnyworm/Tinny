@@ -1,3 +1,6 @@
+' set formula in a cell
+Worksheets("Totals").Range("B9").Formula = "=SUM(B11:B22)"
+
 'Saving a range as Text – the proper way
 
 Sub saveText2()
