@@ -1,3 +1,21 @@
+Sub test()
+
+    Dim t As Range
+    
+    With Sheet1
+        Set t = Union(.Range("C3:F4"), .Range("C6:F10"), .Range("C13:F13"))
+    End With
+    
+    Dim r As Range
+    Dim x As Variant
+    
+    For Each r In t.Areas()
+        Debug.Print r.Rows.Count, r.Columns.Count
+        x = r.Value()
+    Next r
+    
+End Sub
+
 loop through 2d array
 
 Dim av2dArray() As Variant 
