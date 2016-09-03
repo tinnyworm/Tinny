@@ -1,3 +1,0 @@
-MODEL_SET = gen03cr1,hid03cr2,rap03cr3,mge03cr5,mhi03cr6
-TEMPLATE_FILE =  fal4tmplt
-RULE_BASE_FILE = uscrd03g.rul

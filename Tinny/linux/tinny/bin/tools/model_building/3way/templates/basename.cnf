@@ -1,3 +1,0 @@
-MODEL_SET = modmrule
-TEMPLATE_FILE = basename.tmplt
-RULE_BASE_FILE = basename.rul

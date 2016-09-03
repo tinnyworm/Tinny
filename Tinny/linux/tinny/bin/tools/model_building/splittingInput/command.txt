@@ -1,2 +1,0 @@
-zcat auths.dat.gz | getThreeDigitHash -l | splitInput.pl -c4-4 -s11 -l fusa
-

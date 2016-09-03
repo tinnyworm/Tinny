@@ -1,4 +1,0 @@
-MODEL_SET = genfcr30,hidfcr30,youfcr30
-MODEL_SET = gen03cr1,hid03cr2,rap03cr3,mge03cr5,mhi03cr6
-TEMPLATE_FILE = switch.tmplt
-RULE_BASE_FILE = switch-20030424.rul

@@ -1,6 +1,0 @@
-MANIFEST
-README
-Changes
-Makefile.PL
-lib/Tie/IxHash.pm
-t/ixhash.t

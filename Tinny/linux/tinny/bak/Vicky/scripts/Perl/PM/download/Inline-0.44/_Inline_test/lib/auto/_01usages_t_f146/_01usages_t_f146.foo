@@ -1,5 +1,0 @@
-
-sub test3 {
-    return $_[0] eq 'yrlnry';
-}
-
