@@ -1,0 +1,81 @@
+Sub test()
+
+    Dim t As Range
+    
+    With Sheet1
+        Set t = Union(.Range("C3:F4"), .Range("C6:F10"), .Range("C13:F13"))
+    End With
+    
+    Dim r As Range
+    Dim x As Variant
+    
+    For Each r In t.Areas()
+        Debug.Print r.Rows.Count, r.Columns.Count
+        x = r.Value()
+    Next r
+    
+End Sub
+
+loop through 2d array
+
+Dim av2dArray() As Variant 
+Dim lCol        As Long 
+Dim lRow        As Long 
+ 
+av2dArray = Sheet1.Range("B2:C15").Value 
+ 
+For lCol = LBound(av2dArray, 2) To UBound(av2dArray, 2) 
+     
+    For lRow = LBound(av2dArray, 1) To UBound(av2dArray, 1) 
+         
+        Debug.Print "(" & lRow & "," & lCol & ")", av2dArray(lRow, lCol) 
+         
+    Next lRow 
+     
+Next lCol 
+
+VBA object overview
+
+' set formula in a cell
+Worksheets("Totals").Range("B9").Formula = "=SUM(B11:B22)"
+
+'Saving a range as Text – the proper way
+
+Sub saveText2()
+    Dim filename As String, lineText As String
+    Dim myrng As Range, i, j
+    
+    filename = ThisWorkbook.Path & "\textfile-" & Format(Now, "ddmmyy-hhmmss") & ".txt"
+    
+    Open filename For Output As #1
+    
+    Set myrng = Range("data")
+    
+    For i = 1 To myrng.Rows.Count
+        For j = 1 To myrng.Columns.Count
+            lineText = IIf(j = 1, "", lineText & ",") & myrng.Cells(i, j)
+        Next j
+        Print #1, lineText
+    Next i
+    
+    Close #1
+End Sub
+
+'Find unique values in a range
+
+Public Sub Test()
+  ActiveSheet.Range("A2:A65536").AdvancedFilter Action:=xlFilterCopy, CopyToRange:=ActiveSheet.Range("B2"), Unique:=True
+End Sub
+
+# referencing range in other sheet
+
+Dim sh1 As Worksheet
+Dim sh2 As Worksheet
+
+Set sh1 = ActiveWorkbook.Sheets("Temp")
+Set sh2 = ActiveWorkbook.Sheets("Overview")
+
+With sh1
+    .Range(.Cells(1,1), .Cells(1,1).End(xlDown)).Copy
+End With
+sh2.Range("C40").PasteSpecial
