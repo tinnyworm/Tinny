@@ -1,0 +1,10 @@
+syntax on
+set number
+#set nonumber
+
+imap jj <Esc>
+
+nmap <c-n> <c-e>
+nmap <c-p> <c-y>
+
+nmap <c-o><c-o> <c-w><c-w>
