@@ -1,10 +1,35 @@
+" syntax highlight
 syntax on
-set number
-#set nonumber
 
+" show line number
+set number      "nonumber
+
+set nowrap      "wrap
+
+" quick normal mode
 imap jj <Esc>
 
+" scroll one line up/down
 nmap <c-n> <c-e>
 nmap <c-p> <c-y>
 
+" switch windows
 nmap <c-o><c-o> <c-w><c-w>
+
+" beginning / end of line
+inoremap <c-e> <Esc>A
+inoremap <c-a> <Esc>I
+
+" filetype plugin
+filetype plugin indent on
+
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
+
+" show status line
+set laststatus=2
+set statusline=[%n]\ %<%f%h%m
